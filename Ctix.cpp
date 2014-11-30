@@ -4,7 +4,7 @@
 int main()
 {
     printf("     And The Moon And The Stars And The World\n");
-    printf("               by Charles Bukowski\n");
+    printf("               by Charles Bukowski\n\n");
     printf("%-s\n", "Long walks at night--");
     printf("%-s\n", "that's what good for the soul:");
     printf("%-s\n", "peeking into windows");
