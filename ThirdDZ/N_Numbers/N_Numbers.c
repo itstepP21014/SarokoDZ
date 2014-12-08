@@ -1,4 +1,4 @@
-#include <stdio.h>
+п»ї#include <stdio.h>
 #include <stdlib.h>
 
 int main()
@@ -6,7 +6,7 @@ int main()
     int number,counter;
     printf("Please enter an integer >1:\n");
     scanf("%d",&number);
-    /*Я использовал здесь цикл For, так как здесь как и в первом задании нам известно количество циклов.*/
+    /*РЇ РёСЃРїРѕР»СЊР·РѕРІР°Р» Р·РґРµСЃСЊ С†РёРєР» For, С‚Р°Рє РєР°Рє Р·РґРµСЃСЊ РєР°Рє Рё РІ РїРµСЂРІРѕРј Р·Р°РґР°РЅРёРё РЅР°Рј РёР·РІРµСЃС‚РЅРѕ РєРѕР»РёС‡РµСЃС‚РІРѕ С†РёРєР»РѕРІ.*/
     for (counter=1;counter<=number;counter++)
     {
       printf(" %d",counter);

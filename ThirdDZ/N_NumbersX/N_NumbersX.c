@@ -1,4 +1,4 @@
-#include <stdio.h>
+п»ї#include <stdio.h>
 #include <stdlib.h>
 
 int main()
@@ -7,7 +7,7 @@ int main()
     printf("Please enter an integer:\n");
     scanf("%d",&n);
     printf("Please enter the %d integers:\n",n);
-//Использовал цикл for  так как известно количество повторений цикла.
+//РСЃРїРѕР»СЊР·РѕРІР°Р» С†РёРєР» for  С‚Р°Рє РєР°Рє РёР·РІРµСЃС‚РЅРѕ РєРѕР»РёС‡РµСЃС‚РІРѕ РїРѕРІС‚РѕСЂРµРЅРёР№ С†РёРєР»Р°.
     for (counter=n;counter!=0;--counter)
     {
        scanf("%d",&number);
