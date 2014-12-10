@@ -5,7 +5,7 @@
 int main()
 {
     srand(time(NULL));
-    int x,y;
+    int x,y,counter=0;
     int afterWin;
     x=(1+rand()%98);
     printf("You have to guess the number 1 to 99:\n");
@@ -15,16 +15,18 @@ int main()
         if (y>x)
         {
             printf ("No,no,no - too much\n");
-
+            counter+=1;
         }
         else
         {
             printf ("No,no,no - too small\n");
+            counter+=1;
         }
         scanf("%d",&y);
     }
-    printf ("Congratulations! You win!");
-    printf ("Want to play again? (1-yes//2-no)");
+    printf ("Congratulations! You win!\n");
+    printf ("You took %d turns.",counter);
+    printf ("Want to improve your score? (1-yes//2-no)");
     scanf ("%d",&afterWin);
     switch (afterWin)
     {
