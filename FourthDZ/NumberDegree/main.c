@@ -1,6 +1,5 @@
 #include <stdio.h>
 #include <stdlib.h>
-//По неизвестной мне причине всегда выдает ноль, как результат.
 
 int main()
 {
@@ -35,7 +34,7 @@ int main()
     }
     else
     {
-     printf ("Number %d v in degree %d is equal to: %d",number,degree,result);
+     printf ("Number %d v in degree %d is equal to: %.0lf",number,degree,result);
     }
     return 0;
 }
