@@ -3,15 +3,31 @@
 
 int main()
 {
-    int w,h,counter,c=35;
+    int w,h,counter,c=35,k;
     printf("Please enter width of the rectangle:\n");
     scanf ("%d",&w);
     printf("Please enter height of the rectangle:\n");
     scanf ("%d",&h);
-    h=h-2;
-    if (w<2 && h<2)
+    k=w*h;
+    if (k==1)
     {
      printf("%c\n",c);
+    }
+    else if (k==w)
+    {
+     for (counter=w;counter>0;--counter)
+     {
+       printf("%c",c);
+     }
+      printf ("\n");
+    }
+    else if (k==h)
+    {
+     for (counter=h;counter>0;--counter)
+     {
+       printf("%c",c);
+       printf ("\n");
+     }
     }
     else
     {
@@ -20,7 +36,7 @@ int main()
          printf("%c",c);
      }
      printf ("\n");
-
+    h=h-2;
 
     while (h>0)
     {
