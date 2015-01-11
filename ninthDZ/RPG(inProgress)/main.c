@@ -2,12 +2,14 @@
 #include <stdlib.h>
 #include <math.h>
 #include <time.h>
+#include <locale.h>
+#include <windows.h>
 
 int main()
 {
     //character........................
     //gender...........................
-    int male=0, female=0;
+    int gender;
     //races............................
     int human=0,  dwarf=0, gnome=0, elf=0, halfElf=0, halfling=0, halfOrc=0, lizardman=0, tiefling=0, aasimar=0, purebludedYuanti=0;
     //classes..........................
@@ -20,6 +22,7 @@ int main()
     int fortitude=0, reflex=0, will=0;
     //Stats............................
     int strength, dexterity, constitution, wisdom, intelligence, charisma;
+    int armorClass=0, attack=0;
     //skills...........................
     int diplomacy=0, bluff=0, appraise=0, balance=0, climb=0, concentration=0, craft=0, decipherScript=0, disableDevice=0, disguise=0, escapeArtist=0, forgery=0;
     int gatherInformation=0, handleAnimal=0, heal=0, hide=0, intimidate=0, jump=0, knowledge=0, listen=0, moveSilently=0, openLock=0, perform=0, profession=0;
@@ -31,14 +34,16 @@ int main()
     int swi1=1,swi2=1,swi3=1,swi4=1,swi5=1;
     int inpoutReflection, input, counter;
     //times of day.....................
-    int day,night,time;
+    int day,night,timeHours;
+    //lighting.........................
+    int dark,light;
     //the weather......................
-    int rain=0, hurricane=0, snow=0, blizzard=0, tC, jC;
+    int rain=0, hurricane=0, snow=0, blizzard=0, tC, jC, dC;
     int underground;
     //imitation die rolls..............
     int dice_4, dice_6, dice_8, dice_10, dice_12, dice_20, dice_30, dice_100;
     //check (skills)............................
-    int check, enemyCheck, checkLanguage=0;
+    int check, checkDouble1, checkDouble2, enemyCheck, checkLanguage=0;
     //the results of the main action............
     int damage=0,chanceToHit=0,movingSpeed=1,rangeSight=10, kindleFire=10,fatigue=0,enemyDamage=0,enemyChanceToHit=0,enemyMovingSpeed=0,enemyHealth=0,damageMax=0,enemyDamageMax=0;
     int disease=0, poisoning=0, restInTavern=0, health, enemyHealthMax;
@@ -48,10 +53,59 @@ int main()
     int elementalResist=0, physicalResist=0, fireResist=0, lightningResist=0, acidResist=0, poisonResist=0,coldResist=0;
     //damage absorption.........................
     int damageAbsorption=0, daAdamantine=0,daSilver=0,daColdIron=0,daSlash=0,daPiercing=0,daMaces=0;
+    //Основные обозначения
+    char genderM[15]="Мужчина", genderW[15]="Женщина",yourGender[15];
+
+    //utf-8
+    SetConsoleCP (65001);
+    SetConsoleOutputCP (65001);
+
+    //gender choice
+
+    printf ("Выберите пол своего персонажа:\n Пол персонажа это скорее эстетический выбор, который никак не влияет на ваши параметры. Однако он определяет какие именно персонажи (не принадлежащие игроку) будут заинтересованы в романтических отношениях с вашим героем.\n");
+    printf ("--Мужчина-- (0)\n Мужчины Королевств могут преуспеть в любой выбранной ими специальности, будь-то волшебство, воровство или боевые искусства.\n --Женщина-- (1)\n Женщины Королевств могут преуспеть в любой сфере деятельности по желанию и не уступают мужчинам по способностям и другим характеристикам.\n");
+    while (swi1)
+    {
+     scanf("%d",&gender);
+     fflush(stdin);
+     switch (gender)
+     {
+     case 0:
+     printf("Вы выбрали мужской пол.\n");
+     swi1=0;
+     break;
+     case 1:
+     printf("Вы выбрали женский пол.\n");
+     swi1=0;
+     swi2=0;
+     break;
+     default:
+     printf("Выберите пол персонажа (введите 0 или 1)\n");
+     break;
+    }
+    }
+    swi1=1;
+
+    if (swi2==1)
+    {
+      strcpy(yourGender, genderM);
+      printf ("Пол: %s\n",yourGender);
+    }
+    else
+    {
+      strcpy(yourGender, genderW);
+      printf ("Пол: %s\n",yourGender);  //swi2=0
+    }
+
+
+
+
 
 
     //battle test
-    printf ("Fight test:\n");
+    srand(time(NULL));
+    printf ("\n");
+    printf ("Fight test Проверка:\n");
     healthMax=100;
     health=100;
     enemyHealthMax=50;
@@ -75,12 +129,27 @@ int main()
        enemyCheck=dice100();
        if (enemyChanceToHit>=enemyCheck)
        {
-         health-=enemyDamage;
-         printf ("The enemy causes you %d points of damage\n",enemyDamage);
-         if (health<=0)
+         checkDouble1=1+rand()%20;
+         if (checkDouble1>18)
          {
+          enemyDamage*=2;
+          health-=enemyDamage;
+          printf ("The enemy causes you critical hit: %d points of damage\n",enemyDamage);
+          if (health<=0)
+          {
              printf ("you died\n");
              swi1=0;
+          }
+         }
+         else
+         {
+          health-=enemyDamage;
+          printf ("The enemy causes you %d points of damage\n",enemyDamage);
+          if (health<=0)
+          {
+             printf ("you died\n");
+             swi1=0;
+          }
          }
        }
        else
@@ -89,6 +158,21 @@ int main()
        }
        if (chanceToHit>=check)
        {
+         checkDouble2=1+rand()%20;
+         if (checkDouble2>18)
+         {
+         damage*=2;
+         enemyHealth-=damage;
+         printf ("You cause critical hit: %d points of damage to the enemy\n",damage);
+         if (enemyHealth<=0)
+         {
+             printf ("you won\n");
+             printf ("you:\t\t\tenemy:\nhealth %d\\%d\t\thealth %d\\%d\ndamage 1-%d\t\tdamage 1-%d\nchanceToHit %d\t\tchanceToHit %d\n",health ,healthMax, enemyHealth, enemyHealthMax, damageMax, enemyDamageMax,chanceToHit,enemyChanceToHit);
+             swi1=0;
+         }
+         }
+         else
+         {
          enemyHealth-=damage;
          printf ("You cause %d points of damage to the enemy\n",damage);
          if (enemyHealth<=0)
@@ -96,6 +180,7 @@ int main()
              printf ("you won\n");
              printf ("you:\t\t\tenemy:\nhealth %d\\%d\t\thealth %d\\%d\ndamage 1-%d\t\tdamage 1-%d\nchanceToHit %d\t\tchanceToHit %d\n",health ,healthMax, enemyHealth, enemyHealthMax, damageMax, enemyDamageMax,chanceToHit,enemyChanceToHit);
              swi1=0;
+         }
          }
        }
        else
@@ -108,6 +193,7 @@ int main()
        break;
        }
     }
+    swi1=1;
 
     //fatigue test
     printf ("You want to relax 8 hours?\n(1)-yes,(2)-no\n");
@@ -224,7 +310,21 @@ int main()
         }
       return (weather);
     }
-
+    //...............................
+    int desertClimate()
+    {
+      int numberCheck, weather;
+        numberCheck=dice100();
+        if (numberCheck<=90)
+        {
+           weather=1; //sun
+        }
+        else
+        {
+           weather=0; //sandstorm
+        }
+      return (weather);
+    }
 
 
 
