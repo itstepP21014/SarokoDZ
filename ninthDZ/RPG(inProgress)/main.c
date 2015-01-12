@@ -4,6 +4,21 @@
 #include <time.h>
 #include <locale.h>
 #include <windows.h>
+int dice100();
+int dice30();
+int dice20();
+int dice12();
+int dice10();
+int dice8();
+int dice6();
+int dice4();
+int temperateClimate();
+int jungleClimate();
+int desertClimate();
+
+
+
+
 
 int main()
 {
@@ -57,8 +72,9 @@ int main()
     char genderM[15]="Мужчина", genderW[15]="Женщина",yourGender[15];
 
     //utf-8
-    SetConsoleCP (65001);
-    SetConsoleOutputCP (65001);
+     system("chcp 1251");
+     system("cls");
+
 
     //gender choice
 
