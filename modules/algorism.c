@@ -137,7 +137,6 @@ void translation (int number, int degree)
     }
     printf ("Result:\n");
     system("pause");
-    return 0;
 }
 
 
