@@ -1,0 +1,13 @@
+# depslib dependency file v1.0
+1421419787 source:e:\iteducation\sarokoigor\sarokodz\modules\nodandnok.c
+
+1421421054 source:e:\iteducation\sarokoigor\sarokodz\dz 11_20\dz_11\matrixofsymbols\main.c
+	<stdio.h>
+	<stdlib.h>
+	"../../../modules/mathx.h"
+
+1421421518 e:\iteducation\sarokoigor\sarokodz\modules\mathx.h
+
+1421421431 e:\iteducation\sarokoigor\sarokodz\modules\nodandnok.c
+	"mathx.h"
+
