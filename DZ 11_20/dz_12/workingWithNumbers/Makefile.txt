@@ -1,0 +1,13 @@
+﻿all: bin/ obj/ program 
+bin/:
+	mkdir bin
+obj/:
+	mkdir obj/modules
+obj/main.o:
+	gcc --std=c11 -o obj/main.o -c main.c
+obj/operationsWithNumbers:
+	gcc --std=c11 -o obj/modules/operationsWithNumbers.o -c ../../../modules/operationsWithNumbers.c
+program: obj/main.o obj/operationsWithNumbers
+	gcc --std=c11 -o program obj/main.o obj/modules/operationsWithNumbers.o
+clean:
+	rm -rf bin obj/modules obj
