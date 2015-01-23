@@ -1,0 +1,12 @@
+# depslib dependency file v1.0
+1421856799 source:/home/wizard/Programs/SarokoDZ/modules/systemClear.c
+	<stdlib.h>
+	<windows.h>
+
+1421856809 source:/home/wizard/Programs/SarokoDZ/newWorldINConsole/windowsLinux/main.c
+	<stdio.h>
+	<stdlib.h>
+	"../../modules/compatibility.h"
+
+1421856571 /home/wizard/Programs/SarokoDZ/modules/compatibility.h
+
