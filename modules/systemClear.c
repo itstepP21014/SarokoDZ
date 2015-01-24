@@ -18,7 +18,7 @@ system("clear");
 void universalSleep(double time)
 {
 #if defined(_WIN32) || defined(_WIN64)
-    Sleep (time*1000);
+    system("timeout /t 2");
 #elif defined(__linux__)
     char str[128];
     sprintf (str,"sleep %f",time);
