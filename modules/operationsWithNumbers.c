@@ -15,7 +15,7 @@ int numberOfDigits(int number)
 
 int firstNumber(int number)
 {
-   int result=1,result_1,copy=number,sum=0,degree,divider;
+   int result=1,result_1,copy=number,sum=0,degree,divider=10;
    while (result!=0)
    {
        result=number/10;
@@ -23,7 +23,18 @@ int firstNumber(int number)
        sum+=1;
    }
    degree=sum-1;
-   divider=pow(10,degree);
+   if (degree==0)
+   {
+       divider=1;
+   }
+   else
+   {
+     while (degree>1)
+    {
+     divider*=10;
+     --degree;
+    }
+   }
    result_1=copy%divider;
    return result_1;
 }
