@@ -95,7 +95,7 @@ int cycle(int number,int cycles)
     copy+=result_1;
     --cycles;
     number=copy;
-    printf ("%d\n",copy);
+    printf ("%d This is only a message from the function, i sorry about that.\n",copy);
    }
    return copy;
 }
