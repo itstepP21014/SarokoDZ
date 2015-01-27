@@ -8,7 +8,7 @@ int randomS (int y)
 
 int randomR (int y)
 {
-   int x,a=5,c=14,m=25;
+   int x,a=6,c=14,m=25;
    x=(a*y+c)%m;
    return x;
 }
