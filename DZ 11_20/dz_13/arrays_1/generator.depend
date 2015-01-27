@@ -1,12 +1,10 @@
 # depslib dependency file v1.0
-1422385531 source:e:\iteducation\sarokoigor\sarokodz\dz 11_20\dz_13\generator\main.c
+1422385996 source:e:\iteducation\sarokoigor\sarokodz\modules\arrays.c
+
+1422385531 source:e:\iteducation\sarokoigor\sarokodz\dz 11_20\dz_13\arrays_1\main.c
 	<stdio.h>
 	<stdlib.h>
 	"../../../modules/Arrayss.h"
-
-1422380644 source:e:\iteducation\sarokoigor\sarokodz\modules\randomstandart.c
-
-1422385403 source:e:\iteducation\sarokoigor\sarokodz\modules\arrays.c
 
 1422385441 e:\iteducation\sarokoigor\sarokodz\modules\arrayss.h
 
