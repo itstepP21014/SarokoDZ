@@ -1,6 +1,7 @@
 
   void array_input (int array[], int size)
     {
+        size-=1;
           while (size>=0)
      {
         scanf("%d",&array[size]);
@@ -11,6 +12,7 @@
 
     void array_output (int array[],int size)
     {
+        size-=1;
           while (size>=0)
      {
         printf("%d",array[size]);
