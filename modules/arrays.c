@@ -1,52 +1,50 @@
-extern int array_1[];
 
-  void array_input (int size)
+  void array_input (int array[], int size)
     {
           while (size>=0)
      {
-        scanf("%d",&array_1[size]);
+        scanf("%d",&array[size]);
         --size;
      }
     }
 
 
-    void array_output (int size)
+    void array_output (int array[],int size)
     {
           while (size>=0)
      {
-        printf("%d",array_1[size]);
+        printf("%d",array[size]);
         --size;
      }
     }
 
 
-        int array_search_Element (int size,int number)
+        int array_search_Element (int array[],int size,int number)
     {
-        int check=size;
-          while (size)
+        int counter=size-1;
+          while (counter>=0)
      {
-         if (number==array_1[size])
+         if (number==array[size])
          {
-             check-=size;
-             ++check;
-             return check;
+             return counter;
          }
-        --size;
+        --counter;
      }
      return -1;
     }
 
 
-int array_search_Max (int size)
+int array_search_Max (int array[],int size)
     {
         int num_1,num_2,result=0;
+        size-=1;
           while (size)
      {
-         num_1=array_1[size];
+         num_1=array[size];
         --size;
-        if (size>0)
+        if (size>=0)
         {
-          num_2=array_1[size];
+          num_2=array[size];
           --size;
         }
        if (num_1>num_2 && num_1>result)
@@ -66,16 +64,17 @@ int array_search_Max (int size)
     }
 
 
- int array_search_Min (int size)
+ int array_search_Min (int array[],int size)
     {
         int num_1,num_2,result=0;
+        size-=1;
           while (size)
      {
-         num_1=array_1[size];
+         num_1=array[size];
         --size;
         if (size>0)
         {
-          num_2=array_1[size];
+          num_2=array[size];
           --size;
         }
        if (num_1>num_2 && num_2<result)
