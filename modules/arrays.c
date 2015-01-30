@@ -44,7 +44,7 @@
         int counter=size-1;
           while (counter>=0)
      {
-         if (number==array[size])
+         if (number==array[counter])
          {
              return counter;
          }
@@ -186,6 +186,22 @@ int array_search_Max (int array[size_max],int size)
      }
      return result;
     }
+
+     int array_search_same (int array[size_max],int size,int number)
+    {
+        int counter=size-1;
+          while (counter>=0)
+     {
+         if (number==array[counter])
+         {
+             array[counter]=counter;
+         }
+        --counter;
+     }
+     return 0;
+    }
+
+
 
 
 
