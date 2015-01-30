@@ -11,5 +11,7 @@ int array_search_Max (int [size_max],int);
 int array_search_Min (int [size_max],int);
 int array_search_positive (int [size_max],int);
 int array_search_negative (int [size_max],int);
+int array_search_Max_parity (int [size_max],int);
+int array_search_Min_parity (int [size_max],int);
 
 #endif // ARRAYSS_H_INCLUDED

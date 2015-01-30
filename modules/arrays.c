@@ -116,7 +116,7 @@ int array_search_Max (int array[size_max],int size)
 
     int array_search_positive (int array[size_max],int size)
     {
-        int num_1,result=0,counter=0;
+        int num_1,counter=0;
         size-=1;
           while (counter<=size)
      {
@@ -147,4 +147,46 @@ int array_search_Max (int array[size_max],int size)
      }
      return result;
     }
+
+
+    int array_search_Max_parity (int array[size_max],int size)
+    {
+        int num_1,result=1;
+        size-=1;
+        num_1=array[size];
+        if (num_1%2==0)
+        result=num_1;
+          while (size>0)
+     {
+        --size;
+        num_1=array[size];
+        if (result<num_1 && num_1%2==0)
+        {
+         result=num_1;
+        }
+     }
+     return result;
+    }
+
+     int array_search_Min_parity (int array[size_max],int size)
+    {
+        int num_1,result=2;
+        size-=1;
+        num_1=array[size];
+        if (num_1%2!=0)
+        result=num_1;
+          while (size>0)
+     {
+        --size;
+        num_1=array[size];
+        if (result>num_1 && num_1%2!=0)
+        {
+         result=num_1;
+        }
+     }
+     return result;
+    }
+
+
+
 
