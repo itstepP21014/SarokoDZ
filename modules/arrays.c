@@ -202,6 +202,26 @@ int array_search_Max (int array[size_max],int size)
     }
 
 
+    int array_replacement (int array[size_max],int size,int max,int min)
+    {
+        int counter=size-1;
+          while (counter>=0)
+     {
+         if (array[counter]%2==0)
+         {
+             array[counter]=max;
+         }
+         else
+         {
+             array[counter]=min;
+         }
+        --counter;
+     }
+     return 0;
+    }
+
+
+
 
 
 
