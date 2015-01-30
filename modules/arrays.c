@@ -1,5 +1,12 @@
+#include "Arrayss.h"
+#include "funcRand.h"
+#include <stdio.h>
+#include <stdlib.h>
 
-  void array_input (int array[], int size)
+
+
+
+  void array_input (int array[size_max], int size)
     {
         size-=1;
           while (size>=0)
@@ -10,7 +17,18 @@
     }
 
 
-    void array_output (int array[],int size)
+    void array_input_random (int array[size_max], int size)
+    {
+        size-=1;
+          while (size>=0)
+     {
+        array[size]=randomS();
+        --size;
+     }
+    }
+
+
+    void array_output (int array[size_max],int size)
     {
         size-=1;
           while (size>=0)
@@ -21,7 +39,7 @@
     }
 
 
-        int array_search_Element (int array[],int size,int number)
+        int array_search_Element (int array[size_max],int size,int number)
     {
         int counter=size-1;
           while (counter>=0)
@@ -36,7 +54,7 @@
     }
 
 
-int array_search_Max (int array[],int size)
+int array_search_Max (int array[size_max],int size)
     {
         int num_1,num_2,result=0;
         size-=1;
@@ -66,7 +84,7 @@ int array_search_Max (int array[],int size)
     }
 
 
- int array_search_Min (int array[],int size)
+ int array_search_Min (int array[size_max],int size)
     {
         int num_1,num_2,result=0;
         size-=1;
