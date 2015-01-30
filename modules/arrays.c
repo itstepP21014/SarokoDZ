@@ -58,7 +58,7 @@ int array_search_Max (int array[size_max],int size)
     {
         int num_1,num_2,result=0;
         size-=1;
-          while (size)
+          while (size>=0)
      {
          num_1=array[size];
         --size;
@@ -88,7 +88,7 @@ int array_search_Max (int array[size_max],int size)
     {
         int num_1,num_2,result=0;
         size-=1;
-          while (size)
+          while (size>=0)
      {
          num_1=array[size];
         --size;
@@ -113,4 +113,38 @@ int array_search_Max (int array[size_max],int size)
      return result;
     }
 
+
+    int array_search_positive (int array[size_max],int size)
+    {
+        int num_1,result=0,counter=0;
+        size-=1;
+          while (counter<=size)
+     {
+         num_1=array[counter];
+        if (num_1>0)
+        {
+          return counter;
+        }
+       ++counter;
+     }
+     return -1;
+    }
+
+
+
+    int array_search_negative (int array[size_max],int size)
+    {
+        int num_1,result=-1,counter=0;
+        size-=1;
+          while (counter<=size)
+     {
+         num_1=array[counter];
+        if (num_1<0)
+        {
+          result=counter;
+        }
+       ++counter;
+     }
+     return result;
+    }
 
