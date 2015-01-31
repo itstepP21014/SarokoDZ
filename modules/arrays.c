@@ -3,8 +3,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-
-
+int sta_m,fin_m;
 
   void array_input (int array[size_max], int size)
     {
@@ -287,5 +286,36 @@ int array_search_same_lenght (int array[size_max],int size,int number)
   }
   return result;
 }
+
+int array_search_max_one (int array[size_max],int size)
+{
+    int num_1,result=0;
+    int counter=size-1;
+  while (counter>=0)
+  {
+    num_1=array[counter];
+    if (result<num_1 && array_search_Element_more (array,size,num_1)==1)
+    {
+        result=num_1;
+    }
+    --counter;
+  }
+  return result;
+}
+
+int array_search_Element_more (int array[size_max],int size,int number)
+    {
+        int result=0;
+        int counter=size-1;
+          while (counter>=0)
+     {
+         if (number==array[counter])
+         {
+             ++result;
+         }
+        --counter;
+     }
+     return result;
+    }
 
 
