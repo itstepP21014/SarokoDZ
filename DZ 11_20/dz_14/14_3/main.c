@@ -28,7 +28,7 @@ int main()
     array_input_random(array,size);
     break;
     default:
-    printf("Внимательнор читайте инструкции!\n");
+    printf("Внимательно читайте инструкции!\n");
     system("pause");
     exit(2);
     }
