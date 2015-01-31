@@ -249,5 +249,43 @@ int array_search_Max (int array[size_max],int size)
         array[index_2]=num_1;
     }
 
+int array_search_same_lenght (int array[size_max],int size,int number)
+{
+  size-=1;
+  int counter=0,lenght=0,lenghtCopy=0,swi=0,sta,fin;
+  int result=0;
+  while (counter<=size)
+  {
+      if (array[counter]==number && swi==0)
+      {
+          sta=counter;
+          ++lenght;
+          swi=1;
+          result=1;
+      }
+      else
+      {
+       if (array[counter]==number)
+       {
+          ++lenght;
+       }
+      }
+
+      if (array[counter+1]!=number && swi==1)
+      {
+        fin=counter;
+          if (lenght>lenghtCopy)
+          {
+           sta_m=sta;
+           fin_m=fin;
+          }
+        swi=0;
+        lenghtCopy=lenght;
+        lenght=0;
+      }
+     ++counter;
+  }
+  return result;
+}
 
 
