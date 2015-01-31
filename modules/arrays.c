@@ -221,8 +221,33 @@ int array_search_Max (int array[size_max],int size)
     }
 
 
+ int array_search_MP_dif (int array[size_max],int size,int number)
+    {
+        int counter=0,result=-1;
+        size-=1;
+          while (counter<=size)
+     {
+         if (array[counter]>0)
+         {
+            if (array[counter]%number==0 && array[counter]%2==0)
+          {
+             result=counter;
+          }
+         }
+        ++counter;
+     }
+     return result;
+    }
 
 
+ void array_replacement_2 (int array[size_max],int size,int index_1,int index_2)
+    {
+        int num_1,num_2;
+        num_1=array[index_1];
+        num_2=array[index_2];
+        array[index_1]=num_2;
+        array[index_2]=num_1;
+    }
 
 
 
