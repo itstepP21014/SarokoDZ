@@ -395,3 +395,40 @@ int array_search_Element_more (int array[size_max],int size,int number)
     }
 
 
+int array_search_same_lenght_x (int array[size_max],int size)
+{
+  size-=1;
+  int counter=0,lenght=0,lenghtCopy=0,swi=0,num_1;
+  while (counter<=size)
+  {
+      num_1=array[counter];
+      if (array[counter]==num_1 && swi==0)
+      {
+          ++lenght;
+          swi=1;
+      }
+      else
+      {
+       if (array[counter]==num_1)
+       {
+          ++lenght;
+       }
+      }
+
+      if (array[counter+1]!=num_1 && swi==1)
+      {
+        swi=0;
+        if (lenghtCopy<lenght)
+        {
+         lenghtCopy=lenght;
+        }
+        lenght=0;
+      }
+     ++counter;
+  }
+  return lenghtCopy;
+}
+
+
+
+
