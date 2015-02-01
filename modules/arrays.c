@@ -251,7 +251,7 @@ int array_search_Max (int array[size_max],int size)
 int array_search_same_lenght (int array[size_max],int size,int number)
 {
   size-=1;
-  int counter=0,lenght=0,lenghtCopy=0,swi=0,sta,fin;
+  int counter=0,lenght=0,lenghtCopy=0,swi=0,swi_1=0,sta,fin;
   int result=0;
   while (counter<=size)
   {
@@ -259,6 +259,7 @@ int array_search_same_lenght (int array[size_max],int size,int number)
       {
           sta=counter;
           ++lenght;
+          ++swi_1;
           swi=1;
           result=1;
       }
@@ -267,6 +268,7 @@ int array_search_same_lenght (int array[size_max],int size,int number)
        if (array[counter]==number)
        {
           ++lenght;
+          ++swi_1;
        }
       }
 
@@ -283,6 +285,10 @@ int array_search_same_lenght (int array[size_max],int size,int number)
         lenght=0;
       }
      ++counter;
+  }
+  if (swi_1>1)
+  {
+      result=2;
   }
   return result;
 }
@@ -317,5 +323,27 @@ int array_search_Element_more (int array[size_max],int size,int number)
      }
      return result;
     }
+
+
+    int array_search_min_many (int array[size_max],int size)
+{
+    int num_1,result=0,swi_1=0;
+    int counter=size-1;
+  while (counter>=0)
+  {
+    num_1=array[counter];
+    if (array_search_same_lenght (array,size,num_1)>1 && swi_1==0)
+    {
+        result=num_1;
+        swi_1=1;
+    }
+    if (array_search_same_lenght (array,size,num_1)>1 && result>num_1)
+    {
+        result=num_1;
+    }
+    --counter;
+  }
+  return result;
+}
 
 

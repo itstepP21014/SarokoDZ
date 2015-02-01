@@ -22,6 +22,7 @@ void array_replacement_2 (int [size_max],int,int,int);
 int array_search_same_lenght (int [size_max],int,int);
 int array_search_max_one (int [size_max],int);
 int array_search_Element_more (int [size_max],int,int);
+int array_search_min_many (int [size_max],int);
 
 #endif // ARRAYSS_H_INCLUDED
 
