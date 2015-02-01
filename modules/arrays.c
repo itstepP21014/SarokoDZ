@@ -347,3 +347,51 @@ int array_search_Element_more (int array[size_max],int size,int number)
 }
 
 
+ int array_search_same_x (int array[size_max], int size)
+    {
+        int check[1000],num_1,result=0,counter=size-1,swi_1=0,counter_1=0,counter_1C,swi_2=0;
+
+          while (counter>=0)
+     {
+        num_1=array[counter];
+        if (array_search_Element_more (array,size,num_1)>1)
+        {
+
+            if (swi_1==1)
+            {
+                while (swi_2==0 && counter_1C>=0)
+                {
+                    if (check[counter_1C]==num_1)
+                    {
+                       swi_2=1;
+                    }
+                    --counter_1C;
+                }
+                 if (swi_2==0)
+                 {
+                   check[counter_1]=num_1;
+                   ++result;
+                   counter_1C=counter_1;
+                   ++counter_1;
+                 }
+                 else
+                 {
+                    swi_2=0;
+                    counter_1C=counter_1;
+                 }
+            }
+            if (swi_1==0)
+            {
+                check[counter_1]=num_1;
+                swi_1=1;
+                counter_1C=counter_1;
+                ++counter_1;
+                ++result;
+            }
+        }
+        --counter;
+     }
+     return result;
+    }
+
+
