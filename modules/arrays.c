@@ -430,5 +430,18 @@ int array_search_same_lenght_x (int array[size_max],int size)
 }
 
 
+int array_sum (int array[size_max], int size)
+    {
+        int result=0,num_1;
+          while (size>=0)
+     {
+         num_1=array[size];
+        result+=num_1;
+        --size;
+     }
+     return result;
+    }
+
+
 
 
