@@ -8,10 +8,11 @@ int sta_m,fin_m;
   void array_input (int array[size_max], int size)
     {
         size-=1;
-          while (size>=0)
+        int counter=0;
+          while (counter<=size)
      {
-        scanf("%d",&array[size]);
-        --size;
+        scanf("%d",&array[counter]);
+        ++counter;
      }
     }
 
@@ -479,4 +480,116 @@ void checking_brackets (int array_1[])
      }
 }
 
+
+
+
+ int array_input_char (char array[size_max], int size)
+    {
+        int counter=0,check,result=0,num_1,num_2,swi=1;
+        char put;
+          while (counter<=size)
+     {
+        scanf("%c",&put);
+        fflush(stdin);
+        check=put;
+        if (check>=48 && check<=57)
+        {
+          array[counter]=put;
+                  ++counter;
+        }
+        if (check==61)
+        {
+            return result;
+        }
+        if (check==22)
+        {
+            num_1=array[counter-2]-48;
+            num_2=array[counter-1]-48;
+            if (swi==1)
+            {
+                result=num_1-num_2;
+                swi=0;
+                array[counter]=0;
+                array[counter-1]=0;
+                array[counter-2]=0;
+                counter-=2;
+            }
+            else
+            {
+               result=result-num_2;
+                array[counter]=0;
+                array[counter-1]=0;
+                counter-=1;
+            }
+
+        }
+         if (check==43)
+        {
+            num_1=array[counter-2]-48;
+            num_2=array[counter-1]-48;
+           if (swi==1)
+            {
+                result=num_1+num_2;
+                swi=0;
+                array[counter]=0;
+                array[counter-1]=0;
+                array[counter-2]=0;
+                counter-=2;
+            }
+            else
+            {
+               result=num_2+result;
+                array[counter]=0;
+                array[counter-1]=0;
+                counter-=1;
+            }
+
+        }
+        if (check==42)
+        {
+            num_1=array[counter-2]-48;
+            num_2=array[counter-1]-48;
+            if (swi==1)
+            {
+                result=num_1*num_2;
+                swi=0;
+                array[counter]=0;
+                array[counter-1]=0;
+                array[counter-2]=0;
+                counter-=2;
+            }
+            else
+            {
+               result=result*num_2;
+                array[counter]=0;
+                array[counter-1]=0;
+                counter-=1;
+            }
+
+        }
+        if (check==47)
+        {
+            num_1=array[counter-2]-48;
+            num_2=array[counter-1]-48;
+            if (swi==1)
+            {
+                result=num_1/num_2;
+                swi=0;
+                array[counter]=0;
+                array[counter-1]=0;
+                array[counter-2]=0;
+                counter-=2;
+            }
+            else
+            {
+               result=num_2/result;
+                array[counter]=0;
+                array[counter-1]=0;
+                counter-=1;
+
+            }
+        }
+     }
+     return result;
+    }
 
