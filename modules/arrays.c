@@ -444,4 +444,39 @@ int array_sum (int array[size_max], int size)
 
 
 
+void checking_brackets (int array_1[])
+ {
+
+     int brackets_reflection,swi=1,counter=0;
+     char brackets;
+     while (swi)
+     {
+        scanf("%c",&brackets);
+        brackets_reflection=brackets;
+        if (brackets_reflection==35)
+        {
+            swi=0;
+        }
+        if (swi==1)
+        {
+            if (brackets_reflection==41 || brackets_reflection==93 || brackets_reflection==125)
+            {
+                --counter;
+                if ((brackets_reflection-array_1[counter])>5 || counter==-1)
+                {
+                    printf("Ошибка!\n");
+                    system ("pause");
+                    exit(1);
+                }
+                array_1[counter]=0;
+            }
+            if (brackets_reflection==40 || brackets_reflection==91 || brackets_reflection==123)
+            {
+                array_1[counter]=brackets_reflection;
+                ++counter;
+            }
+        }
+     }
+}
+
 
