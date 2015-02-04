@@ -593,3 +593,70 @@ void checking_brackets (int array_1[])
      return result;
     }
 
+
+    int array_input_char_BF (char array[size_max], int size)
+    {
+        int counter=0,check;
+        char put;
+          while (counter<=size)
+     {
+        scanf("%c",&put);
+        fflush(stdin);
+        check=put;
+        array[counter]=put;
+        if (check==59)
+        {
+            return counter;
+        }
+        ++counter;
+     }
+     return counter-1;
+    }
+
+
+    int array_BF_processing (char array[size_max],int array_1[size_max], int size)
+    {
+        int counter=0,counter_1=0,check,result=0;
+        while (counter<=size)
+        {
+         array_1[counter]=-1;
+         ++counter;
+        }
+        counter=0;
+          while (counter<=size)
+     {
+        check=array[counter];
+        if (check==59)
+        {
+            return result;
+        }
+        if (check==43)
+        {
+          array_1[counter_1]+=1;
+        }
+        if (check==22)
+        {
+          array_1[counter_1]-=1;
+        }
+        if (check==62)
+        {
+          counter_1+=1;
+        }
+        if (check==60)
+        {
+          counter_1-=1;
+        }
+        if (check==46)
+        {
+          printf("%c",array_1[counter_1]);
+        }
+        if (array_1[counter_1]==256)
+        {
+          array_1[counter_1]=0;
+        }
+        ++counter;
+     }
+     return result;
+    }
+
+
