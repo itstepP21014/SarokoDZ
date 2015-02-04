@@ -29,7 +29,10 @@ int array_sum (int [size_max], int);
 void checking_brackets (int [size_max]);
 int array_input_char (char [size_max], int);
 int array_input_char_BF (char [size_max], int);
-int array_BF_processing (char [size_max],int [size_max], int);
+int array_BF_processing (char [size_max],int [size_max],int [size_max], int);
+int array_BF_BRACKETS (char [size_max],int);
+void array_index_BRACKETS (char [size_max],int [size_max], int);
+int array_BF_chars (char [size_max], int);
 
 #endif // ARRAYSS_H_INCLUDED
 

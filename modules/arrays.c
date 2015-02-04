@@ -604,7 +604,7 @@ void checking_brackets (int array_1[])
         fflush(stdin);
         check=put;
         array[counter]=put;
-        if (check==59)
+        if (check==110)
         {
             return counter;
         }
@@ -614,9 +614,9 @@ void checking_brackets (int array_1[])
     }
 
 
-    int array_BF_processing (char array[size_max],int array_1[size_max], int size)
+    int array_BF_processing (char array[size_max],int array_1[size_max],int array_2[size_max], int size)
     {
-        int counter=0,counter_1=0,check,result=0;
+        int counter=0,counter_1=0,check,result=0,count=-1;
         while (counter<=size)
         {
          array_1[counter]=-1;
@@ -626,7 +626,7 @@ void checking_brackets (int array_1[])
           while (counter<=size)
      {
         check=array[counter];
-        if (check==59)
+        if (check==110)
         {
             return result;
         }
@@ -634,7 +634,11 @@ void checking_brackets (int array_1[])
         {
           array_1[counter_1]+=1;
         }
-        if (check==22)
+        if (check==44)
+        {
+          scanf("%c",&array_1[counter_1]);
+        }
+        if (check==45)
         {
           array_1[counter_1]-=1;
         }
@@ -650,13 +654,137 @@ void checking_brackets (int array_1[])
         {
           printf("%c",array_1[counter_1]);
         }
+        if (check==93)
+        {
+            if (array_1[counter_1]!=0)
+            {
+                counter_1=array_2[count-1]+1;
+            }
+            if (array_1[counter_1]==0)
+            {
+               ++counter_1;
+            }
+        }
+        if (check==91)
+        {
+            count+=2;
+            if (array_1[counter_1]!=0)
+            {
+                ++counter_1;
+            }
+            if (array_1[counter_1]==0)
+            {
+              counter_1=array_2[count]+1;
+            }
+        }
+
         if (array_1[counter_1]==256)
         {
           array_1[counter_1]=0;
         }
         ++counter;
      }
-     return result;
+      return result;
+    }
+
+
+    int array_BF_BRACKETS (char array[size_max], int size)
+    {
+        int counter=0,check,check_b=0;
+          while (check!=110)
+     {
+        check=array[counter];
+        if (check==91)
+        {
+            check_b+=1;
+        }
+        if (check==93)
+        {
+            check_b-=1;
+        }
+        ++counter;
+     }
+     if (check_b!=0)
+     {
+         return 0;
+     }
+     else
+     {
+         return 1;
+     }
+    }
+
+
+     int array_BF_chars (char array[size_max], int size)
+    {
+        int counter=0,check;
+          while (counter<=size)
+     {
+        check=array[counter];
+        if (check!=91)
+        {
+          if (check!=93)
+          {
+            if (check!=45)
+            {
+              if (check!=43)
+              {
+                if (check!=60)
+                {
+                 if (check!=62)
+                 {
+                     if (check!=46)
+                     {
+                        if (check!=44)
+                        {
+                          if (check!=110)
+                          {
+                              return 0;
+                          }
+                        }
+                     }
+                 }
+                }
+              }
+            }
+          }
+        }
+        ++counter;
+     }
+         return 1;
+    }
+
+
+    void array_index_BRACKETS (char array[size_max],int array_1[size_max], int size)
+    {
+       int counter_1=0,counter_1C,counter_2=0,count=0,check;
+       while (check!=110)
+       {
+           check=array[counter_1];
+           if (array[counter_1]==91)
+           {
+             counter_1C=counter_1;
+             array_1[counter_2]=counter_1;
+             ++counter_2;
+             ++count;
+             while (count!=0)
+             {
+               ++counter_1;
+               if (array[counter_1]==91)
+               {
+                   ++count;
+               }
+               if (array[counter_1]==93)
+               {
+                   --count;
+               }
+             }
+             array_1[counter_2]=counter_1;
+             ++counter_2;
+             counter_1=counter_1C;
+           }
+           ++counter_1;
+       }
     }
 
 
