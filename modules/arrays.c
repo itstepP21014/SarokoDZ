@@ -594,10 +594,10 @@ void checking_brackets (int array_1[])
     }
 
 
-    int array_input_char_BF (char array[size_max], int size)
+    int array_input_char_BF (unsigned char array[size_max], int size)
     {
         int counter=0,check;
-        char put;
+        unsigned char put;
           while (counter<=size)
      {
         scanf("%c",&put);
@@ -614,9 +614,10 @@ void checking_brackets (int array_1[])
     }
 
 
-    int array_BF_processing (char array[size_max],int array_1[size_max],int array_2[size_max], int size)
+    int array_BF_processing (unsigned char array[size_max],int array_1[size_max],int array_2[size_max], int size)
     {
         int counter=0,counter_1=0,check,result=0,count=-1;
+        unsigned char c;
         while (counter<=size)
         {
          array_1[counter]=-1;
@@ -633,36 +634,43 @@ void checking_brackets (int array_1[])
         if (check==43)
         {
           array_1[counter_1]+=1;
+          ++counter;
         }
         if (check==44)
         {
           scanf("%c",&array_1[counter_1]);
+          ++counter;
         }
         if (check==45)
         {
           array_1[counter_1]-=1;
+          ++counter;
         }
         if (check==62)
         {
           counter_1+=1;
+          ++counter;
         }
         if (check==60)
         {
           counter_1-=1;
+          ++counter;
         }
         if (check==46)
         {
-          printf("%c",array_1[counter_1]);
+            c=array_1[counter_1];
+          printf("%c",c);
+          ++counter;
         }
         if (check==93)
         {
             if (array_1[counter_1]!=0)
             {
-                counter_1=array_2[count-1]+1;
+                counter=array_2[count-1]+1;
             }
             if (array_1[counter_1]==0)
             {
-               ++counter_1;
+               ++counter;
             }
         }
         if (check==91)
@@ -670,25 +678,23 @@ void checking_brackets (int array_1[])
             count+=2;
             if (array_1[counter_1]!=0)
             {
-                ++counter_1;
+                ++counter;
             }
             if (array_1[counter_1]==0)
             {
-              counter_1=array_2[count]+1;
+              counter=array_2[count]+1;
             }
         }
-
         if (array_1[counter_1]==256)
         {
           array_1[counter_1]=0;
         }
-        ++counter;
      }
       return result;
     }
 
 
-    int array_BF_BRACKETS (char array[size_max], int size)
+    int array_BF_BRACKETS (unsigned char array[size_max], int size)
     {
         int counter=0,check,check_b=0;
           while (check!=110)
@@ -715,7 +721,7 @@ void checking_brackets (int array_1[])
     }
 
 
-     int array_BF_chars (char array[size_max], int size)
+     int array_BF_chars (unsigned char array[size_max], int size)
     {
         int counter=0,check;
           while (counter<=size)
@@ -755,7 +761,7 @@ void checking_brackets (int array_1[])
     }
 
 
-    void array_index_BRACKETS (char array[size_max],int array_1[size_max], int size)
+    void array_index_BRACKETS (unsigned char array[size_max],int array_1[size_max], int size)
     {
        int counter_1=0,counter_1C,counter_2=0,count=0,check;
        while (check!=110)
