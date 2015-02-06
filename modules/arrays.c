@@ -664,14 +664,16 @@ void checking_brackets (int array_1[])
         }
         if (check==93)
         {
+            count-=1;
             if (array_1[counter_1]!=0)
             {
-                counter=array_2[count-1]+1;
+                counter=array_2[count]+1;
             }
             if (array_1[counter_1]==0)
             {
                ++counter;
             }
+            count+=1;
         }
         if (check==91)
         {
@@ -761,7 +763,7 @@ void checking_brackets (int array_1[])
     }
 
 
-    void array_index_BRACKETS (unsigned char array[size_max],int array_1[size_max], int size)
+    void array_index_BRACKETS (unsigned char array[size_max],int array_2[size_max], int size)
     {
        int counter_1=0,counter_1C,counter_2=0,count=0,check;
        while (check!=110)
@@ -770,7 +772,7 @@ void checking_brackets (int array_1[])
            if (array[counter_1]==91)
            {
              counter_1C=counter_1;
-             array_1[counter_2]=counter_1;
+             array_2[counter_2]=counter_1;
              ++counter_2;
              ++count;
              while (count!=0)
@@ -785,7 +787,7 @@ void checking_brackets (int array_1[])
                    --count;
                }
              }
-             array_1[counter_2]=counter_1;
+             array_2[counter_2]=counter_1;
              ++counter_2;
              counter_1=counter_1C;
            }

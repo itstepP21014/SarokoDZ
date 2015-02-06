@@ -7,7 +7,7 @@
 
 int main()
 {
-    char array[size_max];
+    unsigned char array[size_max];
     int size=999,array_1[size_max],array_2[size_max],counter;
     printf("Интерпретатор BF!\n");
     printf("Окончание ввода пограммы: символ ;\n");
@@ -19,6 +19,7 @@ int main()
         system ("pause");
         exit (1);
     }
+    array_index_BRACKETS (array,array_2,size);
     printf("Результат обработки текста программы:\n");
     array_BF_processing (array,array_1,array_2,size);
     printf("\n");
