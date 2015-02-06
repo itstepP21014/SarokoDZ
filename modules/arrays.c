@@ -501,7 +501,7 @@ void checking_brackets (int array_1[])
         {
             return result;
         }
-        if (check==22)
+        if (check==45)
         {
             num_1=array[counter-2]-48;
             num_2=array[counter-1]-48;
