@@ -20,7 +20,10 @@ int main()
         exit (1);
     }
     array_index_BRACKETS (array,array_2,size);
+    size=10;
+    array_output (array_2,size);
     printf("Результат обработки текста программы:\n");
+    size=999;
     array_BF_processing (array,array_1,array_2,size);
     printf("\n");
     system("pause");

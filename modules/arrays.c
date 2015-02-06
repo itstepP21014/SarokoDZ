@@ -765,11 +765,11 @@ void checking_brackets (int array_1[])
 
     void array_index_BRACKETS (unsigned char array[size_max],int array_2[size_max], int size)
     {
-       int counter_1=0,counter_1C,counter_2=0,count=0,check;
+       int counter_1=0,counter_1C,counter_2=0,count=0,check=0;
        while (check!=110)
        {
            check=array[counter_1];
-           if (array[counter_1]==91)
+           if (check==91)
            {
              counter_1C=counter_1;
              array_2[counter_2]=counter_1;
