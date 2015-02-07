@@ -796,3 +796,179 @@ void checking_brackets (int array_1[])
     }
 
 
+
+
+void two_dimensional_array_input_one_element_char(char array[][mas_col],int str,int col,char element)
+{
+    str-=1;
+    col-=1;
+    int check;
+    check=array[str][col];
+    if (check!=48 && check!=88)
+    {
+        array[str][col]=element;
+    }
+    else
+    {
+        printf("Невозможно ввести Х в данные координаты!\n");
+        system ("pause");
+        exit (2);
+    }
+}
+
+
+void two_dimensional_array_x0_reaction (char array[][mas_col],int str,int col)
+{
+    str-=1;
+    col-=1;
+   char element=48;
+   int swi=1,check;
+   int c_1=0,c_2=0;
+   while (swi==1)
+   {
+       check=array[c_1][c_2];
+       if (check!=48 && check!=120)
+       {
+         array[c_1][c_2]=element;
+         swi=0;
+       }
+       else
+       {
+           if (c_1<str)
+           {
+            ++c_1;
+           }
+           else
+           {
+               c_1=0;
+               if (c_2<col)
+               ++c_2;
+               else
+               swi=0;
+           }
+       }
+   }
+}
+
+
+void two_dimensional_array_output (char array[][mas_col],int str,int col)
+{
+    col-=1;
+    str-=1;
+    int swi=1;
+   int c_1=0,c_2=0;
+          while (swi)
+     {
+        printf("%c",array[c_1][c_2]);
+          if (c_2<col)
+           {
+            ++c_2;
+           }
+           else
+           {
+               printf ("\n");
+               c_2=0;
+               if (c_1<str)
+               ++c_1;
+               else
+               swi=0;
+           }
+     }
+}
+
+
+void two_dimensional_array_input_elements (char array[][mas_col],int str,int col,char element)
+{
+   str-=1;
+   col-=1;
+   int c_1=0,c_2=0,swi=1;
+          while (swi)
+     {
+      array[c_1][c_2]=element;
+          if (c_1<str)
+           {
+            ++c_1;
+           }
+           else
+           {
+               c_1=0;
+               if (c_2<col)
+               ++c_2;
+               else
+               swi=0;
+           }
+     }
+}
+
+
+int check_win_x0 (char array[][mas_col],int str,int col)
+{
+    char x=88,b=48;
+    if (array[0][0]==b && array[1][1]==b && array[2][2]==b)
+    {
+        return 0;
+    }
+    if (array[0][0]==x && array[1][1]==x && array[2][2]==x)
+    {
+        return 1;
+    }
+    if (array[0][2]==b && array[1][1]==b && array[2][0]==b)
+    {
+        return 0;
+    }
+    if (array[0][0]==x && array[0][1]==x && array[0][2]==x)
+    {
+        return 1;
+    }
+    if (array[1][0]==x && array[1][1]==x && array[1][2]==x)
+    {
+        return 1;
+    }
+    if (array[2][0]==x && array[2][1]==x && array[2][2]==x)
+    {
+        return 1;
+    }
+    if (array[0][0]==b && array[0][1]==b && array[0][2]==b)
+    {
+        return 0;
+    }
+    if (array[1][0]==b && array[1][1]==b && array[1][2]==b)
+    {
+        return 0;
+    }
+    if (array[2][0]==b && array[2][1]==b && array[2][2]==b)
+    {
+        return 0;
+    }
+    if (array[0][0]==x && array[1][0]==x && array[2][0]==x)
+    {
+        return 1;
+    }
+    if (array[0][1]==x && array[1][1]==x && array[2][1]==x)
+    {
+        return 1;
+    }
+    if (array[0][2]==x && array[1][2]==x && array[2][2]==x)
+    {
+        return 1;
+    }
+    if (array[0][0]==b && array[1][0]==b && array[2][0]==b)
+    {
+        return 0;
+    }
+    if (array[0][1]==b && array[1][1]==b && array[2][1]==b)
+    {
+        return 0;
+    }
+    if (array[0][2]==b && array[1][2]==b && array[2][2]==b)
+    {
+        return 0;
+    }
+    else
+    {
+        return 2;
+    }
+}
+
+
+

@@ -2,6 +2,7 @@
 #define ARRAYSS_H_INCLUDED
 
 #define size_max 1000
+#define mas_col 100
 extern int sta_m, fin_m;
 
 
@@ -33,6 +34,12 @@ int array_BF_processing (unsigned char [size_max],int [size_max],int [size_max],
 int array_BF_BRACKETS (unsigned char [size_max],int);
 void array_index_BRACKETS (unsigned char [size_max],int [size_max], int);
 int array_BF_chars (unsigned char [size_max], int);
+
+void two_dimensional_array_input_one_element_char(char [][mas_col],int,int,char);
+void two_dimensional_array_x0_reaction (char [][mas_col],int,int);
+void two_dimensional_array_output (char [][mas_col],int,int);
+void two_dimensional_array_input_elements (char [][mas_col],int,int,char);
+int check_win_x0 (char [][mas_col],int,int);
 
 #endif // ARRAYSS_H_INCLUDED
 
