@@ -903,7 +903,7 @@ void two_dimensional_array_input_elements (char array[][mas_col],int str,int col
 
 int check_win_x0 (char array[][mas_col],int str,int col)
 {
-    char x=88,b=48;
+    char x=120,b=48;
     if (array[0][0]==b && array[1][1]==b && array[2][2]==b)
     {
         return 0;
