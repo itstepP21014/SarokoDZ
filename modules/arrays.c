@@ -971,4 +971,49 @@ int check_win_x0 (char array[][mas_col],int str,int col)
 }
 
 
+  void array_input_reg (int array[size_max], int size)
+    {
+        size-=1;
+        int counter=0,reg=0,swi=1,num_1;
+    while (swi==1)
+     {
+        printf("%02d?  ",reg);
+        scanf("%d",&num_1);
+        if (num_1==-99999)
+        {
+            swi=0;
+        }
+        else
+        {
+         array[counter]=num_1;
+         ++counter;
+         ++reg;
+         if (counter>size)
+         {
+            swi=0;
+         }
+        }
+     }
+    }
+
+
+  void array_output_reg (int array[size_max], int size)
+    {
+        printf("memory status:\n");
+        size-=1;
+        int counter=0,reg=0,check=0;
+    while (counter<=size)
+     {
+        printf("%2d\t",reg);
+        while (check<10)
+        {
+         ++check;
+         printf("%2d\t",array[counter]);
+         ++counter;
+        }
+        reg+=10;
+        check=0;
+        printf("\n");
+     }
+    }
 
