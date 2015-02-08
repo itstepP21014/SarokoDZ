@@ -36,6 +36,7 @@ void array_index_BRACKETS (unsigned char [size_max],int [size_max], int);
 int array_BF_chars (unsigned char [size_max], int);
 void array_input_reg (int [size_max], int);
 void array_output_reg (int [size_max], int);
+void array_elements_mustBe_0 (int [size_max], int);
 
 void two_dimensional_array_input_one_element_char(char [][mas_col],int,int,char);
 void two_dimensional_array_x0_reaction (char [][mas_col],int,int);

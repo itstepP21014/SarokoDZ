@@ -1004,11 +1004,11 @@ int check_win_x0 (char array[][mas_col],int str,int col)
         int counter=0,reg=0,check=0;
     while (counter<=size)
      {
-        printf("%2d\t",reg);
+        printf("%d\t",reg);
         while (check<10)
         {
          ++check;
-         printf("%2d\t",array[counter]);
+         printf("%04d\t",array[counter]);
          ++counter;
         }
         reg+=10;
@@ -1016,4 +1016,15 @@ int check_win_x0 (char array[][mas_col],int str,int col)
         printf("\n");
      }
     }
+
+
+void array_elements_mustBe_0 (int array[size_max], int size)
+{
+    size-=1;
+    while (size>=0)
+    {
+        array[size]=0;
+        --size;
+    }
+}
 
