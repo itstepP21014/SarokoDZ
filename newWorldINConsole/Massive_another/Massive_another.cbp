@@ -2,12 +2,12 @@
 <CodeBlocks_project_file>
 	<FileVersion major="1" minor="6" />
 	<Project>
-		<Option title="runShurp" />
+		<Option title="Massive_another" />
 		<Option pch_mode="2" />
 		<Option compiler="gcc" />
 		<Build>
 			<Target title="Debug">
-				<Option output="bin/Debug/runShurp" prefix_auto="1" extension_auto="1" />
+				<Option output="bin/Debug/Massive_another" prefix_auto="1" extension_auto="1" />
 				<Option object_output="obj/Debug/" />
 				<Option type="1" />
 				<Option compiler="gcc" />
@@ -16,7 +16,7 @@
 				</Compiler>
 			</Target>
 			<Target title="Release">
-				<Option output="bin/Release/runShurp" prefix_auto="1" extension_auto="1" />
+				<Option output="bin/Release/Massive_another" prefix_auto="1" extension_auto="1" />
 				<Option object_output="obj/Release/" />
 				<Option type="1" />
 				<Option compiler="gcc" />
@@ -31,6 +31,15 @@
 		<Compiler>
 			<Add option="-Wall" />
 		</Compiler>
+		<Unit filename="../../modules/Arrayss.h" />
+		<Unit filename="../../modules/arrays.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../../modules/compatibility.h" />
+		<Unit filename="../../modules/funcRand.h" />
+		<Unit filename="../../modules/randomStandart.c">
+			<Option compilerVar="CC" />
+		</Unit>
 		<Unit filename="../../modules/systemClear.c">
 			<Option compilerVar="CC" />
 		</Unit>

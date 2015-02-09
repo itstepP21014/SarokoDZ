@@ -1,0 +1,19 @@
+# depslib dependency file v1.0
+1422467587 source:/home/wizard/Programs/SarokoDZ/SarokoDZ/modules/arrays.c
+	<stdio.h>
+	<stdlib.h>
+	"Arrayss.h"
+	"funcRand.h"
+
+1422467221 /home/wizard/Programs/SarokoDZ/SarokoDZ/modules/Arrayss.h
+
+1422464986 /home/wizard/Programs/SarokoDZ/SarokoDZ/modules/funcRand.h
+
+1422464986 source:/home/wizard/Programs/SarokoDZ/SarokoDZ/modules/randomStandart.c
+
+1422468415 source:/home/wizard/Programs/SarokoDZ/newWorldINConsole/arrays_X/main.c
+	<stdio.h>
+	<stdlib.h>
+	"../../SarokoDZ/modules/funcRand.h"
+	"../../SarokoDZ/modules/Arrayss.h"
+
