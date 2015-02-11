@@ -9,7 +9,7 @@ int main()
 {
     int memory[size_max];
     int memory_size=100,operatingCode=0,operand=0,instruction_register=0;
-    int swi=1,bias=0,top=100,accumulator=0,instruction_counter=0,top_2=0;
+    int swi=1,bias=0,top=100,accumulator=0,instruction_counter=0;
     printf("***Стекплетрон приветствует вас!***\nПожалуйста введите вашу программу по одной команде (или слову данных) за раз.\n");
     printf("Я буду выводить в качестве подсказки текущий адрес и знак вопроса (?).\n");
     printf("Введенное вами слово буде размещено по указанному адресу.\n");
@@ -103,21 +103,14 @@ int main()
         instruction_counter=operand-1;
         break;
         case 45:
-        top_2=top-1;
+        instruction_counter=memory[top];
+        memory[top]=0;
+        ++top;
         while (operand>0)
         {
-            memory[top_2]=memory[top];
             memory[top]=0;
-            --top_2;
             ++top;
             --operand;
-        }
-        instruction_counter=memory[top];
-        while (memory[top_2]!=0)
-        {
-            memory[top]=memory[top_2];
-            --top;
-            ++top_2;
         }
         break;
         default:
