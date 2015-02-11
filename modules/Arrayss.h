@@ -2,7 +2,8 @@
 #define ARRAYSS_H_INCLUDED
 
 #define size_max 1000
-#define mas_col 100
+#define mas_col 10
+#define mas_str 10
 extern int sta_m, fin_m;
 
 
@@ -37,12 +38,18 @@ int array_BF_chars (unsigned char [size_max], int);
 void array_input_reg (int [size_max], int);
 void array_output_reg (int [size_max], int);
 void array_elements_mustBe_0 (int [size_max], int);
+int count_numbers (int [size_max],int);
+int search_min_easy (int [size_max],int);
 
 void two_dimensional_array_input_one_element_char(char [][mas_col],int,int,char);
 void two_dimensional_array_x0_reaction (char [][mas_col],int,int);
 void two_dimensional_array_output (char [][mas_col],int,int);
 void two_dimensional_array_input_elements (char [][mas_col],int,int,char);
 int check_win_x0 (char [][mas_col],int,int);
+void two_in_one (int [mas_str][mas_col],int, int, int [size_max],int);
+void two_dimensional_array_input (int [][mas_col],int,int);
+void two_dimensional_array_output_int (int [][mas_col],int,int);
+void two_dimensional_array_sdvig (int [][mas_col],int,int,int);
 
 #endif // ARRAYSS_H_INCLUDED
 

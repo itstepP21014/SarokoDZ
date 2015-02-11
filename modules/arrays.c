@@ -1028,3 +1028,154 @@ void array_elements_mustBe_0 (int array[size_max], int size)
     }
 }
 
+
+void two_in_one (int array_1[mas_str][mas_col],int str, int col, int array_2[size_max],int size)
+{
+    size-=1;
+    str-=1;
+    col-=1;
+   int sCount=0,cCount=0;
+   while (sCount<=str)
+   {
+     while (cCount<=col)
+     {
+     array_2[size]=array_1[sCount][cCount];
+     ++cCount;
+     --size;
+     }
+     cCount=0;
+     ++sCount;
+   }
+}
+
+int count_numbers (int array_1[size_max],int size)
+{
+    size-=1;
+    int result=0;
+    while (size>=0)
+    {
+        if (array_1[size_max]==0)
+        {
+            ++result;
+        }
+        --size;
+    }
+    return result;
+}
+
+int search_min_easy (int array_1[size_max],int size)
+{
+    size-=1;
+  int result,counter=size,swi=1;
+  result=array_1[0];
+  while (counter>=0)
+  {
+      if (array_1[counter]<result && array_1[counter]!=0)
+      {
+          result=array_1[counter];
+      }
+      --counter;
+  }
+  counter=size;
+  while (counter>=0 && swi==1)
+  {
+      if (array_1[counter]==result)
+      {
+          array_1[counter]=0;
+          swi=0;
+      }
+      --counter;
+  }
+
+  return result;
+}
+
+
+void two_dimensional_array_input (int array[][mas_col],int str,int col)
+{
+  str-=1;
+  col-=1;
+   int c_1=0,c_2=0;
+    while (c_1<=str)
+     {
+         scanf("%d",&array[c_1][c_2]);
+          if (c_2<col)
+          {
+              ++c_2;
+          }
+          else
+          {
+              c_2=0;
+              ++c_1;
+          }
+     }
+}
+
+
+void two_dimensional_array_output_int (int array[][mas_col],int str,int col)
+{
+    col-=1;
+    str-=1;
+    int swi=1;
+   int c_1=0,c_2=0;
+          while (swi)
+     {
+        printf("%d",array[c_1][c_2]);
+          if (c_2<col)
+           {
+            ++c_2;
+           }
+           else
+           {
+               printf ("\n");
+               c_2=0;
+               if (c_1<str)
+               ++c_1;
+               else
+               swi=0;
+           }
+     }
+}
+
+
+void two_dimensional_array_sdvig (int array[][mas_col],int str,int col,int number)
+{
+  str-=1;
+  col-=1;
+  int sCount=0,cCount=1,memory=0,memory_2=0,swi=0;
+  while (number>0)
+  {
+    while (sCount<=str)
+  {
+     while (cCount<=col)
+     {
+         if (swi==0)
+         {
+          memory=array[sCount][cCount];
+          array[sCount][cCount]=array[sCount][cCount-1];
+         }
+        if (swi==1 && cCount!=col)
+        {
+          memory_2=array[sCount][cCount];
+          array[sCount][cCount]=memory;
+          memory=memory_2;
+        }
+        if (cCount==col)
+        {
+          memory_2=array[sCount][cCount];
+          array[sCount][cCount]=memory;
+          array[sCount][0]=memory_2;
+        }
+        swi=1;
+        ++cCount;
+     }
+     ++sCount;
+     cCount=1;
+     swi=0;
+  }
+  --number;
+  sCount=0;
+  cCount=1;
+  }
+
+}
