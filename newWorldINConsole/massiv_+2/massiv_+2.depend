@@ -1,11 +1,11 @@
 # depslib dependency file v1.0
-1423669916 source:/home/wizard/Programs/SarokoDZ/modules/arrays.c
+1423671705 source:/home/wizard/Programs/SarokoDZ/modules/arrays.c
 	"Arrayss.h"
 	"funcRand.h"
 	<stdio.h>
 	<stdlib.h>
 
-1423667925 /home/wizard/Programs/SarokoDZ/modules/Arrayss.h
+1423670877 /home/wizard/Programs/SarokoDZ/modules/Arrayss.h
 
 1423494422 /home/wizard/Programs/SarokoDZ/modules/funcRand.h
 
@@ -16,7 +16,7 @@
 	<stdio.h>
 	<windows.h>
 
-1423669605 source:/home/wizard/Programs/SarokoDZ/newWorldINConsole/massiv_+2/main.c
+1423671356 source:/home/wizard/Programs/SarokoDZ/newWorldINConsole/massiv_+2/main.c
 	<stdio.h>
 	<stdlib.h>
 	"../../modules/Arrayss.h"

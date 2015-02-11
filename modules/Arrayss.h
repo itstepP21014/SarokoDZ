@@ -49,7 +49,8 @@ int check_win_x0 (char [][mas_col],int,int);
 void two_in_one (int [mas_str][mas_col],int, int, int [size_max],int);
 void two_dimensional_array_input (int [][mas_col],int,int);
 void two_dimensional_array_output_int (int [][mas_col],int,int);
-void two_dimensional_array_sdvig (int [][mas_col],int,int,int);
+void two_dimensional_array_sdvig_horizont (int [][mas_col],int,int,int);
+void two_dimensional_array_sdvig_column (int [][mas_col],int,int,int);
 
 #endif // ARRAYSS_H_INCLUDED
 

@@ -1138,7 +1138,7 @@ void two_dimensional_array_output_int (int array[][mas_col],int str,int col)
 }
 
 
-void two_dimensional_array_sdvig (int array[][mas_col],int str,int col,int number)
+void two_dimensional_array_sdvig_horizont (int array[][mas_col],int str,int col,int number)
 {
   str-=1;
   col-=1;
@@ -1149,7 +1149,13 @@ void two_dimensional_array_sdvig (int array[][mas_col],int str,int col,int numbe
   {
      while (cCount<=col)
      {
-         if (swi==0)
+         if (swi==0 && cCount==col)
+         {
+         memory=array[sCount][cCount];
+         array[sCount][cCount]=array[sCount][cCount-1];
+         array[sCount][cCount-1]=memory;
+         }
+         if (swi==0 && cCount!=col)
          {
           memory=array[sCount][cCount];
           array[sCount][cCount]=array[sCount][cCount-1];
@@ -1160,7 +1166,7 @@ void two_dimensional_array_sdvig (int array[][mas_col],int str,int col,int numbe
           array[sCount][cCount]=memory;
           memory=memory_2;
         }
-        if (cCount==col)
+        if (cCount==col && swi==1)
         {
           memory_2=array[sCount][cCount];
           array[sCount][cCount]=memory;
@@ -1178,4 +1184,52 @@ void two_dimensional_array_sdvig (int array[][mas_col],int str,int col,int numbe
   cCount=1;
   }
 
+}
+
+
+void two_dimensional_array_sdvig_column (int array[][mas_col],int str,int col,int number)
+{
+  str-=1;
+  col-=1;
+  int sCount=1,cCount=0,memory=0,memory_2=0,swi=0;
+  while (number>0)
+  {
+    while (cCount<=col)
+  {
+     while (sCount<=str)
+     {
+         if (swi==0 && sCount==str)
+         {
+         memory=array[sCount][cCount];
+         array[sCount][cCount]=array[sCount-1][cCount];
+         array[sCount-1][cCount]=memory;
+         }
+         if (swi==0 && sCount!=str)
+         {
+          memory=array[sCount][cCount];
+          array[sCount][cCount]=array[sCount-1][cCount];
+         }
+        if (swi==1 && cCount!=col)
+        {
+          memory_2=array[sCount][cCount];
+          array[sCount][cCount]=memory;
+          memory=memory_2;
+        }
+        if (sCount==str && swi==1)
+        {
+          memory_2=array[sCount][cCount];
+          array[sCount][cCount]=memory;
+          array[0][cCount]=memory_2;
+        }
+        swi=1;
+        ++sCount;
+     }
+     ++cCount;
+     sCount=1;
+     swi=0;
+  }
+  --number;
+  sCount=1;
+  cCount=0;
+  }
 }
