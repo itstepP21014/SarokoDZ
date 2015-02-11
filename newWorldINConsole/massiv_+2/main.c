@@ -32,6 +32,45 @@ int main()
     printf ("New array, sdvig:%d\n",number);
     two_dimensional_array_output_int (array_1,str,col);
     }
+    int sCount=0,cCount=0;
+    while (sCount<str)
+    {
+       switch (array_1[sCount][cCount])
+       {
+       case 12:
+       case 11:
+       case 10:
+       array_1[sCount][cCount]=5;
+       break;
+       case 9:
+       case 8:
+       case 7:
+       array_1[sCount][cCount]=4;
+       break;
+       case 6:
+       case 5:
+       case 4:
+       array_1[sCount][cCount]=3;
+       break;
+       case 3:
+       case 2:
+       case 1:
+       array_1[sCount][cCount]=2;
+       break;
+       default:
+       printf("error!");
+       exit (1);
+       }
+      if (cCount<=(col-1))
+      ++cCount;
+      else
+      {
+          cCount=0;
+          ++sCount;
+      }
 
+    }
+    printf ("Array with system 2-5:");
+    two_dimensional_array_output_int (array_1,str,col);
     return 0;
 }
