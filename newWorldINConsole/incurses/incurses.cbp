@@ -2,21 +2,24 @@
 <CodeBlocks_project_file>
 	<FileVersion major="1" minor="6" />
 	<Project>
-		<Option title="massiv_+2" />
+		<Option title="incurses" />
 		<Option pch_mode="2" />
 		<Option compiler="gcc" />
 		<Build>
 			<Target title="Debug">
-				<Option output="bin/Debug/massiv_+2" prefix_auto="1" extension_auto="1" />
+				<Option output="bin/Debug/incurses" prefix_auto="1" extension_auto="1" />
 				<Option object_output="obj/Debug/" />
 				<Option type="1" />
 				<Option compiler="gcc" />
 				<Compiler>
 					<Add option="-g" />
 				</Compiler>
+				<Linker>
+					<Add library="ncursesw" />
+				</Linker>
 			</Target>
 			<Target title="Release">
-				<Option output="bin/Release/massiv_+2" prefix_auto="1" extension_auto="1" />
+				<Option output="bin/Release/incurses" prefix_auto="1" extension_auto="1" />
 				<Option object_output="obj/Release/" />
 				<Option type="1" />
 				<Option compiler="gcc" />
@@ -31,18 +34,6 @@
 		<Compiler>
 			<Add option="-Wall" />
 		</Compiler>
-		<Unit filename="../../modules/Arrayss.h" />
-		<Unit filename="../../modules/arrays.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="../../modules/compatibility.h" />
-		<Unit filename="../../modules/funcRand.h" />
-		<Unit filename="../../modules/randomStandart.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="../../modules/systemClear.c">
-			<Option compilerVar="CC" />
-		</Unit>
 		<Unit filename="main.c">
 			<Option compilerVar="CC" />
 		</Unit>
