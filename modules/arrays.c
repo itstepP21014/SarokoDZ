@@ -1233,3 +1233,40 @@ void two_dimensional_array_sdvig_column (int array[][mas_col],int str,int col,in
   cCount=0;
   }
 }
+
+
+void check_sortirovka_foolish (array[size_max],size)
+{
+  size-=2;
+  int swi=0,swi_2=0,counter=0,count=0,n;
+  while (swi==0)
+  {
+      if (array[counter]<array[counter+1])
+      {
+          if (swi_2==0)
+          {
+            printf("Failed\n");
+            swi_2=1;
+          }
+          n=array[counter];
+          array[counter]=array[counter+1];
+          array[counter+1]=n;
+          count=0;
+      }
+      if (counter==size)
+      {
+          counter=0;
+          count=0;
+      }
+      else
+      {
+          ++counter;
+          ++count;
+      }
+     if (count==size)
+     {
+         printf("array is ready!");
+         swi=1;
+     }
+  }
+}
