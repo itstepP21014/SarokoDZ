@@ -31,10 +31,11 @@ int sta_m,fin_m;
     void array_output (int array[size_max],int size)
     {
         size-=1;
-          while (size>=0)
+        int counter=0;
+          while (counter<=size)
      {
-        printf("%d",array[size]);
-        --size;
+        printf("%d  ",array[counter]);
+        ++counter;
      }
     }
 
@@ -1232,4 +1233,135 @@ void two_dimensional_array_sdvig_column (int array[][mas_col],int str,int col,in
   sCount=1;
   cCount=0;
   }
+}
+
+
+
+void mergesort(int array[size_max],int size)
+{
+   int memory[size_max],swi=0,swi_1=0,counter=0,copy,counter_1,factor=1,count=0,count_get=0,check_1=0,check_2=0;
+   if (size%2==1)
+   {
+       array[size]=1;
+       ++size;
+       swi=1;
+   }
+   if (size%2==0 && (size/2)%2==1)
+   {
+       array[size]=1;
+       array[size+1]=1;
+       swi=2;
+       size+=2;
+   }
+   //..................
+   while (factor!=size)
+   {
+    while (counter<size)
+    {
+    copy=counter;
+    counter_1=counter+factor;
+    while (check_1+check_2<factor*2 && swi_1==0)
+   {
+     if (array[counter]<array[counter_1])
+     {
+         memory[count]=array[counter];
+         ++count;
+         ++counter;
+         ++check_1;
+     }
+     else
+     {
+       if (array[counter]>array[counter_1])
+      {
+        memory[count]=array[counter_1];
+        ++count;
+        ++counter_1;
+        ++check_2;
+      }
+       else
+      {
+        memory[count]=array[counter];
+        ++count;
+        memory[count]=array[counter_1];
+        ++count;
+        ++counter;
+        ++counter_1;
+        ++check_1;
+        ++check_2;
+      }
+     }
+     if (check_1==factor)
+     {
+        while (check_2!=factor)
+        {
+            memory[count]=array[counter_1];
+            ++count;
+            ++check_2;
+            ++counter_1;
+        }
+        check_2=0;
+        swi_1=1;
+     }
+     if (check_2==factor)
+     {
+        while (check_1!=factor)
+        {
+            memory[count]=array[counter];
+            ++count;
+            ++check_1;
+            ++counter;
+        }
+        check_1=0;
+        swi_1=1;
+     }
+   }
+   check_1=0;
+   check_2=0;
+   swi_1=0;
+   while (count>0)
+   {
+       array[copy]=memory[count_get];
+       --count;
+       ++copy;
+       ++count_get;
+   }
+   count_get=0;
+   counter=copy;
+    }
+    counter=0;
+    factor*=2;
+   }
+   //..................
+   if (swi==1)//Это костыль.
+   {
+       counter=0;
+       while (array[counter]!=1)
+       {
+           ++counter;
+       }
+       while (counter!=size)
+       {
+           array[counter]=array[counter+1];
+           ++counter;
+       }
+   }
+    if (swi==2)//Это костыль.
+   {
+       count=2;
+       counter=0;
+       while (count>0)
+       {
+          while (array[counter]!=1)
+       {
+           ++counter;
+       }
+       while (counter!=size)
+       {
+           array[counter]=array[counter+1];
+           ++counter;
+       }
+       --count;
+       counter=0;
+       }
+   }
 }
