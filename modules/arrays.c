@@ -1363,8 +1363,62 @@ void mergesort(int array[size_max],int size)
        counter=0;
        }
    }
+}
 
-void check_sortirovka_foolish (array[size_max],size)
+
+
+void heapSort (int array[size_max],int size)
+{
+ int half,counter,memory;
+ half=(size/2)-1;
+ counter=half;
+ while (counter>=0)
+ {
+    if (array[counter]<array[2*counter+1] && 2*counter+1<size)
+       {
+           memory=array[counter];
+           array[counter]=array[2*counter+1];
+           array[2*counter+1]=memory;
+       }
+    if (array[counter]<array[2*counter+2] && 2*counter+2<size)
+        {
+           memory=array[counter];
+           array[counter]=array[2*counter+2];
+           array[2*counter+2]=memory;
+        }
+       --counter;
+ }
+--size;
+int number=0;
+while (size>0)
+{
+    memory=array[size];
+    array[size]=array[number];
+    array[number]=memory;
+    counter=size/2;
+    while (counter>=0)
+   {
+    if (array[counter]<array[2*counter+1] && 2*counter+1<size)
+       {
+           memory=array[counter];
+           array[counter]=array[2*counter+1];
+           array[2*counter+1]=memory;
+       }
+    if (array[counter]<array[2*counter+2] && 2*counter+2<size)
+        {
+           memory=array[counter];
+           array[counter]=array[2*counter+2];
+           array[2*counter+2]=memory;
+        }
+       --counter;
+    }
+    --size;
+}
+}
+
+
+
+void check_sortirovka_foolish (int array[size_max],int size)
 {
   size-=2;
   int swi=0,swi_2=0,counter=0,count=0,n;

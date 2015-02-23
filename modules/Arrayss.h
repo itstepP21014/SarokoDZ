@@ -41,7 +41,8 @@ void array_elements_mustBe_0 (int [size_max], int);
 int count_numbers (int [size_max],int);
 int search_min_easy (int [size_max],int);
 void mergesort(int [size_max],int);
-void check_sortirovka (int [size_max],int);
+void check_sortirovka_foolish (int [size_max],int);
+void heapSort (int [size_max],int);
 
 void two_dimensional_array_input_one_element_char(char [][mas_col],int,int,char);
 void two_dimensional_array_x0_reaction (char [][mas_col],int,int);
