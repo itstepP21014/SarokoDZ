@@ -1535,3 +1535,25 @@ void bubble_sort (int array[size_max],int size)
         counter=max;
   }
 }
+
+
+void selection_sort (int array[size_max],int size)
+{
+  int memory,count=0,counter=1,copy=1;
+  while(count<size-1)
+  {
+    while (counter<size)
+   {
+      if (array[count]>array[counter])
+      {
+          memory=array[count];
+          array[count]=array[counter];
+          array[counter]=memory;
+      }
+      ++counter;
+   }
+   ++copy;
+   counter=copy;
+   ++count;
+  }
+}

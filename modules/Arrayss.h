@@ -46,6 +46,7 @@ void heapSort (int [size_max],int);
 void quickSort (int [size_max],int,int);
 void insertion_sort (int [size_max],int);
 void bubble_sort (int [size_max],int);
+void selection_sort (int [size_max],int);
 
 void two_dimensional_array_input_one_element_char(char [][mas_col],int,int,char);
 void two_dimensional_array_x0_reaction (char [][mas_col],int,int);
