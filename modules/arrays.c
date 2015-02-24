@@ -1490,3 +1490,24 @@ void quickSort (int array[size_max],int first,int last)
     quickSort (array,first,two);
    }
 }
+
+
+void insertion_sort (int array[size_max],int size)
+{
+ int count=1,memory,copy;
+ while (count<size)
+ {
+     if (array[count-1]>array[count])
+     {
+         copy=count;
+         memory=array[copy];
+         while (copy-1>=0 && array[copy-1]>memory)
+         {
+           array[copy]=array[copy-1];
+           --copy;
+         }
+         array[copy]=memory;
+     }
+     ++count;
+ }
+}

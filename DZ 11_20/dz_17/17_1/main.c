@@ -15,7 +15,7 @@ int main()
     array_input(array,size);
     printf("Изначальный массив:\n");
     array_output (array,size);
-    printf("Выберите тип сортировки:\n1-слиянием\n2-пирамидальная\n3-быстрая сортировка\n");
+    printf("\nВыберите тип сортировки:\n1-слиянием\n2-пирамидальная\n3-быстрая сортировка\n4-сортировка вставками\n");
     scanf ("%d",&choice);
     last=size-1;
     switch (choice)
@@ -28,6 +28,8 @@ int main()
     break;
     case 3:
     quickSort(array,first,last);
+    case 4:
+    insertion_sort(array,size);
     break;
     default:
     printf("Внимательно читайте инструкции!");
