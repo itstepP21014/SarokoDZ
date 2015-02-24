@@ -1511,3 +1511,27 @@ void insertion_sort (int array[size_max],int size)
      ++count;
  }
 }
+
+
+void bubble_sort (int array[size_max],int size)
+{
+  int count=size-1,copy,memory,max=size-1,counter;
+  counter=max;
+  while (max>0)
+  {
+      copy=count;
+      while(counter>0)
+      {
+        if (array[copy]<array[copy-1])
+        {
+          memory=array[copy];
+          array[copy]=array[copy-1];
+          array[copy-1]=memory;
+        }
+        --copy;
+        --counter;
+      }
+        --max;
+        counter=max;
+  }
+}
