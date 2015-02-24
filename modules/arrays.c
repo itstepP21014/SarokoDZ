@@ -1453,3 +1453,40 @@ void check_sortirovka_foolish (int array[size_max],int size)
      }
   }
 }
+
+
+void quickSort (int array[size_max],int first,int last)
+{
+      int one=first,two=last,memory;
+   int center=array[(first+last)/2];
+   do
+   {
+     while (array[one]<center)
+     {
+         ++one;
+     }
+     while (array[two]>center)
+     {
+         --two;
+     }
+     if (one<=two)
+     {
+         if (array[one]>array[two])
+         {
+            memory=array[one];
+            array[one]=array[two];
+            array[two]=memory;
+         }
+         ++one;
+         --two;
+     }
+   }while (one<=two);
+   if (one<last)
+   {
+    quickSort (array,one,last);
+   }
+   if (two>first)
+   {
+    quickSort (array,first,two);
+   }
+}
