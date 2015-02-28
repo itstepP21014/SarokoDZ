@@ -2,6 +2,7 @@
 #include "funcRand.h"
 #include <stdio.h>
 #include <stdlib.h>
+#include <time.h>
 
 int sta_m,fin_m;
 
@@ -1556,4 +1557,243 @@ void selection_sort (int array[size_max],int size)
    counter=copy;
    ++count;
   }
+}
+
+
+int check_win_x0_5_20 (char array[][mas_col],int str,int col)
+{
+    str-=1;
+    col-=1;
+    int swi=1,c_1=0,c_2=0,comp=0,player=0,counter=0,c_1Copy,c_2Copy;
+    char b=48,x=120;
+  while (c_1<str)
+  {
+    if (array[c_1][c_2]==b)
+    {
+     player=0;
+     ++comp;
+    }
+    if (array[c_1][c_2]==x)
+    {
+     comp=0;
+     ++player;
+    }
+    if (array[c_1][c_2]=='#')
+    {
+     comp=0;
+     player=0;
+    }
+    if (player==5)
+    {
+        return (1);
+    }
+    if (comp==5)
+    {
+        return (0);
+    }
+    if (c_2<col)
+    ++c_2;
+    else
+    {
+     c_2=0;
+     ++c_1;
+    }
+  }
+  c_1=0;
+  c_2=0;
+  while (c_2<col)
+  {
+    if (array[c_1][c_2]==b)
+    {
+     player=0;
+     ++comp;
+    }
+    if (array[c_1][c_2]==x)
+    {
+     comp=0;
+     ++player;
+    }
+    if (array[c_1][c_2]=='#')
+    {
+     comp=0;
+     player=0;
+    }
+    if (player==5)
+    {
+        return (1);
+    }
+    if (comp==5)
+    {
+        return (0);
+    }
+    if (c_1<str)
+    ++c_1;
+    else
+    {
+     c_1=0;
+     ++c_2;
+    }
+  }
+  c_1=0;
+  c_1Copy=c_1;
+  c_2=4;
+  c_2Copy=c_2;
+  while (swi!=2)
+  {
+    if (array[c_1][c_2]==b)
+    {
+     player=0;
+     ++comp;
+    }
+    if (array[c_1][c_2]==x)
+    {
+     comp=0;
+     ++player;
+    }
+    if (array[c_1][c_2]=='#')
+    {
+     comp=0;
+     player=0;
+    }
+    if (player==5)
+    {
+        return (1);
+    }
+    if (comp==5)
+    {
+        return (0);
+    }
+    if(c_2!=0 && c_1!=19)
+    {
+    --c_2;
+    ++c_1;
+    ++counter;
+    }
+    else
+    {
+        if (counter<19 && swi==1)
+        {
+         counter=0;
+         ++c_2Copy;
+         c_1=0;
+         c_2=c_2Copy;
+        }
+        else
+        {
+         swi=0;
+         ++c_1Copy;
+         c_1=c_1Copy;
+         c_2=c_2Copy;
+         if (counter==4)
+         swi=2;
+         counter=0;
+        }
+    }
+  }
+  c_1=0;
+  c_1Copy=c_1;
+  c_2=15;
+  c_2Copy=c_2;
+  swi=1;
+  while (swi!=2)
+  {
+    if (array[c_1][c_2]==b)
+    {
+     player=0;
+     ++comp;
+    }
+    if (array[c_1][c_2]==x)
+    {
+     comp=0;
+     ++player;
+    }
+    if (array[c_1][c_2]=='#')
+    {
+     comp=0;
+     player=0;
+    }
+    if (player==5)
+    {
+        return (1);
+    }
+    if (comp==5)
+    {
+        return (0);
+    }
+    if(c_2!=19 && c_1!=19)
+    {
+    ++c_2;
+    ++c_1;
+    ++counter;
+    }
+    else
+    {
+        if (counter<19 && swi==1)
+        {
+         counter=0;
+         --c_2Copy;
+         c_1=0;
+         c_2=c_2Copy;
+        }
+        else
+        {
+         swi=0;
+         ++c_1Copy;
+         c_1=c_1Copy;
+         c_2=0;
+         if (counter==4)
+         swi=2;
+         counter=0;
+        }
+    }
+  }
+  return (2);
+}
+
+
+void two_dimensional_array_x0_reaction_20x20 (char array[][mas_col],int str,int col)
+{
+    str-=1;
+    col-=1;
+   char element=48;
+   int swi=1,check;
+   int c_1,c_2;
+   srand(time(NULL));
+   while (swi==1)
+   {
+       c_1=rand()%20;
+       c_2=rand()%20;
+       check=array[c_1][c_2];
+       if (check!=48 && check!=120)
+       {
+         array[c_1][c_2]=element;
+         swi=0;
+       }
+   }
+}
+
+
+void x0_20x20_player_turn (char array[][mas_col],int str,int col)
+{
+    int str_1,col_1,arr_el,swi=1;
+    char player='x';
+while (swi==1)
+            {
+                printf("\nВведите координаты крестика:\n");
+                scanf("%d",&str_1);
+                scanf("%d",&col_1);
+                if (str_1<20 && col_1<20)
+                {
+                    arr_el=array[str_1][col_1];
+                    if (arr_el!=48 && arr_el!=120)
+                    {
+                      array[str_1][col_1]=player;
+                      swi=0;
+                    }
+                }
+                else
+                {
+                  printf("\nВведены неверные координаты!\n");
+                }
+            }
 }

@@ -2,8 +2,8 @@
 #define ARRAYSS_H_INCLUDED
 
 #define size_max 1000
-#define mas_col 10
-#define mas_str 10
+#define mas_col 30
+#define mas_str 30
 extern int sta_m, fin_m;
 
 
@@ -53,11 +53,14 @@ void two_dimensional_array_x0_reaction (char [][mas_col],int,int);
 void two_dimensional_array_output (char [][mas_col],int,int);
 void two_dimensional_array_input_elements (char [][mas_col],int,int,char);
 int check_win_x0 (char [][mas_col],int,int);
+int check_win_x0_5_20 (char [][mas_col],int,int);
+void x0_20x20_player_turn (char [][mas_col],int,int);
 void two_in_one (int [mas_str][mas_col],int, int, int [size_max],int);
 void two_dimensional_array_input (int [][mas_col],int,int);
 void two_dimensional_array_output_int (int [][mas_col],int,int);
 void two_dimensional_array_sdvig_horizont (int [][mas_col],int,int,int);
 void two_dimensional_array_sdvig_column (int [][mas_col],int,int,int);
+void two_dimensional_array_x0_reaction_20x20 (char [][mas_col],int,int);
 
 #endif // ARRAYSS_H_INCLUDED
 
