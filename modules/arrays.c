@@ -6,13 +6,13 @@
 
 int sta_m,fin_m;
 
-  void array_input (int array[size_max], int size)
+  void array_input (int *array, int size)
     {
         size-=1;
         int counter=0;
           while (counter<=size)
      {
-        scanf("%d",&array[counter]);
+        scanf("%d",&*(array+counter));
         ++counter;
      }
     }
@@ -29,13 +29,14 @@ int sta_m,fin_m;
     }
 
 
-    void array_output (int array[size_max],int size)
+    void array_output (int *array,int size)
     {
         size-=1;
         int counter=0;
+        printf("\n");
           while (counter<=size)
      {
-        printf("%d  ",array[counter]);
+        printf("%d  ",*(array+counter));
         ++counter;
      }
     }
@@ -853,16 +854,14 @@ void two_dimensional_array_x0_reaction (char array[][mas_col],int str,int col)
 }
 
 
-void two_dimensional_array_output (char array[][mas_col],int str,int col)
+void two_dimensional_array_output (char *array,int str,int col)
 {
-    col-=1;
-    str-=1;
     int swi=1;
    int c_1=0,c_2=0;
           while (swi)
      {
-        printf("%c",array[c_1][c_2]);
-          if (c_2<col)
+        printf("%c",array[c_1*col+c_2]);
+          if (c_2<col-1)
            {
             ++c_2;
            }
@@ -870,7 +869,7 @@ void two_dimensional_array_output (char array[][mas_col],int str,int col)
            {
                printf ("\n");
                c_2=0;
-               if (c_1<str)
+               if (c_1<str-1)
                ++c_1;
                else
                swi=0;
@@ -879,14 +878,12 @@ void two_dimensional_array_output (char array[][mas_col],int str,int col)
 }
 
 
-void two_dimensional_array_input_elements (char array[][mas_col],int str,int col,char element)
+void two_dimensional_array_input_elements (char *array,int str,int col,char element)
 {
-   str-=1;
-   col-=1;
    int c_1=0,c_2=0,swi=1;
           while (swi)
      {
-      array[c_1][c_2]=element;
+      array[c_1*col+c_2]=element;
           if (c_1<str)
            {
             ++c_1;
@@ -1560,25 +1557,24 @@ void selection_sort (int array[size_max],int size)
 }
 
 
-int check_win_x0_5_20 (char array[][mas_col],int str,int col)
+int check_win_x0_5_20 (char *array,int str,int col)
 {
-    str-=1;
-    col-=1;
+    int colCopy=col-1,strCopy=str-1;
     int swi=1,c_1=0,c_2=0,comp=0,player=0,counter=0,c_1Copy,c_2Copy;
     char b=48,x=120;
   while (c_1<str)
   {
-    if (array[c_1][c_2]==b)
+    if (array[c_1*col+c_2]==b)
     {
      player=0;
      ++comp;
     }
-    if (array[c_1][c_2]==x)
+    if (array[c_1*col+c_2]==x)
     {
      comp=0;
      ++player;
     }
-    if (array[c_1][c_2]=='#')
+    if (array[c_1*col+c_2]=='#')
     {
      comp=0;
      player=0;
@@ -1591,11 +1587,15 @@ int check_win_x0_5_20 (char array[][mas_col],int str,int col)
     {
         return (0);
     }
-    if (c_2<col)
+    if (c_2<colCopy)
+    {
     ++c_2;
+    }
     else
     {
      c_2=0;
+     comp=0;
+     player=0;
      ++c_1;
     }
   }
@@ -1603,17 +1603,17 @@ int check_win_x0_5_20 (char array[][mas_col],int str,int col)
   c_2=0;
   while (c_2<col)
   {
-    if (array[c_1][c_2]==b)
+    if (array[c_1*col+c_2]==b)
     {
      player=0;
      ++comp;
     }
-    if (array[c_1][c_2]==x)
+    if (array[c_1*col+c_2]==x)
     {
      comp=0;
      ++player;
     }
-    if (array[c_1][c_2]=='#')
+    if (array[c_1*col+c_2]=='#')
     {
      comp=0;
      player=0;
@@ -1626,10 +1626,14 @@ int check_win_x0_5_20 (char array[][mas_col],int str,int col)
     {
         return (0);
     }
-    if (c_1<str)
+    if (c_1<strCopy)
+    {
     ++c_1;
+    }
     else
     {
+     comp=0;
+     player=0;
      c_1=0;
      ++c_2;
     }
@@ -1640,17 +1644,17 @@ int check_win_x0_5_20 (char array[][mas_col],int str,int col)
   c_2Copy=c_2;
   while (swi!=2)
   {
-    if (array[c_1][c_2]==b)
+    if (array[c_1*col+c_2]==b)
     {
      player=0;
      ++comp;
     }
-    if (array[c_1][c_2]==x)
+    if (array[c_1*col+c_2]==x)
     {
      comp=0;
      ++player;
     }
-    if (array[c_1][c_2]=='#')
+    if (array[c_1*col+c_2]=='#')
     {
      comp=0;
      player=0;
@@ -1663,51 +1667,62 @@ int check_win_x0_5_20 (char array[][mas_col],int str,int col)
     {
         return (0);
     }
-    if(c_2!=0 && c_1!=19)
+    if(counter<c_2Copy && swi==1)
     {
-    --c_2;
-    ++c_1;
-    ++counter;
+            ++c_1;
+            --c_2;
+            ++counter;
     }
+    else
+    {
+        if (counter<(19-c_1Copy) && swi==0)
+        {
+            ++c_1;
+            --c_2;
+            ++counter;
+        }
     else
     {
         if (counter<19 && swi==1)
         {
-         counter=0;
-         ++c_2Copy;
-         c_1=0;
-         c_2=c_2Copy;
+            ++c_2Copy;
+            counter=0;
+            c_1=0;
+            c_2=c_2Copy;
         }
         else
         {
          swi=0;
          ++c_1Copy;
          c_1=c_1Copy;
-         c_2=c_2Copy;
+         c_2=19;
          if (counter==4)
          swi=2;
          counter=0;
         }
     }
+    }
+
   }
   c_1=0;
   c_1Copy=c_1;
   c_2=15;
   c_2Copy=c_2;
+  counter=0;
   swi=1;
   while (swi!=2)
   {
-    if (array[c_1][c_2]==b)
+    if (array[c_1*col+c_2]==b)
     {
      player=0;
      ++comp;
     }
-    if (array[c_1][c_2]==x)
+    if (array[c_1*col+c_2]==x)
     {
      comp=0;
      ++player;
     }
-    if (array[c_1][c_2]=='#')
+    if (array[c_1*col+c_2]=='#')
     {
      comp=0;
      player=0;
@@ -1720,74 +1735,80 @@ int check_win_x0_5_20 (char array[][mas_col],int str,int col)
     {
         return (0);
     }
-    if(c_2!=19 && c_1!=19)
+    if(counter<(19-c_2Copy) && swi==1)
     {
-    ++c_2;
-    ++c_1;
-    ++counter;
+      ++counter;
+      ++c_1;
+      ++c_2;
     }
+    else
+    {
+        if (counter<(19-c_1Copy) && swi==0)
+        {
+            ++counter;
+            ++c_1;
+            ++c_2;
+        }
     else
     {
         if (counter<19 && swi==1)
         {
          counter=0;
          --c_2Copy;
-         c_1=0;
          c_2=c_2Copy;
+         c_1=0;
         }
         else
         {
          swi=0;
+         c_2=0;
          ++c_1Copy;
          c_1=c_1Copy;
-         c_2=0;
          if (counter==4)
          swi=2;
          counter=0;
         }
     }
+    }
+
+
   }
   return (2);
 }
 
 
-void two_dimensional_array_x0_reaction_20x20 (char array[][mas_col],int str,int col)
+void two_dimensional_array_x0_reaction_20x20 (char *array,int str,int col)
 {
-    str-=1;
-    col-=1;
    char element=48;
-   int swi=1,check;
-   int c_1,c_2;
+   int swi=1,c_1,c_2;
    srand(time(NULL));
    while (swi==1)
    {
-       c_1=rand()%20;
-       c_2=rand()%20;
-       check=array[c_1][c_2];
-       if (check!=48 && check!=120)
+        c_1=rand()%20;
+        c_2=rand()%20;
+       if (array[c_1*col+c_2]!=48 && array[c_1*col+c_2]!=120)
        {
-         array[c_1][c_2]=element;
+         array[c_1*col+c_2]=element;
          swi=0;
        }
    }
 }
 
 
-void x0_20x20_player_turn (char array[][mas_col],int str,int col)
+void x0_20x20_player_turn (char *array,int str,int col)
 {
-    int str_1,col_1,arr_el,swi=1;
+    int str_1,col_1,swi=1;
     char player='x';
 while (swi==1)
             {
                 printf("\nВведите координаты крестика:\n");
                 scanf("%d",&str_1);
                 scanf("%d",&col_1);
-                if (str_1<20 && col_1<20)
+                if (str_1<20 && col_1<20 && str_1>-1 && col_1>-1)
                 {
-                    arr_el=array[str_1][col_1];
-                    if (arr_el!=48 && arr_el!=120)
+                    if (array[str_1*col+col_1]!=48 && array[str_1*col+col_1]!=120)
                     {
-                      array[str_1][col_1]=player;
+                      array[str_1*col+col_1]=player;
                       swi=0;
                     }
                 }
