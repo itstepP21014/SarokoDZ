@@ -18,7 +18,7 @@ int sta_m,fin_m;
     }
 
 
-    void array_input_random (int array[size_max], int size)
+    void array_input_random (int *array, int size)
     {
         size-=1;
           while (size>=0)
@@ -42,7 +42,7 @@ int sta_m,fin_m;
     }
 
 
-        int array_search_Element (int array[size_max],int size,int number)
+        int array_search_Element (int *array,int size,int number)
     {
         int counter=size-1;
           while (counter>=0)
@@ -57,7 +57,7 @@ int sta_m,fin_m;
     }
 
 
-int array_search_Max (int array[size_max],int size)
+int array_search_Max (int *array,int size)
     {
         int num_1,num_2,result=0;
         size-=1;
@@ -87,7 +87,7 @@ int array_search_Max (int array[size_max],int size)
     }
 
 
- int array_search_Min (int array[size_max],int size)
+ int array_search_Min (int *array,int size)
     {
         int num_1,num_2,result=0;
         size-=1;
@@ -117,7 +117,7 @@ int array_search_Max (int array[size_max],int size)
     }
 
 
-    int array_search_positive (int array[size_max],int size)
+    int array_search_positive (int *array,int size)
     {
         int num_1,counter=0;
         size-=1;
@@ -135,7 +135,7 @@ int array_search_Max (int array[size_max],int size)
 
 
 
-    int array_search_negative (int array[size_max],int size)
+    int array_search_negative (int *array,int size)
     {
         int num_1,result=-1,counter=0;
         size-=1;
@@ -152,7 +152,7 @@ int array_search_Max (int array[size_max],int size)
     }
 
 
-    int array_search_Max_parity (int array[size_max],int size)
+    int array_search_Max_parity (int *array,int size)
     {
         int num_1,result=1;
         size-=1;
@@ -171,7 +171,7 @@ int array_search_Max (int array[size_max],int size)
      return result;
     }
 
-     int array_search_Min_parity (int array[size_max],int size)
+     int array_search_Min_parity (int *array,int size)
     {
         int num_1,result=2;
         size-=1;
@@ -190,7 +190,7 @@ int array_search_Max (int array[size_max],int size)
      return result;
     }
 
-     int array_search_same (int array[size_max],int size,int number)
+     int array_search_same (int *array,int size,int number)
     {
         int counter=size-1;
           while (counter>=0)
@@ -205,7 +205,7 @@ int array_search_Max (int array[size_max],int size)
     }
 
 
-    int array_replacement (int array[size_max],int size,int max,int min)
+    int array_replacement (int *array,int size,int max,int min)
     {
         int counter=size-1;
           while (counter>=0)
@@ -224,7 +224,7 @@ int array_search_Max (int array[size_max],int size)
     }
 
 
- int array_search_MP_dif (int array[size_max],int size,int number)
+ int array_search_MP_dif (int *array,int size,int number)
     {
         int counter=0,result=-1;
         size-=1;
@@ -243,7 +243,7 @@ int array_search_Max (int array[size_max],int size)
     }
 
 
- void array_replacement_2 (int array[size_max],int size,int index_1,int index_2)
+ void array_replacement_2 (int *array,int size,int index_1,int index_2)
     {
         int num_1,num_2;
         num_1=array[index_1];
@@ -252,7 +252,7 @@ int array_search_Max (int array[size_max],int size)
         array[index_2]=num_1;
     }
 
-int array_search_same_lenght (int array[size_max],int size,int number)
+int array_search_same_lenght (int *array,int size,int number)
 {
   size-=1;
   int counter=0,lenght=0,lenghtCopy=0,swi=0,swi_1=0,sta,fin;
@@ -297,7 +297,7 @@ int array_search_same_lenght (int array[size_max],int size,int number)
   return result;
 }
 
-int array_search_max_one (int array[size_max],int size)
+int array_search_max_one (int *array,int size)
 {
     int num_1,result=0;
     int counter=size-1;
@@ -313,7 +313,7 @@ int array_search_max_one (int array[size_max],int size)
   return result;
 }
 
-int array_search_Element_more (int array[size_max],int size,int number)
+int array_search_Element_more (int *array,int size,int number)
     {
         int result=0;
         int counter=size-1;
@@ -329,7 +329,7 @@ int array_search_Element_more (int array[size_max],int size,int number)
     }
 
 
-    int array_search_min_many (int array[size_max],int size)
+    int array_search_min_many (int *array,int size)
 {
     int num_1,result=0,swi_1=0;
     int counter=size-1;
@@ -351,7 +351,7 @@ int array_search_Element_more (int array[size_max],int size,int number)
 }
 
 
- int array_search_same_x (int array[size_max], int size)
+ int array_search_same_x (int *array, int size)
     {
         int check[1000],num_1,result=0,counter=size-1,swi_1=0,counter_1=0,counter_1C,swi_2=0;
 
@@ -399,7 +399,7 @@ int array_search_Element_more (int array[size_max],int size,int number)
     }
 
 
-int array_search_same_lenght_x (int array[size_max],int size)
+int array_search_same_lenght_x (int *array,int size)
 {
   size-=1;
   int counter=0,lenght=0,lenghtCopy=0,swi=0,num_1;
@@ -434,7 +434,7 @@ int array_search_same_lenght_x (int array[size_max],int size)
 }
 
 
-int array_sum (int array[size_max], int size)
+int array_sum (int *array, int size)
     {
         int result=0,num_1;
           while (size>=0)
@@ -448,7 +448,7 @@ int array_sum (int array[size_max], int size)
 
 
 
-void checking_brackets (int array_1[])
+void checking_brackets (int *array_1)
  {
 
      int brackets_reflection,swi=1,counter=0;
@@ -486,7 +486,7 @@ void checking_brackets (int array_1[])
 
 
 
- int array_input_char (char array[size_max], int size)
+ int array_input_char (char *array, int size)
     {
         int counter=0,check,result=0,num_1,num_2,swi=1;
         char put;
@@ -597,7 +597,7 @@ void checking_brackets (int array_1[])
     }
 
 
-    int array_input_char_BF (unsigned char array[size_max], int size)
+    int array_input_char_BF (unsigned char *array, int size)
     {
         int counter=0,check;
         unsigned char put;
@@ -617,7 +617,7 @@ void checking_brackets (int array_1[])
     }
 
 
-    int array_BF_processing (unsigned char array[size_max],int array_1[size_max],int array_2[size_max], int size)
+    int array_BF_processing (unsigned char *array,int *array_1,int *array_2, int size)
     {
         int counter=0,counter_1=0,check,result=0,count=-1;
         unsigned char c;
@@ -699,7 +699,7 @@ void checking_brackets (int array_1[])
     }
 
 
-    int array_BF_BRACKETS (unsigned char array[size_max], int size)
+    int array_BF_BRACKETS (unsigned char *array, int size)
     {
         int counter=0,check,check_b=0;
           while (check!=110)
@@ -726,7 +726,7 @@ void checking_brackets (int array_1[])
     }
 
 
-     int array_BF_chars (unsigned char array[size_max], int size)
+     int array_BF_chars (unsigned char *array, int size)
     {
         int counter=0,check;
           while (counter<=size)
@@ -766,7 +766,7 @@ void checking_brackets (int array_1[])
     }
 
 
-    void array_index_BRACKETS (unsigned char array[size_max],int array_2[size_max], int size)
+    void array_index_BRACKETS (unsigned char *array,int *array_2, int size)
     {
        int counter_1=0,counter_1C,counter_2=0,count=0,check=0;
        while (check!=110)
@@ -801,26 +801,24 @@ void checking_brackets (int array_1[])
 
 
 
-void two_dimensional_array_input_one_element_char(char array[][mas_col],int str,int col,char element)
+void two_dimensional_array_input_one_element_char(char *array,int str_1,int col_1,int col,char element)
 {
-    str-=1;
-    col-=1;
     int check;
-    check=array[str][col];
-    if (check!=48 && check!=88)
+    check=array[str_1*(col)+col_1];
+    if (check!=48 && check!=120)
     {
-        array[str][col]=element;
+        array[str_1*(col)+col_1]=element;
     }
     else
     {
-        printf("Невозможно ввести Х в данные координаты!\n");
+        printf("Невозможно ввести символ в данные координаты!\n");
         system ("pause");
         exit (2);
     }
 }
 
 
-void two_dimensional_array_x0_reaction (char array[][mas_col],int str,int col)
+void two_dimensional_array_x0_reaction (char *array,int str,int col)
 {
     str-=1;
     col-=1;
@@ -829,10 +827,10 @@ void two_dimensional_array_x0_reaction (char array[][mas_col],int str,int col)
    int c_1=0,c_2=0;
    while (swi==1)
    {
-       check=array[c_1][c_2];
+       check=array[c_1*(col+1)+c_2];
        if (check!=48 && check!=120)
        {
-         array[c_1][c_2]=element;
+         array[c_1*(col+1)+c_2]=element;
          swi=0;
        }
        else
@@ -900,77 +898,149 @@ void two_dimensional_array_input_elements (char *array,int str,int col,char elem
 }
 
 
-int check_win_x0 (char array[][mas_col],int str,int col)
+int check_win_x0 (char *array,int str,int col)
 {
-    char x=120,b=48;
-    if (array[0][0]==b && array[1][1]==b && array[2][2]==b)
+    char x=120,b=48,c='#';
+    int c_1=0,c_2=0,player=0,comp=0;
+    while (c_1<str)
     {
-        return 0;
+        if (array[c_1*col+c_2]==x)
+        {
+           ++player;
+           comp=0;
+        }
+        if (array[c_1*col+c_2]==b)
+        {
+           ++comp;
+           player=0;
+        }
+        if (array[c_1*col+c_2]==c)
+        {
+           comp=0;
+           player=0;
+        }
+        if (player==3)
+        {
+        return (1);
+        }
+        if (comp==3)
+        {
+        return (0);
+        }
+        if (c_2<(col-1))
+            ++c_2;
+            else
+        {
+            c_2=0;
+            ++c_1;
+        }
     }
-    if (array[0][0]==x && array[1][1]==x && array[2][2]==x)
+    c_1=0;
+    c_2=0;
+    comp=0;
+    player=0;
+        while (c_2<col)
     {
-        return 1;
+        if (array[c_1*col+c_2]==x)
+        {
+           ++player;
+           comp=0;
+        }
+        if (array[c_1*col+c_2]==b)
+        {
+           ++comp;
+           player=0;
+        }
+        if (array[c_1*col+c_2]==c)
+        {
+           comp=0;
+           player=0;
+        }
+        if (player==3)
+        {
+        return (1);
+        }
+        if (comp==3)
+        {
+        return (0);
+        }
+        if (c_2<(col-1))
+            ++c_1;
+            else
+        {
+            c_1=0;
+            ++c_2;
+        }
     }
-    if (array[0][2]==b && array[1][1]==b && array[2][0]==b)
+    c_1=0;
+    c_2=0;
+    comp=0;
+    player=0;
+    while (c_1<str)
     {
-        return 0;
+        if (array[c_1*col+c_2]==x)
+        {
+           ++player;
+           comp=0;
+        }
+        if (array[c_1*col+c_2]==b)
+        {
+           ++comp;
+           player=0;
+        }
+        if (array[c_1*col+c_2]==c)
+        {
+           comp=0;
+           player=0;
+        }
+        if (player==3)
+        {
+        return (1);
+        }
+        if (comp==3)
+        {
+        return (0);
+        }
+        ++c_1;
+        ++c_2;
     }
-    if (array[0][0]==x && array[0][1]==x && array[0][2]==x)
+    c_1=str-1;
+    c_2=col-1;
+    comp=0;
+    player=0;
+    while (c_1<str)
     {
-        return 1;
+        if (array[c_1*col+c_2]==x)
+        {
+           ++player;
+           comp=0;
+        }
+        if (array[c_1*col+c_2]==b)
+        {
+           ++comp;
+           player=0;
+        }
+        if (array[c_1*col+c_2]==c)
+        {
+           comp=0;
+           player=0;
+        }
+        if (player==3)
+        {
+        return (1);
+        }
+        if (comp==3)
+        {
+        return (0);
+        }
+        --c_1;
+        --c_2;
     }
-    if (array[1][0]==x && array[1][1]==x && array[1][2]==x)
-    {
-        return 1;
-    }
-    if (array[2][0]==x && array[2][1]==x && array[2][2]==x)
-    {
-        return 1;
-    }
-    if (array[0][0]==b && array[0][1]==b && array[0][2]==b)
-    {
-        return 0;
-    }
-    if (array[1][0]==b && array[1][1]==b && array[1][2]==b)
-    {
-        return 0;
-    }
-    if (array[2][0]==b && array[2][1]==b && array[2][2]==b)
-    {
-        return 0;
-    }
-    if (array[0][0]==x && array[1][0]==x && array[2][0]==x)
-    {
-        return 1;
-    }
-    if (array[0][1]==x && array[1][1]==x && array[2][1]==x)
-    {
-        return 1;
-    }
-    if (array[0][2]==x && array[1][2]==x && array[2][2]==x)
-    {
-        return 1;
-    }
-    if (array[0][0]==b && array[1][0]==b && array[2][0]==b)
-    {
-        return 0;
-    }
-    if (array[0][1]==b && array[1][1]==b && array[2][1]==b)
-    {
-        return 0;
-    }
-    if (array[0][2]==b && array[1][2]==b && array[2][2]==b)
-    {
-        return 0;
-    }
-    else
-    {
-        return 2;
-    }
+    return (2);
 }
 
 
-  void array_input_reg (int array[size_max], int size)
+  void array_input_reg (int *array, int size)
     {
         size-=1;
         int counter=0,reg=0,swi=1,num_1;
@@ -996,7 +1066,7 @@ int check_win_x0 (char array[][mas_col],int str,int col)
     }
 
 
-  void array_output_reg (int array[size_max], int size)
+  void array_output_reg (int *array, int size)
     {
         printf("memory status:\n");
         size-=1;
@@ -1017,7 +1087,7 @@ int check_win_x0 (char array[][mas_col],int str,int col)
     }
 
 
-void array_elements_mustBe_0 (int array[size_max], int size)
+void array_elements_mustBe_0 (int *array, int size)
 {
     size-=1;
     while (size>=0)
@@ -1028,7 +1098,7 @@ void array_elements_mustBe_0 (int array[size_max], int size)
 }
 
 
-void two_in_one (int array_1[mas_str][mas_col],int str, int col, int array_2[size_max],int size)
+void two_in_one (int *array_1,int str, int col, int *array_2,int size)
 {
     size-=1;
     str-=1;
@@ -1038,7 +1108,7 @@ void two_in_one (int array_1[mas_str][mas_col],int str, int col, int array_2[siz
    {
      while (cCount<=col)
      {
-     array_2[size]=array_1[sCount][cCount];
+     array_2[size]=array_1[sCount*(col+1)+cCount];
      ++cCount;
      --size;
      }
@@ -1047,7 +1117,7 @@ void two_in_one (int array_1[mas_str][mas_col],int str, int col, int array_2[siz
    }
 }
 
-int count_numbers (int array_1[size_max],int size)
+int count_numbers (int *array_1,int size)
 {
     size-=1;
     int result=0;
@@ -1062,7 +1132,7 @@ int count_numbers (int array_1[size_max],int size)
     return result;
 }
 
-int search_min_easy (int array_1[size_max],int size)
+int search_min_easy (int *array_1,int size)
 {
     size-=1;
   int result,counter=size,swi=1;
@@ -1090,14 +1160,14 @@ int search_min_easy (int array_1[size_max],int size)
 }
 
 
-void two_dimensional_array_input (int array[][mas_col],int str,int col)
+void two_dimensional_array_input (int *array,int str,int col)
 {
   str-=1;
   col-=1;
    int c_1=0,c_2=0;
     while (c_1<=str)
      {
-         scanf("%d",&array[c_1][c_2]);
+         scanf("%d",&array[c_1*(col+1)+c_2]);
           if (c_2<col)
           {
               ++c_2;
@@ -1111,7 +1181,7 @@ void two_dimensional_array_input (int array[][mas_col],int str,int col)
 }
 
 
-void two_dimensional_array_output_int (int array[][mas_col],int str,int col)
+void two_dimensional_array_output_int (int *array,int str,int col)
 {
     col-=1;
     str-=1;
@@ -1119,7 +1189,7 @@ void two_dimensional_array_output_int (int array[][mas_col],int str,int col)
    int c_1=0,c_2=0;
           while (swi)
      {
-        printf("%d",array[c_1][c_2]);
+        printf("%d",array[c_1*(col+1)+c_2]);
           if (c_2<col)
            {
             ++c_2;
@@ -1137,7 +1207,7 @@ void two_dimensional_array_output_int (int array[][mas_col],int str,int col)
 }
 
 
-void two_dimensional_array_sdvig_horizont (int array[][mas_col],int str,int col,int number)
+void two_dimensional_array_sdvig_horizont (int *array,int str,int col,int number)
 {
   str-=1;
   col-=1;
@@ -1150,26 +1220,26 @@ void two_dimensional_array_sdvig_horizont (int array[][mas_col],int str,int col,
      {
          if (swi==0 && cCount==col)
          {
-         memory=array[sCount][cCount];
-         array[sCount][cCount]=array[sCount][cCount-1];
-         array[sCount][cCount-1]=memory;
+         memory=array[sCount*(col+1)+cCount];
+         array[sCount*(col+1)+cCount]=array[sCount*(col+1)+(cCount-1)];
+         array[sCount*(col+1)+(cCount-1)]=memory;
          }
          if (swi==0 && cCount!=col)
          {
-          memory=array[sCount][cCount];
-          array[sCount][cCount]=array[sCount][cCount-1];
+          memory=array[sCount*(col+1)+cCount];
+         array[sCount*(col+1)+cCount]=array[sCount*(col+1)+(cCount-1)];
          }
         if (swi==1 && cCount!=col)
         {
-          memory_2=array[sCount][cCount];
-          array[sCount][cCount]=memory;
+          memory_2=array[sCount*(col+1)+cCount];
+          array[sCount*(col+1)+cCount]=memory;
           memory=memory_2;
         }
         if (cCount==col && swi==1)
         {
-          memory_2=array[sCount][cCount];
-          array[sCount][cCount]=memory;
-          array[sCount][0]=memory_2;
+          memory_2=array[sCount*(col+1)+cCount];
+         array[sCount*(col+1)+cCount]=memory;
+          array[sCount*(col+1)+0]=memory_2;
         }
         swi=1;
         ++cCount;
@@ -1186,7 +1256,7 @@ void two_dimensional_array_sdvig_horizont (int array[][mas_col],int str,int col,
 }
 
 
-void two_dimensional_array_sdvig_column (int array[][mas_col],int str,int col,int number)
+void two_dimensional_array_sdvig_column (int *array,int str,int col,int number)
 {
   str-=1;
   col-=1;
@@ -1199,26 +1269,26 @@ void two_dimensional_array_sdvig_column (int array[][mas_col],int str,int col,in
      {
          if (swi==0 && sCount==str)
          {
-         memory=array[sCount][cCount];
-         array[sCount][cCount]=array[sCount-1][cCount];
-         array[sCount-1][cCount]=memory;
+         memory=array[sCount*(col+1)+cCount];
+         array[sCount*(col+1)+cCount]=array[(sCount-1)*(col+1)+cCount];
+         array[(sCount-1)*(col+1)+cCount]=memory;
          }
          if (swi==0 && sCount!=str)
          {
-          memory=array[sCount][cCount];
-          array[sCount][cCount]=array[sCount-1][cCount];
+          memory=array[sCount*(col+1)+cCount];
+          array[sCount*(col+1)+cCount]=array[(sCount-1)*(col+1)+cCount];
          }
         if (swi==1 && cCount!=col)
         {
-          memory_2=array[sCount][cCount];
-          array[sCount][cCount]=memory;
+          memory_2=array[sCount*(col+1)+cCount];
+          array[sCount*(col+1)+cCount]=memory;
           memory=memory_2;
         }
         if (sCount==str && swi==1)
         {
-          memory_2=array[sCount][cCount];
-          array[sCount][cCount]=memory;
-          array[0][cCount]=memory_2;
+          memory_2=array[sCount*(col+1)+cCount];
+          array[sCount*(col+1)+cCount]=memory;
+          array[0*(col+1)+cCount]=memory_2;
         }
         swi=1;
         ++sCount;
@@ -1234,7 +1304,7 @@ void two_dimensional_array_sdvig_column (int array[][mas_col],int str,int col,in
 }
 
 
-void mergesort(int array[size_max],int size)
+void mergesort(int *array,int size)
 {
    int memory[size_max],swi=0,swi_1=0,counter=0,copy,counter_1,factor=1,count=0,count_get=0,check_1=0,check_2=0;
    if (size%2==1)
@@ -1365,7 +1435,7 @@ void mergesort(int array[size_max],int size)
 
 
 
-void heapSort (int array[size_max],int size)
+void heapSort (int *array,int size)
 {
  int half,counter,memory;
  half=(size/2)-1;
@@ -1416,7 +1486,7 @@ while (size>0)
 
 
 
-void check_sortirovka_foolish (int array[size_max],int size)
+void check_sortirovka_foolish (int *array,int size)
 {
   size-=2;
   int swi=0,swi_2=0,counter=0,count=0,n;
@@ -1453,7 +1523,7 @@ void check_sortirovka_foolish (int array[size_max],int size)
 }
 
 
-void quickSort (int array[size_max],int first,int last)
+void quickSort (int *array,int first,int last)
 {
       int one=first,two=last,memory;
    int center=array[(first+last)/2];
@@ -1490,7 +1560,7 @@ void quickSort (int array[size_max],int first,int last)
 }
 
 
-void insertion_sort (int array[size_max],int size)
+void insertion_sort (int *array,int size)
 {
  int count=1,memory,copy;
  while (count<size)
@@ -1511,7 +1581,7 @@ void insertion_sort (int array[size_max],int size)
 }
 
 
-void bubble_sort (int array[size_max],int size)
+void bubble_sort (int *array,int size)
 {
   int count=size-1,copy,memory,max=size-1,counter;
   counter=max;
@@ -1535,7 +1605,7 @@ void bubble_sort (int array[size_max],int size)
 }
 
 
-void selection_sort (int array[size_max],int size)
+void selection_sort (int *array,int size)
 {
   int memory,count=0,counter=1,copy=1;
   while(count<size-1)
