@@ -61,6 +61,8 @@ void two_dimensional_array_output_int (int *,int,int);
 void two_dimensional_array_sdvig_horizont (int *,int,int,int);
 void two_dimensional_array_sdvig_column (int *,int,int,int);
 void two_dimensional_array_x0_reaction_20x20 (char *,int,int);
+void two_dimensional_array_input_rand_1 (int *,int,int,int);
+void two_dimensional_array_input_rand_2 (int **,int,int,int);
 
 #endif // ARRAYSS_H_INCLUDED
 

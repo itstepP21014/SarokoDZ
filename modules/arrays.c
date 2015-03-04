@@ -1181,6 +1181,50 @@ void two_dimensional_array_input (int *array,int str,int col)
 }
 
 
+void two_dimensional_array_input_rand_1 (int *array,int str,int col,int max)
+{
+  str-=1;
+  col-=1;
+  srand(time(NULL));
+   int c_1=0,c_2=0;
+    while (c_1<=str)
+     {
+         array[c_1*(col+1)+c_2]=rand()%max;
+          if (c_2<col)
+          {
+              ++c_2;
+          }
+          else
+          {
+              c_2=0;
+              ++c_1;
+          }
+     }
+}
+
+
+void two_dimensional_array_input_rand_2 (int **array,int str,int col,int max)
+{
+  str-=1;
+  col-=1;
+  srand(time(NULL));
+   int c_1=0,c_2=0;
+    while (c_1<=str)
+     {
+         array[c_1][c_2]=rand()%max;
+          if (c_2<col)
+          {
+              ++c_2;
+          }
+          else
+          {
+              c_2=0;
+              ++c_1;
+          }
+     }
+}
+
+
 void two_dimensional_array_output_int (int *array,int str,int col)
 {
     col-=1;
