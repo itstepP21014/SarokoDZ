@@ -72,5 +72,7 @@ void two_dimensional_array_input_rand_2 (int **,int,int,int);
 int two_dimensional_array_saddle_point_2 (int **,int *,int,int);
 int two_dimensional_array_saddle_point_1 (int *,int *,int,int);
 
+float bisection_method(float(*first)(float),float,float);
+
 #endif // ARRAYSS_H_INCLUDED
 

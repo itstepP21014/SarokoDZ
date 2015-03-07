@@ -3,6 +3,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
+#include <math.h>
 
 int sta_m,fin_m;
 
@@ -2125,4 +2126,49 @@ void onTop (int *top,int size)
 void isEmpty (int *top)
 {
     *top=0;
+}
+
+
+float bisection_method(float(*func)(float),float epsilon,float check)
+{
+int swi=1,counter=1000;
+float left=-1.0,right=-1.0,half,result=100.0;
+while (swi)
+{
+ if ((*func)(left)>0 && (*func)(right)<0)
+ {
+    swi=0;
+ }
+ else
+ if ((*func)(right)>0 && (*func)(left)<0)
+ {
+    swi=0;
+ }
+ else
+ {
+    left=left+(-1.0);
+    right+=1.0;
+ }
+}
+while (counter)
+{
+    half=(left+right)/2.0;
+    if ((*func)(half)<0 && (*func)(left)<0)
+    {
+        left=half;
+    }
+    else
+    if((*func)(half)>0 && (*func)(left)>0)
+    {
+        left=half;
+    }
+    else
+    {
+        right=half;
+    }
+  if ((*func)(half)==check)
+    return half;
+    --counter;
+}
+return half;
 }
