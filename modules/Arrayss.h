@@ -47,6 +47,11 @@ void quickSort (int *,int,int);
 void insertion_sort (int *,int);
 void bubble_sort (int *,int);
 void selection_sort (int *,int);
+void push (int *,int *,int,int);
+void pop (int *);
+void onTop (int *,int);
+void isEmpty (int *);
+
 
 void two_dimensional_array_input_one_element_char(char *,int,int,int,char);
 void two_dimensional_array_x0_reaction (char *,int,int);

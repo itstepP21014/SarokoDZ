@@ -2087,3 +2087,42 @@ swi=1;
 }
 return 0;
 }
+
+
+void push (int *stack,int *top,int size,int data)
+{
+    if (*top<size)
+    {
+    stack[*top]=data;
+    ++*top;
+    }
+    else
+    {
+    printf("Стек плностью заполнен:\n");
+    }
+}
+
+
+void pop (int *top)
+{
+    if (*top>0)
+    {
+    --*top;
+    }
+    else
+    {
+    printf("Стек пустой:\n");
+    }
+}
+
+
+void onTop (int *top,int size)
+{
+    *top=size-1;
+}
+
+
+void isEmpty (int *top)
+{
+    *top=0;
+}
