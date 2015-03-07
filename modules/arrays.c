@@ -1225,7 +1225,33 @@ void two_dimensional_array_input_rand_2 (int **array,int str,int col,int max)
 }
 
 
-void two_dimensional_array_output_int (int *array,int str,int col)
+void two_dimensional_array_output_int (int **array,int str,int col)
+{
+    col-=1;
+    str-=1;
+    int swi=1;
+   int c_1=0,c_2=0;
+          while (swi)
+     {
+        printf("%d",array[c_1][c_2]);
+          if (c_2<col)
+           {
+            ++c_2;
+           }
+           else
+           {
+               printf ("\n");
+               c_2=0;
+               if (c_1<str)
+               ++c_1;
+               else
+               swi=0;
+           }
+     }
+}
+
+
+void two_dimensional_array_output_int_1 (int *array,int str,int col)
 {
     col-=1;
     str-=1;
@@ -1249,6 +1275,7 @@ void two_dimensional_array_output_int (int *array,int str,int col)
            }
      }
 }
+
 
 
 void two_dimensional_array_sdvig_horizont (int *array,int str,int col,int number)
@@ -1931,4 +1958,132 @@ while (swi==1)
                   printf("\nВведены неверные координаты!\n");
                 }
             }
+}
+
+
+int two_dimensional_array_saddle_point_2 (int **array,int *array_1,int str,int col)
+{
+int c_1=0,c_2=0,c_11=0,c_2Copy,c_1Copy,c_11Copy,number_1,number_2,counter=0;
+int colCopy=col-1,swi=1;
+while (c_1<str)
+{
+ number_1=array[c_1][c_2];
+c_2Copy=c_2;
+c_1Copy=c_1;
+++c_2;
+while (counter<(col-1))
+{
+    if (number_1>array[c_1][c_2])
+    {
+        number_1=array[c_1][c_2];
+        c_2Copy=c_2;
+        c_1Copy=c_1;
+    }
+    ++c_2;
+    ++counter;
+}
+while (swi)
+{
+number_2=array[c_11][c_2Copy];
+c_11Copy=c_11;
+++c_11;
+while (c_11<str)
+{
+    if (number_2<array[c_11][c_2Copy])
+    {
+        number_2=array[c_11][c_2Copy];
+        c_11Copy=c_11;
+    }
+    ++c_11;
+}
+if (c_1Copy==c_11Copy)
+{
+    array_1[0]=c_1Copy;
+    array_1[1]=c_2Copy;
+    return 1;
+}
+while (colCopy>=0 && array[c_1][colCopy]!=number_1)
+{
+    --colCopy;
+}
+if (array[c_1][colCopy]==number_1)
+{
+c_11=0;
+c_2Copy=colCopy;
+}
+if (colCopy<0)
+    swi=0;
+    --colCopy;
+}
+c_2=0;
+c_11=0;
+counter=0;
+++c_1;
+swi=1;
+}
+return 0;
+}
+
+
+int two_dimensional_array_saddle_point_1 (int *array,int *array_1,int str,int col)
+{
+int c_1=0,c_2=0,c_11=0,c_2Copy,c_1Copy,c_11Copy,number_1,number_2,counter=0;
+int colCopy=col-1,swi=1;
+while (c_1<str)
+{
+ number_1=array[c_1*col+c_2];
+c_2Copy=c_2;
+c_1Copy=c_1;
+++c_2;
+while (counter<(col-1))
+{
+    if (number_1>array[c_1*col+c_2])
+    {
+        number_1=array[c_1*col+c_2];
+        c_2Copy=c_2;
+        c_1Copy=c_1;
+    }
+    ++c_2;
+    ++counter;
+}
+while (swi)
+{
+number_2=array[c_11*col+c_2Copy];
+c_11Copy=c_11;
+++c_11;
+while (c_11<str)
+{
+    if (number_2<array[c_11*col+c_2Copy])
+    {
+        number_2=array[c_11*col+c_2Copy];
+        c_11Copy=c_11;
+    }
+    ++c_11;
+}
+if (c_1Copy==c_11Copy)
+{
+    array_1[0]=c_1Copy;
+    array_1[1]=c_2Copy;
+    return 1;
+}
+while (colCopy>=0 && array[c_1*col+colCopy]!=number_1)
+{
+    --colCopy;
+}
+if (array[c_1*col+colCopy]==number_1)
+{
+c_11=0;
+c_2Copy=colCopy;
+}
+if (colCopy<0)
+    swi=0;
+    --colCopy;
+}
+c_2=0;
+c_11=0;
+counter=0;
+++c_1;
+swi=1;
+}
+return 0;
 }

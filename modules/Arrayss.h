@@ -57,12 +57,15 @@ int check_win_x0_5_20 (char *,int,int);
 void x0_20x20_player_turn (char *,int,int);
 void two_in_one (int *,int, int, int *,int);
 void two_dimensional_array_input (int *,int,int);
-void two_dimensional_array_output_int (int *,int,int);
+void two_dimensional_array_output_int (int **,int,int);
+void two_dimensional_array_output_int_1 (int *,int,int);
 void two_dimensional_array_sdvig_horizont (int *,int,int,int);
 void two_dimensional_array_sdvig_column (int *,int,int,int);
 void two_dimensional_array_x0_reaction_20x20 (char *,int,int);
 void two_dimensional_array_input_rand_1 (int *,int,int,int);
 void two_dimensional_array_input_rand_2 (int **,int,int,int);
+int two_dimensional_array_saddle_point_2 (int **,int *,int,int);
+int two_dimensional_array_saddle_point_1 (int *,int *,int,int);
 
 #endif // ARRAYSS_H_INCLUDED
 
