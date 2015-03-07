@@ -20,7 +20,7 @@ int main()
     matrix=(int**)malloc(str*sizeof(int));
 
     for (int i=0; i<str; i++)
-    matrix[i]=(int*)malloc(col*sizeof(float));
+    matrix[i]=(int*)malloc(col*sizeof(int));
 
     coordinates=(int*)malloc(size*sizeof(int));
     printf ("Введите максимально возможное случайное число (для заполнения матрицы):\n");
