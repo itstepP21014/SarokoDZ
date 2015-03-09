@@ -2132,7 +2132,7 @@ void isEmpty (int *top)
 float bisection_method(float(*func)(float),float epsilon,float check)
 {
 int swi=1,counter=1000;
-float left=-1.0,right=-1.0,half,result=100.0;
+float left=-1.0,right=-1.0,half;
 while (swi)
 {
  if ((*func)(left)>0 && (*func)(right)<0)
