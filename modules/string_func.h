@@ -2,5 +2,6 @@
 #define STRING_FUNC_H_INCLUDED
 
 int string_lenght(const char *);
+int string_comparison(const char *,const char *);
 
 #endif // STRING_FUNC_H_INCLUDED
