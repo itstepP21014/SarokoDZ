@@ -1,3 +1,5 @@
+#define size_max 1000
+
 int string_lenght(const char *str)
 {
 int check=0;
@@ -24,4 +26,15 @@ if (s_1>s_2)
 return 1;
 else
 return -1;
+}
+
+
+void string_copy(char *dest_string,const char *string)
+{
+int counter=0;
+while (string[counter]!='\0' && counter!=(size_max-1))
+{
+    dest_string[counter]=string[counter];
+    ++counter;
+}
 }
