@@ -48,7 +48,7 @@ void string_print_words(const char *string,const char *symbols)
 {
 char array[mas_str][mas_col],start,end;
 int str=0,col=0,str_count=0,col_count=0,check=0,counter=0,counter_1=0,counter_2=0,check_point,swi=1;
-//Заполнение двумерного массива пробелами.
+//Р—Р°РїРѕР»РЅРµРЅРёРµ РґРІСѓРјРµСЂРЅРѕРіРѕ РјР°СЃСЃРёРІР° РїСЂРѕР±РµР»Р°РјРё.
 while (str!=mas_str)
 {
 array[str][col]=' ';
@@ -104,7 +104,7 @@ counter_1=0;
     }
     end=string[counter-1];
     check=0;
-    //Сверка с таблицей.(двумерным массивом.)
+    //РЎРІРµСЂРєР° СЃ С‚Р°Р±Р»РёС†РµР№.(РґРІСѓРјРµСЂРЅС‹Рј РјР°СЃСЃРёРІРѕРј.)
     if (end==start)
        {
            while(array[str][0]!=' ' && str!=mas_str-1 && swi==1)
@@ -125,7 +125,7 @@ counter_1=0;
            }
            str=0;
            col=0;
-           //Печать
+           //РџРµС‡Р°С‚СЊ
            if (swi==1)
            {
                counter_2=check_point;
