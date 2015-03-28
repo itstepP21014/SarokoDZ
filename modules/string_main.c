@@ -3,6 +3,7 @@
 #define mas_str 100
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 
 int string_lenght(const char *str)
 {
@@ -141,5 +142,75 @@ counter_1=0;
            }
            swi=1;
        }
+}
+}
+
+
+void string_vowels_consonants(const char *string)
+{
+char check_consonants[size_max]="QqWwRrTtPpSsDdFfGgHhJjKkLlZzXxCcVvBbNnMm",check_vowels[size_max]="EeYyUuIiOoAa",end[size_max]=".?!";
+int sum=0,sum_consonants=0,counter=0,check_point=0,check=0,counter_1=0,marker=1,count=0;
+while (string[counter]!='\0')
+{
+while (check!=1)
+{
+    check=0;
+    if (string[counter]==' ')
+    {
+        ++counter;
+        check=2;
+    }
+    while (end[counter_1]!='\0' && check==0)
+    {
+        if (string[counter]==end[counter_1])
+        {
+        check=1;
+        ++counter;
+        }
+        ++counter_1;
+    }
+    counter_1=0;
+    if (check==0)
+    {
+    while (check_consonants[counter_1]!='\0' && check_point!=1)
+    {
+        if (string[counter]==check_consonants[counter_1])
+        {
+         ++sum_consonants;
+         check_point=1;
+        }
+        ++counter_1;
+    }
+    counter_1=0;
+    while (check_vowels[counter_1]!='\0' && check_point!=1)
+    {
+        if (string[counter]==check_vowels[counter_1])
+        {
+         ++sum;
+         check_point=1;
+        }
+        ++counter_1;
+    }
+    counter_1=0;
+    check_point=0;
+    ++counter;
+    ++count;
+    }
+}
+check=0;
+if (count>0)
+{
+if (sum>sum_consonants)
+printf("%d - vowels",marker);
+if (sum==sum_consonants)
+printf("%d - equally",marker);
+if (sum<sum_consonants)
+printf("%d - consonants",marker);
+printf("\n");
+++marker;
+}
+count=0;
+sum=0;
+sum_consonants=0;
 }
 }
