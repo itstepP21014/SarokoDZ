@@ -4,6 +4,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include "numbers.h"
 
 int string_lenght(const char *str)
 {
@@ -212,5 +213,52 @@ printf("\n");
 count=0;
 sum=0;
 sum_consonants=0;
+}
+}
+
+
+void string_substitute(char *string)
+{
+char letters[size_max]="QqWwRrTtPpSsDdFfGgHhJjKkLlZzXxCcVvBbNnMmEeYyUuIiOoAa";
+int counter=0,navigation_1=0,navigation=0,begin=0,check=0,swi=0,swi_1=0;
+while (string[navigation]!='\0')
+{
+    check=0;
+
+ while (letters[navigation_1]!='\0' && check!=1)
+    {
+        if (string[navigation]==letters[navigation_1])
+        {
+         check=1;
+         ++counter;
+         swi_1=1;
+        }
+        ++navigation_1;
+    }
+    navigation_1=0;
+   if (check==1 && swi==0)
+   {
+    begin=navigation;
+    swi=1;
+   }
+    if (check==0 && swi_1==1)
+    {
+        if (prime_number(counter)==1)
+        {
+             while (counter)
+            {
+            string[begin]='*';
+            ++begin;
+            --counter;
+            }
+        }
+        swi_1=0;
+    }
+   if (check==0)
+   {
+    swi=0;
+    counter=0;
+   }
+++navigation;
 }
 }

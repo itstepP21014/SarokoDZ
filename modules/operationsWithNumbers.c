@@ -1,4 +1,6 @@
 #include <math.h>
+#include <stdio.h>
+#include <stdlib.h>
 
 int numberOfDigits(int number)
 {
@@ -98,6 +100,23 @@ int cycle(int number,int cycles)
     printf ("%d This is only a message from the function, i sorry about that.\n",copy);
    }
    return copy;
+}
+
+int prime_number(int number)
+{
+int half,result=1;
+half=number/2;
+if (number==1)
+return 0;
+while (half>1 && result!=0)
+{
+    result=number%half;
+    --half;
+}
+if (result!=0)
+return 1;
+else
+return 0;
 }
 
 

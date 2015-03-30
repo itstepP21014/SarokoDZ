@@ -6,6 +6,7 @@ int firstNumber(int);
 int exceptFirst(int);
 int plusDigit(int,int);
 int cycle(int,int);
+int prime_number(int);
 
 
 #endif // NUMBERS_H_INCLUDED
