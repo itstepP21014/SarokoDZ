@@ -7,4 +7,6 @@ void string_copy(char *,const char *);
 void string_print_words(const char *,const char *);
 void string_vowels_consonants(const char *);
 void string_substitute(char *);
+int string_check(const char *,const char *);
+
 #endif // STRING_FUNC_H_INCLUDED

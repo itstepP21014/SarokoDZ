@@ -262,3 +262,17 @@ while (string[navigation]!='\0')
 ++navigation;
 }
 }
+
+int string_check(const char *str_1,const char *str_2)
+{
+int swi=0,counter=0;
+while(swi==0 && str_1[counter]!='\0')
+{
+if(str_1[counter]!=str_2[counter]) swi=1;
+++counter;
+}
+if(swi==0)
+return 1;
+else
+return 0;
+}
