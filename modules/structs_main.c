@@ -75,3 +75,34 @@ c_1.s_n=c_1.s_n/c_2.f_n;
 return c_1;
 }
 
+
+time time_sum(int sec, time t_1)
+{
+t_1.hours+=sec/3600;
+t_1.hours%=24;
+sec=sec%3600;
+t_1.minutes+=sec/60;
+t_1.hours+=t_1.minutes/60;
+t_1.minutes%=60;
+t_1.hours%=24;
+sec=sec%60;
+t_1.seconds+=sec;
+t_1.minutes+=t_1.seconds/60;
+t_1.seconds%=60;
+t_1.hours+=t_1.minutes/60;
+t_1.minutes%=60;
+t_1.hours%=24;
+return t_1;
+}
+
+int time_difference(time t_1,time t_2)
+{
+int sec_1,sec_2,dif;
+sec_1=t_1.hours*3600+t_1.minutes*60+t_1.seconds;
+sec_2=t_2.hours*3600+t_2.minutes*60+t_2.seconds;
+dif=sec_1-sec_2;
+if (dif<0)
+dif=-dif;
+return dif;
+}
+
