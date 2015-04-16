@@ -18,9 +18,18 @@ struct time
     int minutes;
     int seconds;
 };
+struct date
+{
+    int year;
+    int month;
+    int day;
+};
 typedef struct complex_number complex_number;
 typedef struct fraction fraction;
 typedef struct time time;
+typedef struct date date;
+date d_1;
+date d_2;
 time t_1;
 time t_2;
 complex_number c_1;
@@ -37,5 +46,7 @@ complex_number complex_div(complex_number,complex_number);
 complex_number complex_multiply(complex_number,complex_number);
 time time_sum (int,time);
 int time_difference (time,time);
+date date_sum(date,int);
+int date_difference(date,date);
 
 #endif // STRUCTS_H_INCLUDED

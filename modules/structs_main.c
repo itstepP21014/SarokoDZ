@@ -106,3 +106,146 @@ dif=-dif;
 return dif;
 }
 
+date date_sum(date d_1,int days)
+{
+int swi=1;
+while (swi)
+{
+if (d_1.month==1 || d_1.month==3 || d_1.month==5 || d_1.month==7 || d_1.month==10 || d_1.month==12 || d_1.month==8)
+{
+while (d_1.day<32 && days>0)
+{
+    --days;
+    ++d_1.day;
+}
+if (d_1.month<12 && d_1.day==32)
+{
+    ++d_1.month;
+    d_1.day=1;
+}
+if (d_1.month==12 && d_1.day==32)
+{
+    d_1.month=1;
+    d_1.day=1;
+    ++d_1.year;
+}
+if (days==0)
+    swi=0;
+}
+if (d_1.month==2 && d_1.year%4==0)
+{
+ while (d_1.day<30 && days>0)
+{
+    --days;
+    ++d_1.day;
+}
+if (d_1.day==30)
+{
+    ++d_1.month;
+    d_1.day=1;
+}
+if (days==0)
+    swi=0;
+}
+if (d_1.month==2 && d_1.year%4!=0)
+{
+ while (d_1.day<29 && days>0)
+{
+    --days;
+    ++d_1.day;
+}
+if (d_1.day==29)
+{
+    ++d_1.month;
+    d_1.day=1;
+}
+if (days==0)
+    swi=0;
+}
+if (d_1.month==4 || d_1.month==6 || d_1.month==9 || d_1.month==11)
+{
+while (d_1.day<31 && days>0)
+{
+    --days;
+    ++d_1.day;
+}
+if (d_1.month<12 && d_1.day==31)
+{
+    ++d_1.month;
+    d_1.day=1;
+}
+if (d_1.month==12 && d_1.day==31)
+{
+    d_1.month=1;
+    d_1.day=1;
+    ++d_1.year;
+}
+if (days==0)
+    swi=0;
+}
+}
+return d_1;
+}
+
+int date_difference(date d_1,date d_2)
+{
+int days_1=0,days_2=0;
+ while (d_1.year!=1)
+ {
+    if(d_1.year%4==0)
+        days_1+=366;
+    else
+        days_1+=365;
+    --d_1.year;
+ }
+ while (d_2.year!=1)
+ {
+    if(d_2.year%4==0)
+        days_2+=366;
+    else
+        days_2+=365;
+        --d_2.year;
+ }
+  while (d_1.month!=1)
+ {
+if (d_1.month==3 || d_1.month==5 || d_1.month==7 || d_1.month==10 || d_1.month==12 || d_1.month==8)
+{
+days_1+=31;
+--d_1.month;
+}
+if (d_1.month==2)
+{
+days_1+=28;
+--d_1.month;
+}
+if (d_1.month==4 || d_1.month==6 || d_1.month==9 || d_1.month==11)
+{
+    days_1+=30;
+    --d_1.month;
+}
+ }
+  while (d_2.month!=1)
+ {
+if (d_2.month==3 || d_2.month==5 || d_2.month==7 || d_2.month==10 || d_2.month==12 || d_2.month==8)
+{
+days_2+=31;
+--d_2.month;
+}
+if (d_2.month==2)
+{
+days_2+=28;
+--d_2.month;
+}
+if (d_2.month==4 || d_2.month==6 || d_2.month==9 || d_2.month==11)
+{
+    days_2+=30;
+    --d_2.month;
+}
+ }
+days_1+=d_1.day;
+days_2+=d_2.day;
+days_1=days_1-days_2;
+if (days_1<0)
+    days_1=-(days_1);
+ return days_1;
+}
