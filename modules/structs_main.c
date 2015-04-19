@@ -1,4 +1,5 @@
 #include "structs.h"
+#include "string_func.h"
 
 fraction fraction_sum(fraction first,fraction second)
 {
@@ -249,3 +250,202 @@ if (days_1<0)
     days_1=-(days_1);
  return days_1;
 }
+
+int comp(database data_11,database data_22,int number_1,char check_1)
+{
+int copy_int,copy_int_2;
+if (check_1=='b')
+{
+switch (number_1)
+{
+    case 1:
+    copy_int=string_lenght(data_11.name);
+    copy_int_2=string_lenght(data_22.name);
+    if (copy_int < copy_int_2)
+        return 1;
+    else
+        return -1;
+    break;
+    case 2:
+    copy_int=string_lenght(data_11.country);
+    copy_int_2=string_lenght(data_22.country);
+    if (copy_int < copy_int_2)
+        return 1;
+    else
+        return -1;
+    break;
+    case 3:
+    copy_int=string_lenght(data_11.city);
+    copy_int_2=string_lenght(data_22.city);
+    if (copy_int < copy_int_2)
+        return 1;
+    else
+        return -1;
+    break;
+    case 4:
+    copy_int=string_lenght(data_11.street);
+    copy_int_2=string_lenght(data_22.street);
+    if (copy_int < copy_int_2)
+        return 1;
+    else
+        return -1;
+    break;
+    case 5:
+    copy_int=string_lenght(data_11.job);
+    copy_int_2=string_lenght(data_22.job);
+    if (copy_int < copy_int_2)
+        return 1;
+    else
+        return -1;
+    break;
+    case 6:
+    copy_int=data_11.age;
+    copy_int_2=data_22.age;
+    if (copy_int < copy_int_2)
+        return 1;
+    else
+        return -1;
+    break;
+    case 7:
+    copy_int=data_11.house_number;
+    copy_int_2=data_22.house_number;
+    if (copy_int < copy_int_2)
+        return 1;
+    else
+        return -1;
+    break;
+    default:
+    return 0;
+    break;
+}
+}
+else
+{
+switch (number_1)
+{
+    case 1:
+    copy_int=string_lenght(data_11.name);
+    copy_int_2=string_lenght(data_22.name);
+    if (copy_int < copy_int_2)
+        return -1;
+    if (copy_int==copy_int_2)
+        return 0;
+    else
+        return 1;
+    break;
+    case 2:
+    copy_int=string_lenght(data_11.country);
+    copy_int_2=string_lenght(data_22.country);
+    if (copy_int < copy_int_2)
+        return -1;
+    if (copy_int==copy_int_2)
+        return 0;
+    else
+        return 1;
+    break;
+    case 3:
+    copy_int=string_lenght(data_11.city);
+    copy_int_2=string_lenght(data_22.city);
+    if (copy_int < copy_int_2)
+        return -1;
+    if (copy_int==copy_int_2)
+        return 0;
+    else
+        return 1;
+    break;
+    case 4:
+    copy_int=string_lenght(data_11.street);
+    copy_int_2=string_lenght(data_22.street);
+    if (copy_int < copy_int_2)
+        return -1;
+    if (copy_int==copy_int_2)
+        return 0;
+    else
+        return 1;
+    break;
+    case 5:
+    copy_int=string_lenght(data_11.job);
+    copy_int_2=string_lenght(data_22.job);
+    if (copy_int < copy_int_2)
+        return -1;
+    if (copy_int==copy_int_2)
+        return 0;
+    else
+        return 1;
+    break;
+    case 6:
+    copy_int=data_11.age;
+    copy_int_2=data_22.age;
+    if (copy_int < copy_int_2)
+        return -1;
+    if (copy_int==copy_int_2)
+        return 0;
+    else
+        return 1;
+    break;
+    case 7:
+    copy_int=data_11.house_number;
+    copy_int_2=data_22.house_number;
+    if (copy_int < copy_int_2)
+        return -1;
+    if (copy_int==copy_int_2)
+        return 0;
+    else
+        return 1;
+    break;
+    default:
+    return 0;
+    break;
+}
+}
+}
+
+void qs(database* s_arr, int first, int last,int num,char original,int (*comp)(database,database,int,char))
+{
+    database data_4;
+    database data_5;
+    char check=original;
+    int number=num;
+    int i = first, j = last;
+    data_5=s_arr[(first + last)/2];
+    do {
+        data_4=s_arr[i];
+        while (comp(data_4,data_5,number,check)>0)
+        {
+            i++;
+            data_4=s_arr[i];
+        }
+        data_4=s_arr[j];
+        while (comp(data_4,data_5,number,check)<0)
+        {
+            j--;
+            data_4=s_arr[j];
+        }
+
+        if(i <= j) {
+            data_4=s_arr[i];
+            data_5=s_arr[j];
+            if (comp(data_4,data_5,number,check)<0)
+            {
+               s_arr[i]=data_5;
+               s_arr[j]=data_4;
+            }
+            i++;
+            j--;
+        }
+    } while (i<=j);
+
+    if (i < last)
+    {
+        int (*p)(database,database,int,char);
+        p=comp;
+        qs(s_arr, i, last,number,original,p);
+    }
+    if (first<j)
+    {
+        int (*p)(database,database,int,char);
+        p=comp;
+        qs(s_arr, first, j,number,original,p);
+    }
+}
+

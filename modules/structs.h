@@ -24,10 +24,24 @@ struct date
     int month;
     int day;
 };
+struct database
+{
+    char name[30];
+    int age;
+    char job[30];
+    char country[30];
+    char city[30];
+    char street[30];
+    int house_number;
+};
 typedef struct complex_number complex_number;
 typedef struct fraction fraction;
 typedef struct time time;
 typedef struct date date;
+typedef struct database database;
+database data_1;
+database data_2;
+database data_3;
 date d_1;
 date d_2;
 time t_1;
@@ -48,5 +62,8 @@ time time_sum (int,time);
 int time_difference (time,time);
 date date_sum(date,int);
 int date_difference(date,date);
+int comp(database,database,int,char);
+void qs(database* ,int,int,int,char,int (*comp)(database,database,int,char));
+
 
 #endif // STRUCTS_H_INCLUDED
