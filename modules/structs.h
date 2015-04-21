@@ -1,6 +1,6 @@
 #ifndef STRUCTS_H_INCLUDED
 #define STRUCTS_H_INCLUDED
-
+#include <stdbool.h>
 struct fraction
 {
     int num;
@@ -34,11 +34,21 @@ struct database
     char street[30];
     int house_number;
 };
+struct symbol
+{
+    char sym[30];
+    bool check;
+    double number_m;
+    int imp;
+};
 typedef struct complex_number complex_number;
 typedef struct fraction fraction;
 typedef struct time time;
 typedef struct date date;
 typedef struct database database;
+typedef struct symbol symbol;
+symbol s_1;
+symbol s_2;
 database data_1;
 database data_2;
 database data_3;
