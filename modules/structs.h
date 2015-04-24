@@ -41,12 +41,21 @@ struct symbol
     double number_m;
     int imp;
 };
+struct process
+{
+    int number;
+    int time_coming;
+    int time_lenght;
+};
 typedef struct complex_number complex_number;
 typedef struct fraction fraction;
 typedef struct time time;
 typedef struct date date;
 typedef struct database database;
 typedef struct symbol symbol;
+typedef struct process process;
+process p_1;
+process p_2;
 symbol s_1;
 symbol s_2;
 database data_1;
