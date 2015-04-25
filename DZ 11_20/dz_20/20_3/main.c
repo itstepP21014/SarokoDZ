@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include "../../../modules/useful_stuff.h"
 
 int main()
 {
@@ -56,36 +57,7 @@ int main()
         tops[first]=0;
         printf("into the deep:%d ",top_count);
 
-        while (swi)
-        {
-            while (swi)
-            {
-                while (matrix[first][second]!=1)
-                {
-                    ++second;
-                }
-                if (tops[second]==1)
-                {
-                    printf("%d ",second+1);
-                    tops[second]=0;
-                    swi=0;
-                }
-                else
-                ++second;
-            }
-            swi=1;
-            first=second;
-            second=0;
-            while (counter<vertices)
-            {
-                if (tops[counter]==1)
-                swi=2;
-                ++counter;
-            }
-            counter=0;
-            if (swi==1)
-            swi=0;
-        }
+        graf_deep(&matrix[0][0],vertices,tops);
 
         printf("\n");
         file=fopen("graf_data.txt","r");
@@ -140,39 +112,8 @@ int main()
         int counter_2=0;
         counter=0;
         swi=1;
-        while (swi)
-        {
-            while (second<vertices)
-            {
-                while (matrix[first][second]!=1)
-                {
-                    ++second;
-                }
-                while (counter<vertices)
-                {
-                    if (result[counter]==second+1)
-                    swi=2;
-                    ++counter;
-                }
-                counter=0;
-                if (matrix[first][second]==1 && swi==1)
-                {
-                    result[counter_2]=second+1;
-                    ++end;
-                    printf("%d ",second+1);
-                    ++counter_2;
-                    --v_copy;
-                }
-                else
-                ++second;
-                swi=1;
-            }
-            first=result[begin];
-            ++begin;
-            second=0;
-            if (v_copy==0)
-            swi=0;
-        }
+
+    graf_width(&matrix[0][0],vertices,result);
 
     return 0;
 }
