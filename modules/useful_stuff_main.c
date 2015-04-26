@@ -197,3 +197,159 @@ void graf_width(int *matrix,int vertices,int *result)
             swi=0;
         }
 }
+
+int UTF8_count_symbols(char*UTF8)
+{
+  int counter=0,result,counter_symbols=0;
+
+    while (UTF8[counter]!='\0')
+    {
+        switch (UTF8[counter])
+        {
+            case '0':
+            result=0;
+            break;
+            case '1':
+            result=1;
+            break;
+            case '2':
+            result=2;
+            break;
+            case '3':
+            result=3;
+            break;
+            case '4':
+            result=4;
+            break;
+            case '5':
+            result=5;
+            break;
+            case '6':
+            result=6;
+            break;
+            case '7':
+            result=7;
+            break;
+            case '8':
+            result=8;
+            break;
+            case '9':
+            result=9;
+            break;
+            case 'A':
+            result=10;
+            break;
+            case 'B':
+            result=11;
+            break;
+            case 'C':
+            result=12;
+            break;
+            case 'D':
+            result=13;
+            break;
+            case 'E':
+            result=14;
+            break;
+            case 'F':
+            result=15;
+            break;
+            default:
+            result=-1;
+            break;
+        }
+
+        if (result<8 && result>-1)
+        {
+            ++counter_symbols;
+            result=-1;
+            counter+=2;
+        }
+        if (result==12 || result==13)
+        {
+            ++counter_symbols;
+            result=-1;
+            counter+=4;
+        }
+        if (result==14)
+        {
+            ++counter_symbols;
+            result=-1;
+            counter+=8;
+        }
+        if (result==15)
+        {
+            ++counter_symbols;
+            ++counter;
+            switch (UTF8[counter])
+            {
+                case '0':
+                result=0;
+                break;
+                case '1':
+                result=1;
+                break;
+                case '2':
+                result=2;
+                break;
+                case '3':
+                result=3;
+                break;
+                case '4':
+                result=4;
+                break;
+                case '5':
+                result=5;
+                break;
+                case '6':
+                result=6;
+                break;
+                case '7':
+                result=7;
+                break;
+                case '8':
+                result=8;
+                break;
+                case '9':
+                result=9;
+                break;
+                case 'A':
+                result=10;
+                break;
+                case 'B':
+                result=11;
+                break;
+                case 'C':
+                result=12;
+                break;
+                case 'D':
+                result=13;
+                break;
+                case 'E':
+                result=14;
+                break;
+                case 'F':
+                result=15;
+                break;
+                default:
+                result=-1;
+                break;
+            }
+            if (result<8)
+            {
+                counter+=10;
+            }
+            if (result>7 && result<12)
+            {
+                counter+=13;
+            }
+            if (result>11)
+            {
+                counter+=16;
+            }
+        }
+        if (UTF8[counter]!='\0')
+            ++counter;
+    }
+    return counter_symbols;
+}
