@@ -204,61 +204,7 @@ int UTF8_count_symbols(char*UTF8)
 
     while (UTF8[counter]!='\0')
     {
-        switch (UTF8[counter])
-        {
-            case '0':
-            result=0;
-            break;
-            case '1':
-            result=1;
-            break;
-            case '2':
-            result=2;
-            break;
-            case '3':
-            result=3;
-            break;
-            case '4':
-            result=4;
-            break;
-            case '5':
-            result=5;
-            break;
-            case '6':
-            result=6;
-            break;
-            case '7':
-            result=7;
-            break;
-            case '8':
-            result=8;
-            break;
-            case '9':
-            result=9;
-            break;
-            case 'A':
-            result=10;
-            break;
-            case 'B':
-            result=11;
-            break;
-            case 'C':
-            result=12;
-            break;
-            case 'D':
-            result=13;
-            break;
-            case 'E':
-            result=14;
-            break;
-            case 'F':
-            result=15;
-            break;
-            default:
-            result=-1;
-            break;
-        }
-
+        result=return_symbol_number(UTF8,counter);
         if (result<8 && result>-1)
         {
             ++counter_symbols;
@@ -281,60 +227,7 @@ int UTF8_count_symbols(char*UTF8)
         {
             ++counter_symbols;
             ++counter;
-            switch (UTF8[counter])
-            {
-                case '0':
-                result=0;
-                break;
-                case '1':
-                result=1;
-                break;
-                case '2':
-                result=2;
-                break;
-                case '3':
-                result=3;
-                break;
-                case '4':
-                result=4;
-                break;
-                case '5':
-                result=5;
-                break;
-                case '6':
-                result=6;
-                break;
-                case '7':
-                result=7;
-                break;
-                case '8':
-                result=8;
-                break;
-                case '9':
-                result=9;
-                break;
-                case 'A':
-                result=10;
-                break;
-                case 'B':
-                result=11;
-                break;
-                case 'C':
-                result=12;
-                break;
-                case 'D':
-                result=13;
-                break;
-                case 'E':
-                result=14;
-                break;
-                case 'F':
-                result=15;
-                break;
-                default:
-                result=-1;
-                break;
-            }
+            result=return_symbol_number(UTF8,counter);
             if (result<8)
             {
                 counter+=10;
@@ -352,4 +245,235 @@ int UTF8_count_symbols(char*UTF8)
             ++counter;
     }
     return counter_symbols;
+}
+
+void UTF8_codes_of_symbols(char*UTF8)
+{
+  int counter=0,result,code_int=0;
+  char code[10];
+
+    while (UTF8[counter]!='\0')
+    {
+        code_int=0;
+        result=return_symbol_number(UTF8,counter);
+        if (result<8 && result>-1)
+        {
+            code[0]=UTF8[counter];
+            code[1]=UTF8[counter+1];
+            printf("U+%c%c ",code[0],code[1]);
+            result=-1;
+            counter+=3;
+        }
+        if (result==12 || result==13)
+        {
+            result-=12;
+            code_int=pow(16,3);
+            ++counter;
+            result=return_symbol_number(UTF8,counter);
+            code_int+=result*pow(16,2);
+            counter+=2;
+            result=return_symbol_number(UTF8,counter);
+            result-=8;
+            code_int+=result*pow(16,1);
+            ++counter;
+            result=return_symbol_number(UTF8,counter);
+            code_int+=result*pow(16,0);
+            printf("U+%X ",code_int);
+            result=-1;
+            counter+=2;
+        }
+        if (result==14)
+        {
+            ++counter;
+            result=return_symbol_number(UTF8,counter);
+            code_int+=result*pow(16,4);
+            counter+=2;
+            result=return_symbol_number(UTF8,counter);
+            result-=8;
+            code_int+=result*pow(16,3);
+            ++counter;
+            result=return_symbol_number(UTF8,counter);
+            code_int+=result*pow(16,2);
+            counter+=2;
+            result=return_symbol_number(UTF8,counter);
+            result-=8;
+            code_int+=result*pow(16,1);
+            ++counter;
+            result=return_symbol_number(UTF8,counter);
+            code_int+=result*pow(16,0);
+            printf("U+%X ",code_int);
+            result=-1;
+            counter+=2;
+        }
+        if (result==15)
+        {
+            ++counter;
+            result=return_symbol_number(UTF8,counter);
+            if (result<8)
+            {
+                code_int+=result*pow(16,6);
+                counter+=2;
+                result=return_symbol_number(UTF8,counter);
+                result-=8;
+                code_int+=result*pow(16,5);
+                ++counter;
+                result=return_symbol_number(UTF8,counter);
+                code_int+=result*pow(16,4);
+                counter+=2;
+                result=return_symbol_number(UTF8,counter);
+                result-=8;
+                code_int+=result*pow(16,3);
+                ++counter;
+                result=return_symbol_number(UTF8,counter);
+                code_int+=result*pow(16,2);
+                counter+=2;
+                result=return_symbol_number(UTF8,counter);
+                result-=8;
+                code_int+=result*pow(16,1);
+                ++counter;
+                result=return_symbol_number(UTF8,counter);
+                code_int+=result*pow(16,0);
+                printf("U+%X ",code_int);
+                result=-1;
+                counter+=2;
+            }
+            if (result>7 && result<12)
+            {
+                result-=8;
+                code_int+=result*pow(16,8);
+                counter+=2;
+                result=return_symbol_number(UTF8,counter);
+                result-=8;
+                code_int+=result*pow(16,7);
+                ++counter;
+                result=return_symbol_number(UTF8,counter);
+                code_int+=result*pow(16,6);
+                counter+=2;
+                result=return_symbol_number(UTF8,counter);
+                result-=8;
+                code_int+=result*pow(16,5);
+                ++counter;
+                result=return_symbol_number(UTF8,counter);
+                code_int+=result*pow(16,4);
+                counter+=2;
+                result=return_symbol_number(UTF8,counter);
+                result-=8;
+                code_int+=result*pow(16,3);
+                ++counter;
+                result=return_symbol_number(UTF8,counter);
+                code_int+=result*pow(16,2);
+                counter+=2;
+                result=return_symbol_number(UTF8,counter);
+                result-=8;
+                code_int+=result*pow(16,1);
+                ++counter;
+                result=return_symbol_number(UTF8,counter);
+                code_int+=result*pow(16,0);
+                printf("U+%X ",code_int);
+                result=-1;
+                counter+=2;
+            }
+            if (result>11)
+            {
+                result-=12;
+                code_int+=result*pow(16,10);
+                counter+=2;
+                result=return_symbol_number(UTF8,counter);
+                result-=8;
+                code_int+=result*pow(16,9);
+                ++counter;
+                result=return_symbol_number(UTF8,counter);
+                code_int+=result*pow(16,8);
+                counter+=2;
+                result=return_symbol_number(UTF8,counter);
+                result-=8;
+                code_int+=result*pow(16,7);
+                ++counter;
+                result=return_symbol_number(UTF8,counter);
+                code_int+=result*pow(16,6);
+                counter+=2;
+                result=return_symbol_number(UTF8,counter);
+                result-=8;
+                code_int+=result*pow(16,5);
+                ++counter;
+                result=return_symbol_number(UTF8,counter);
+                code_int+=result*pow(16,4);
+                counter+=2;
+                result=return_symbol_number(UTF8,counter);
+                result-=8;
+                code_int+=result*pow(16,3);
+                ++counter;
+                result=return_symbol_number(UTF8,counter);
+                code_int+=result*pow(16,2);
+                counter+=2;
+                result=return_symbol_number(UTF8,counter);
+                result-=8;
+                code_int+=result*pow(16,1);
+                ++counter;
+                result=return_symbol_number(UTF8,counter);
+                code_int+=result*pow(16,0);
+                printf("U+%X ",code_int);
+                result=-1;
+                counter+=2;
+            }
+        }
+    }
+}
+
+int return_symbol_number(char*UTF8,int counter)
+{
+             switch (UTF8[counter])
+            {
+                case '0':
+                return 0;
+                break;
+                case '1':
+                return 1;
+                break;
+                case '2':
+                return 2;
+                break;
+                case '3':
+                return 3;
+                break;
+                case '4':
+                return 4;
+                break;
+                case '5':
+                return 5;
+                break;
+                case '6':
+                return 6;
+                break;
+                case '7':
+                return 7;
+                break;
+                case '8':
+                return 8;
+                break;
+                case '9':
+                return 9;
+                break;
+                case 'A':
+                return 10;
+                break;
+                case 'B':
+                return 11;
+                break;
+                case 'C':
+                return 12;
+                break;
+                case 'D':
+                return 13;
+                break;
+                case 'E':
+                return 14;
+                break;
+                case 'F':
+                return 15;
+                break;
+                default:
+                return -1;
+                break;
+            }
 }
