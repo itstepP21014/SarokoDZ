@@ -1,0 +1,30 @@
+# depslib dependency file v1.0
+1427672585 source:e:\iteducation\sarokoigor\sarokodz\modules\operationswithnumbers.c
+	<math.h>
+	<stdio.h>
+	<stdlib.h>
+
+1428043198 source:e:\iteducation\sarokoigor\sarokodz\modules\string_main.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"numbers.h"
+
+1427656584 e:\iteducation\sarokoigor\sarokodz\modules\numbers.h
+
+1430200429 source:e:\iteducation\sarokoigor\sarokodz\modules\structs_main.c
+	"structs.h"
+	"string_func.h"
+
+1430211608 e:\iteducation\sarokoigor\sarokodz\modules\structs.h
+	<stdbool.h>
+
+1428042460 e:\iteducation\sarokoigor\sarokodz\modules\string_func.h
+
+1430160683 source:e:\iteducation\sarokoigor\sarokodz\newworldinconsole\fat\main.c
+	<stdio.h>
+	<stdlib.h>
+	"../../modules/numbers.h"
+	"../../modules/string_func.h"
+	"../../modules/structs.h"
+

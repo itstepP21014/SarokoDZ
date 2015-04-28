@@ -449,3 +449,4 @@ void qs(database* s_arr, int first, int last,int num,char original,int (*comp)(d
     }
 }
 
+

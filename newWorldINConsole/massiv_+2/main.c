@@ -5,8 +5,8 @@
 #include "../../modules/compatibility.h"
 
 #define size_max 1000
-#define mas_col 10
-#define mas_str 10
+#define mas_col 30
+#define mas_str 30
 
 int main()
 {
@@ -28,7 +28,7 @@ int main()
     else
     {
     number%=str;
-    two_dimensional_array_sdvig_column (array_1,str,col,number);
+    two_dimensional_array_sdvig_column (&array_1[0][0],str,col,number);
     printf ("New array, sdvig:%d\n",number);
     two_dimensional_array_output_int (array_1,str,col);
     }

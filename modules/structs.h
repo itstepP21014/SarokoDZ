@@ -1,6 +1,7 @@
 #ifndef STRUCTS_H_INCLUDED
 #define STRUCTS_H_INCLUDED
 #include <stdbool.h>
+
 struct fraction
 {
     int num;
@@ -47,6 +48,41 @@ struct process
     int time_coming;
     int time_lenght;
 };
+//FILES**********************
+struct file
+{
+    int file_catalog;
+    char file_name[30] ;
+    int attributes[8];
+    int date_creation[3];
+    int date_change[3];
+    int size_of_file;
+    int first_cluster;
+};
+typedef struct file file;
+struct file_r
+{
+    int file_catalog;
+    char file_name[30];
+    int attributes[8];
+    int date_creation[3];
+    int date_change[3];
+    int size_of_file;
+    int first_cluster;
+    file array_files[100];
+};
+typedef struct file_r file_r;
+
+struct file_open
+{
+    char file_name[30];
+    int descriptor;
+    int memory_addr;
+    int clusters;
+};
+
+typedef struct file_open file_open;
+//***********************************
 typedef struct complex_number complex_number;
 typedef struct fraction fraction;
 typedef struct time time;
@@ -83,6 +119,7 @@ date date_sum(date,int);
 int date_difference(date,date);
 int comp(database,database,int,char);
 void qs(database* ,int,int,int,char,int (*comp)(database,database,int,char));
+int delete_file(file_r*,char*,char*,int);
 
 
 #endif // STRUCTS_H_INCLUDED

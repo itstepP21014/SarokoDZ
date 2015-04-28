@@ -25,3 +25,30 @@
 
 1421856571 /home/wizard/Programs/SarokoDZ/modules/compatibility.h
 
+1422388535 source:e:\iteducation\sarokoigor\sarokodz\modules\randomstandart.c
+
+1424196134 source:e:\iteducation\sarokoigor\sarokodz\modules\systemclear.c
+	<stdlib.h>
+	<stdio.h>
+	<windows.h>
+
+1425235692 source:e:\iteducation\sarokoigor\sarokodz\newworldinconsole\massiv_+2\main.c
+	<stdio.h>
+	<stdlib.h>
+	"../../modules/Arrayss.h"
+	"../../modules/funcRand.h"
+	"../../modules/compatibility.h"
+
+1425235692 e:\iteducation\sarokoigor\sarokodz\modules\arrayss.h
+
+1422388535 e:\iteducation\sarokoigor\sarokodz\modules\funcrand.h
+
+1422044288 e:\iteducation\sarokoigor\sarokodz\modules\compatibility.h
+
+1425235985 source:e:\iteducation\sarokoigor\sarokodz\modules\arrays.c
+	"Arrayss.h"
+	"funcRand.h"
+	<stdio.h>
+	<stdlib.h>
+	<time.h>
+
