@@ -17,7 +17,7 @@ int main()
     p_1.number=1;
     p_2.number=2;
     p_3.number=3;
-    int buf_1[10],buf_2[10],check[3]/*Это массив переменных ограничителей*/,counter=0;
+    int buf_1[10],buf_2[10],check[3]/*Это массив переменных ограничителей*/,counter=0,counter_2=0,counter_3=0;
     while (counter<3)
     {
         check[counter]=0;
@@ -26,22 +26,36 @@ int main()
     counter=0;
     srand(time(NULL));
     //Потол_1
-    p_1.a=rand()%10;
-    p_1.b=rand()%10;
-    p_1.ask=0;
-    controller(buf_1,buf_2,check,&p_1);
-    p_1.ask=1;
-    controller(buf_1,buf_2,check,&p_1);
-    p_1.ask=2;
-    controller(buf_1,buf_2,check,&p_1);
+    while (counter<100)
+    {
+        p_1.a=rand()%10;
+        p_1.b=rand()%10;
+        p_1.ask=0;
+        controller(buf_1,buf_2,check,&p_1);
+        p_1.ask=1;
+        controller(buf_1,buf_2,check,&p_1);
+        p_1.ask=2;
+        controller(buf_1,buf_2,check,&p_1);
+        ++counter;
+    }
+
     //Поток_2
-    p_2.a=rand()%10;
-    p_2.b=rand()%10;
-    controller(buf_1,buf_2,check,&p_2);
+    while (counter_2<100)
+    {
+        p_2.a=rand()%10;
+        p_2.b=rand()%10;
+        controller(buf_1,buf_2,check,&p_2);
+        ++counter_2;
+    }
+
     //Поток_3
-    controller(buf_1,buf_2,check,&p_3);
-    if (p_3.ask==3)
-    printf ("\n%d %d\n",p_3.a,p_3.b);
+    while (counter_3<100)
+    {
+        controller(buf_1,buf_2,check,&p_3);
+        if (p_3.ask==3)
+        printf ("\n%d %d\n",p_3.a,p_3.b);
+        ++counter_3;
+    }
 
     return 0;
 }
