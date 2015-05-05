@@ -46,12 +46,13 @@ int main()
         *swi_2=1;
         Sleep(1);
         *swi=0;
+        while(*swi!=1);
         ++counter_2;
     }
     //Главный процесс
     while(counter_3<100)
     {
-        while (*swi_2==0)
+        while (*swi_2==0);
         for (cycle_count=size/50;cycle_count<100;++cycle_count)
         {
             printf("%d\n",buf[counter_r_main]);
