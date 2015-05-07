@@ -1,24 +1,167 @@
-#include <conio.h>
-#include "includes/all_arrays.h"
-#include "../../modules/compatibility.h"
-#include <SDL.h>
+
+#include "includes/M_D_H_E.h"
+
 
 int main(int argc,char* argv[])
 {
-    int first=0,second=0,counter=20,swi=1;
-    int y_size_of_map=0,x_size_of_map=0;
-    char direction,key_=0;
-    coordinates start_end_location;
+    /*
+        if (SDL_Init(SDL_INIT_VIDEO) != 0)
+        {
+            printf("SDL_Init Error!\n");
+            return 1;
+        }
+
+
+
+        SDL_Window *win = SDL_CreateWindow("Hello World!", 100, 100, 210, 330, SDL_WINDOW_SHOWN);
+        if (win==NULL)
+        {
+            printf("SDL_CreateWindow Error!\n");
+            SDL_Quit();
+            return 1;
+        }
+
+        SDL_Renderer *ren = SDL_CreateRenderer(win, -1, SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC);
+        if (ren==NULL)
+        {
+            SDL_DestroyWindow(win);
+            printf("SDL_CreateRenderer Error!\n");
+            SDL_Quit();
+            return 1;
+        }
+
+        SDL_Surface *bmp = SDL_LoadBMP("pics/EDWINL.bmp");
+
+        if(bmp == NULL)
+        {
+            SDL_DestroyRenderer(ren);
+            SDL_DestroyWindow(win);
+            fprintf(stderr, "SDL_LoadBMP Error: %s\n", SDL_GetError());
+            SDL_Quit();
+            exit(1);
+        }
+
+        SDL_Texture *tex = SDL_CreateTextureFromSurface(ren, bmp);
+        SDL_FreeSurface(bmp);
+
+        if(tex == NULL)
+        {
+            SDL_DestroyRenderer(ren);
+            SDL_DestroyWindow(win);
+            fprintf(stderr, "SDL_CreateTextureFromSurface Error: %s\n",
+                    SDL_GetError());
+            SDL_Quit();
+            exit(1);
+        }
+
+        SDL_RenderClear(ren);
+        SDL_Rect srcrect;
+        SDL_Rect dstrect;
+
+        srcrect.x = 50;
+        srcrect.y = 50;
+        srcrect.w = 60;
+        srcrect.h = 60;
+        dstrect.x = 110;
+        dstrect.y = 110;
+        dstrect.w = 60;
+        dstrect.h = 60;
+
+        //Draw the texture
+        SDL_RenderCopy(ren, tex, &srcrect, &dstrect);
+        //Update the screen
+        SDL_RenderPresent(ren);
+        //Have the program wait for 2000ms so we get a chance to see the screen
+        SDL_Delay(1000);
+
+        SDL_DestroyTexture(tex);
+        SDL_DestroyRenderer(ren);
+        SDL_DestroyWindow(win);
+        SDL_Quit();
+    ******************************************************************************
+    */
+    char key_=0;
+    int key_i=1;
 
     system("chcp 1251");
     system("cls");
-    printf("Введите размеры карты:\n");
-    printf("\nY:");
-    scanf("%d",&y_size_of_map);
+    printf("\tПредупреждение!\n\n\tНастройте размер терминала сейчас, так как вы не сможете изменить его после запуска игры.\n");
+    printf("\t(От размера терминала будет зависеть - насколько большим может быть поле игры.)\n\n");
+    printf("\tВажно!\n");
+    printf("\tВсе управление в игре осуществляется с клавиатуры. Передвижение персонажа - wasd, выбор варианта действия - название клавиши будет написано рядом с действием.\n");
+    printf("\t(Когда будете готовы - просто нажмите Enter)");
+    getchar();
+
+
+    initscr();
+
+    start_color();
+
+    init_pair(0, COLOR_BLACK, COLOR_BLACK);
+    init_pair(1, COLOR_BLUE, COLOR_BLACK);
+    init_pair(2, COLOR_GREEN, COLOR_BLACK);
+    init_pair(3, COLOR_CYAN, COLOR_BLACK);
+    init_pair(4, COLOR_RED, COLOR_BLACK);
+    init_pair(5, COLOR_MAGENTA, COLOR_BLACK);
+    init_pair(6, COLOR_YELLOW, COLOR_BLACK);
+    init_pair(7, COLOR_WHITE, COLOR_BLACK);
+
+    hero hero_main;
+
+    hero_main.specialization=0;
+    hero_main.armor=0;
+    hero_main.damage=1;
+    hero_main.hit_points=5;
+    hero_main.mana_points=0;
+    hero_main.athletics=0;
+    hero_main.experience=0;
+    hero_main.knowledge=0;
+    hero_main.mechanics=0;
+    hero_main.stealth=0;
+    hero_main.keys=0;
+    hero_main.intellect=0;
+    hero_main.dexterity=0;
+
+    int first=0,second=0,counter=500,swi=1,open_close=0;
+    int y_size_of_map=0,x_size_of_map=0;
+    coordinates start_end_location;
+
+    /*
+        while(counter<100)
+        {
+            key_=getch();
+            printf ("%d\n",key_);
+            ++counter;
+        }
+    */
+
+    create_hero(&hero_main);
+
+    Mix_Chunk *wave = NULL;
+    Mix_Chunk *door_wave=NULL;
+
+    attron(COLOR_PAIR(6));
+    printw("Введите размеры карты:\n");
+    refresh();
+    printw("\nY:");
+    refresh();
+    scanw("%d",&y_size_of_map);
     fflush(stdin);
-    printf("\nX:");
-    scanf("%d",&x_size_of_map);
+    printw("\nX:");
+    refresh();
+    scanw("%d",&x_size_of_map);
     fflush(stdin);
+
+    wave = Mix_LoadWAV("sound/mus_dungeon_temple_of_skean.wav");
+    if (wave == NULL)
+    {
+        printf("wave");
+        exit(-1);
+    }
+
+
+
+
 
     int events[y_size_of_map][x_size_of_map];
     maze dungeon[y_size_of_map][x_size_of_map];
@@ -28,20 +171,32 @@ int main(int argc,char* argv[])
         while (second<x_size_of_map)
         {
             dungeon[first][second].visibility=0;
+            dungeon[first][second].door=0;
+            dungeon[first][second].event_enter=0;
+            printw(" %d",dungeon[first][second].door);
             ++second;
         }
+        printw("\n");
         second=0;
-        printf("\n");
         ++first;
-
     }
+    refresh();
+    getch();
 
     start_end_location=maze_generator(&dungeon[0][0],y_size_of_map,x_size_of_map,start_end_location);
 
-
-
     while (counter!=0)
     {
+
+        if(Mix_Playing(1)==0)
+        {
+            if ( Mix_PlayChannel(1, wave, 0) == -1 )
+            {
+                printf("Mix_PlayChannel Error\n");
+                exit(-1);
+            }
+        }
+
         dungeon[start_end_location.y_begin][start_end_location.x_begin].visibility=2;
         dungeon[start_end_location.y_begin-1][start_end_location.x_begin-1].visibility=1;
         dungeon[start_end_location.y_begin-1][start_end_location.x_begin].visibility=1;
@@ -52,7 +207,7 @@ int main(int argc,char* argv[])
         dungeon[start_end_location.y_begin+1][start_end_location.x_begin-1].visibility=1;
         dungeon[start_end_location.y_begin][start_end_location.x_begin-1].visibility=1;
 
-        universalClear();
+        clear();
 
         second=0;
         first=0;
@@ -61,53 +216,134 @@ int main(int argc,char* argv[])
             while (second<x_size_of_map)
             {
                 if (first==start_end_location.y_begin && second==start_end_location.x_begin)
-                    printf("@");
+                {
+                    attron(COLOR_PAIR(2));
+                    printw("@");
+                }
                 else
                 {
                     if (dungeon[first][second].visibility==1)
-                        printf("%c",dungeon[first][second].square);
+                    {
+                        if (dungeon[first][second].square=='x')
+                        {
+                            attron(COLOR_PAIR(7));
+                            printw("%c",dungeon[first][second].square);
+                        }
+                        else
+                        {
+                            if (dungeon[first][second].square=='_' || dungeon[first][second].square=='|' || dungeon[first][second].square=='\\')
+                            {
+                                attron(COLOR_PAIR(3));
+                                printw("%c",dungeon[first][second].square);
+                            }
+                            else
+                            {
+                                attron(COLOR_PAIR(4));
+                                printw("%c",dungeon[first][second].square);
+                            }
+
+                        }
+                    }
                     else
-                        printf(" ");
+                        printw(" ");
                 }
                 ++second;
             }
             second=0;
-            printf("\n");
+            printw("\n");
             ++first;
         }
+
         --counter;
+        refresh();
+        attron(COLOR_PAIR(6));
+        printw("HP %d\tdamage %d\nMP %d\tarmor %d\n",hero_main.hit_points,hero_main.damage,hero_main.mana_points,hero_main.armor);
+        refresh();
+        if (start_end_location.y_begin==start_end_location.y_end && start_end_location.x_begin==start_end_location.x_end)
+        {
+            attron(COLOR_PAIR(5));
+            printw("\nПоздравляем! Вам удалось выбраться из подземелья!\n");
+            refresh();
+            return 1;
+        }
 
         while(swi==1)
         {
-            if(kbhit())//buffer keyboard not empty?
+            key_=getch();
+            refresh();
+            switch (key_)
             {
-                key_=getch();
-                switch (key_)
+            case 'w':
+                if (dungeon[start_end_location.y_begin-1][start_end_location.x_begin].square=='|' || dungeon[start_end_location.y_begin-1][start_end_location.x_begin].square=='_' )
+                    open_close=doors(dungeon[start_end_location.y_begin-1][start_end_location.x_begin].door,&hero_main,door_wave);
+                if (open_close>0)
                 {
-                case 72:
-                    if (dungeon[start_end_location.y_begin-1][start_end_location.x_begin].square!='#'&& dungeon[start_end_location.y_begin-1][start_end_location.x_begin].square!='_' && dungeon[start_end_location.y_begin-1][start_end_location.x_begin].square!='|')
+                    dungeon[start_end_location.y_begin-1][start_end_location.x_begin].door=0;
+                    dungeon[start_end_location.y_begin-1][start_end_location.x_begin].square='\\';
+                    start_end_location.y_begin-=1;
+                }
+                else
+                {
+                    if (dungeon[start_end_location.y_begin-1][start_end_location.x_begin].square!='#' && dungeon[start_end_location.y_begin-1][start_end_location.x_begin].square!='_' && dungeon[start_end_location.y_begin-1][start_end_location.x_begin].square!='|')
                         start_end_location.y_begin-=1;
-                        swi=0;
-                    break;
-                case 75:
-                    if (dungeon[start_end_location.y_begin][start_end_location.x_begin-1].square!='#'&& dungeon[start_end_location.y_begin][start_end_location.x_begin-1].square!='_' && dungeon[start_end_location.y_begin][start_end_location.x_begin-1].square!='|')
+                }
+                swi=0;
+                break;
+            case 'a':
+                if (dungeon[start_end_location.y_begin][start_end_location.x_begin-1].square=='|' || dungeon[start_end_location.y_begin][start_end_location.x_begin-1].square=='_')
+                    open_close=doors(dungeon[start_end_location.y_begin][start_end_location.x_begin-1].door,&hero_main,door_wave);
+                if (open_close>0)
+                {
+                    dungeon[start_end_location.y_begin][start_end_location.x_begin-1].door=0;
+                    dungeon[start_end_location.y_begin][start_end_location.x_begin-1].square='\\';
+                    start_end_location.x_begin-=1;
+                }
+                else
+                {
+                    if (dungeon[start_end_location.y_begin][start_end_location.x_begin-1].square!='#' && dungeon[start_end_location.y_begin][start_end_location.x_begin-1].square!='_' && dungeon[start_end_location.y_begin][start_end_location.x_begin-1].square!='|')
                         start_end_location.x_begin-=1;
-                        swi=0;
-                    break;
-                case 80:
-                    if (dungeon[start_end_location.y_begin+1][start_end_location.x_begin].square!='#'&& dungeon[start_end_location.y_begin+1][start_end_location.x_begin].square!='_' && dungeon[start_end_location.y_begin+1][start_end_location.x_begin].square!='|')
+                }
+                swi=0;
+                break;
+            case 's':
+                if (dungeon[start_end_location.y_begin+1][start_end_location.x_begin].square=='|' || dungeon[start_end_location.y_begin+1][start_end_location.x_begin].square=='_')
+                    open_close=doors(dungeon[start_end_location.y_begin+1][start_end_location.x_begin].door,&hero_main,door_wave);
+                if (open_close>0)
+                {
+                    dungeon[start_end_location.y_begin+1][start_end_location.x_begin].door=0;
+                    dungeon[start_end_location.y_begin+1][start_end_location.x_begin].square='\\';
+                    start_end_location.y_begin+=1;
+                }
+                else
+                {
+                    if (dungeon[start_end_location.y_begin+1][start_end_location.x_begin].square!='#' && dungeon[start_end_location.y_begin+1][start_end_location.x_begin].square!='_' && dungeon[start_end_location.y_begin+1][start_end_location.x_begin].square!='|')
                         start_end_location.y_begin+=1;
-                        swi=0;
-                    break;
-                case 77:
+                }
+                swi=0;
+                break;
+            case 'd':
+                if (dungeon[start_end_location.y_begin][start_end_location.x_begin+1].square=='|' || dungeon[start_end_location.y_begin][start_end_location.x_begin+1].square=='_')
+                    open_close=doors(dungeon[start_end_location.y_begin][start_end_location.x_begin+1].door,&hero_main,door_wave);
+                if (open_close>0)
+                {
+                    dungeon[start_end_location.y_begin][start_end_location.x_begin+1].door=0;
+                    dungeon[start_end_location.y_begin][start_end_location.x_begin+1].square='\\';
+                    start_end_location.x_begin+=1;
+                }
+                else
+                {
                     if (dungeon[start_end_location.y_begin][start_end_location.x_begin+1].square!='#' && dungeon[start_end_location.y_begin][start_end_location.x_begin+1].square!='_' && dungeon[start_end_location.y_begin][start_end_location.x_begin+1].square!='|')
                         start_end_location.x_begin+=1;
-                        swi=0;
                 }
+                swi=0;
             }
         }
+        open_close=0;
         swi=1;
     }
-
+    endwin();
+    Mix_FreeChunk(wave);
+    Mix_FreeChunk(door_wave);
+    Mix_CloseAudio();
     return 0;
 }

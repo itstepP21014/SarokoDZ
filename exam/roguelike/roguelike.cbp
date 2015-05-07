@@ -35,8 +35,12 @@
 		<Unit filename="../../modules/systemClear.c">
 			<Option compilerVar="CC" />
 		</Unit>
-		<Unit filename="includes/all_arrays.h" />
-		<Unit filename="includes/all_arrays_main.c">
+		<Unit filename="includes/M_D_H_E.h" />
+		<Unit filename="includes/SDL2_mixer-2.0.0/i686-w64-mingw32/include/SDL2/SDL_mixer.h" />
+		<Unit filename="includes/event_processing.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="includes/maze_doors_hero.c">
 			<Option compilerVar="CC" />
 		</Unit>
 		<Unit filename="main.c">
