@@ -189,7 +189,7 @@ int doors (int door_check,hero* hero_main,Mix_Chunk*door_wave)
         {
             check_input=getch();
             if (check_input>48 && check_input<55)
-            clear();
+                clear();
             switch(check_input)
             {
             case 49:
@@ -295,6 +295,7 @@ int doors (int door_check,hero* hero_main,Mix_Chunk*door_wave)
 
 void create_hero(hero*hero_main)
 {
+    int points=1,points_copy,attr_p=10,attr_copy=10;
     Mix_Chunk *wave = NULL;
 
     if (SDL_Init(SDL_INIT_AUDIO) < 0)
@@ -343,12 +344,12 @@ void create_hero(hero*hero_main)
     attron(COLOR_PAIR(2));
     printw ("\nВыберите специализацию своего персонажа:\n\n");
     attron(COLOR_PAIR(3));
-    printw("\n1-Воин\t\t2-Авантюрист\t3-Маг\n");
-    printw("\nсила +5\t\tЛовкость +5\tИнтеллект +5\n");
-    printw("\nатлетика +5\tмеханика +5\tзнание +5\n");
-    printw("\nзащита +3\tскрытность +5\tмана +20\n");
-    printw("\nжизнь +20\tЖизнь +10\tжизнь +5\n");
-    printw("\n\t\t\t\tзаклинание 'Огненный шар'(наносит 15 единиц урона огнем)");
+    printw("\n1-Воин\t\t\t2-Авантюрист\t\t3-Маг\n");
+    printw("\nсила +5\t\t\tЛовкость +5\t\tИнтеллект +5\n");
+    printw("\nатлетика +5\t\tмеханика +5\t\tзнание +5\n");
+    printw("\nзащита +3\t\tскрытность +5\t\tмана +20\n");
+    printw("\nЖизнь +20\t\tЖизнь +10\t\tЖизнь +5\n");
+    printw("\n\t\t\t\t\t\tзаклинание 'Огненный шар'(наносит 15 единиц урона огнем)");
     refresh();
     while (swi==1)
     {
@@ -384,6 +385,130 @@ void create_hero(hero*hero_main)
     }
     swi=1;
     clear();
-    refresh();
+    while (attr_p>0)
+    {
+        attron(COLOR_PAIR(2));
+        printw("\n\tОсталось очков: %d\n\n",attr_p);
+        attron(COLOR_PAIR(3));
+        printw("\t1-Сила         %d\n",hero_main->strength);
+        printw("\t2-Ловкость     %d\n",hero_main->dexterity);
+        printw("\t3-Интеллект    %d\n",hero_main->intellect);
+        printw("\t4-Харизма      %d\n",hero_main->charisma);
+        printw("\t5-Выносливость %d\n",hero_main->endurance);
+        printw("\t6-Мудрость     %d\n",hero_main->wisdom);
+        //printw("\n\tОтмена - клавиша 0: %d\n\n");
+        refresh();
+        check_input=0;
+        check_input=getch();
+        switch (check_input)
+        {
+        case 49:
+            --attr_p;
+            hero_main->strength+=1;
+            break;
+        case 50:
+            --attr_p;
+            hero_main->dexterity+=1;
+            break;
+        case 51:
+            --attr_p;
+            hero_main->intellect+=1;
+            break;
+        case 52:
+            --attr_p;
+            hero_main->charisma+=1;
+            break;
+        case 53:
+            --attr_p;
+            hero_main->hit_points+=1;
+            hero_main->endurance+=1;
+            break;
+        case 54:
+            --attr_p;
+            hero_main->wisdom+=1;
+            break;
+        }
+        if (attr_p>0)
+            clear();
+        else
+        {
+            clear();
+            attron(COLOR_PAIR(2));
+            printw("\n\tОсталось очков: %d\n\n",attr_p);
+            attron(COLOR_PAIR(3));
+            printw("\t1-Сила         %d\n",hero_main->strength);
+            printw("\t2-Ловкость     %d\n",hero_main->dexterity);
+            printw("\t3-Интеллект    %d\n",hero_main->intellect);
+            printw("\t4-Харизма      %d\n",hero_main->charisma);
+            printw("\t5-Выносливость %d\n",hero_main->endurance);
+            printw("\t6-Мудрость     %d\n",hero_main->wisdom);
+            attron(COLOR_PAIR(5));
+            printw("\n   Нажмите любую клавишу...",hero_main->wisdom);
+            refresh();
+            getch();
+            clear();
+        }
+
+    }
+
+    points+=hero_main->intellect;
+    points_copy=points;
+    while (points>0)
+    {
+        attron(COLOR_PAIR(2));
+        printw("\n\tОсталось очков: %d\n\n",points);
+        attron(COLOR_PAIR(3));
+        printw("\t1-Скрытность  %d\n",hero_main->stealth);
+        printw("\t2-Атлетика    %d\n",hero_main->athletics);
+        printw("\t3-Механика    %d\n",hero_main->mechanics);
+        printw("\t4-Выживание   %d\n",hero_main->survival);
+        printw("\t5-Знание      %d\n",hero_main->knowledge);
+        //printw("\n\tОтмена - клавиша 0: %d\n\n");
+        refresh();
+        check_input=0;
+        check_input=getch();
+        switch (check_input)
+        {
+        case 49:
+            --points;
+            hero_main->stealth+=1;
+            break;
+        case 50:
+            --points;
+            hero_main->athletics+=1;
+            break;
+        case 51:
+            --points;
+            hero_main->mechanics+=1;
+            break;
+        case 52:
+            --points;
+            hero_main->survival+=1;
+            break;
+        case 53:
+            --points;
+            hero_main->knowledge+=1;
+            break;
+        }
+        if (points>0)
+            clear();
+        else
+        {
+            clear();
+            attron(COLOR_PAIR(2));
+            printw("\n\tОсталось очков: %d\n\n",points);
+            attron(COLOR_PAIR(3));
+            printw("\t1-Скрытность  %d\n",hero_main->stealth);
+            printw("\t2-Атлетика    %d\n",hero_main->athletics);
+            printw("\t3-Механика    %d\n",hero_main->mechanics);
+            printw("\t4-Выживание   %d\n",hero_main->survival);
+            printw("\t5-Знание      %d\n",hero_main->knowledge);
+            attron(COLOR_PAIR(5));
+            printw("\n   Нажмите любую клавишу...",hero_main->wisdom);
+            refresh();
+            getch();
+            clear();
+        }
+    }
     Mix_FreeChunk(wave);
 }

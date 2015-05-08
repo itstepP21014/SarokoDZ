@@ -21,6 +21,8 @@ typedef struct hero
 {
     int specialization;
     int experience;
+    int level;
+    int next_level;
     int hit_points;
     int mana_points;
     int damage;
@@ -34,9 +36,10 @@ typedef struct hero
     int dexterity;
     int keys;
     int charisma;
-    int willpower;
+    int wisdom;
     int perception;
     int survival;
+    int endurance;
 }hero;
 
 typedef struct coordinates

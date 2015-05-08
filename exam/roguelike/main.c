@@ -4,82 +4,87 @@
 
 int main(int argc,char* argv[])
 {
-    /*
-        if (SDL_Init(SDL_INIT_VIDEO) != 0)
-        {
-            printf("SDL_Init Error!\n");
-            return 1;
-        }
+    /*  int ttt=0;
+      scanf("%d",&ttt);
+      if (SDL_Init(SDL_INIT_VIDEO) != 0)
+      {
+          printf("SDL_Init Error!\n");
+          return 1;
+      }
 
 
 
-        SDL_Window *win = SDL_CreateWindow("Hello World!", 100, 100, 210, 330, SDL_WINDOW_SHOWN);
-        if (win==NULL)
-        {
-            printf("SDL_CreateWindow Error!\n");
-            SDL_Quit();
-            return 1;
-        }
+      SDL_Window *win = SDL_CreateWindow("Hello World!", 100, 100, 210, 330, SDL_WINDOW_SHOWN);
+      if (win==NULL)
+      {
+          printf("SDL_CreateWindow Error!\n");
+          SDL_Quit();
+          return 1;
+      }
 
-        SDL_Renderer *ren = SDL_CreateRenderer(win, -1, SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC);
-        if (ren==NULL)
-        {
-            SDL_DestroyWindow(win);
-            printf("SDL_CreateRenderer Error!\n");
-            SDL_Quit();
-            return 1;
-        }
+      SDL_Renderer *ren = SDL_CreateRenderer(win, -1, SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC);
+      if (ren==NULL)
+      {
+          SDL_DestroyWindow(win);
+          printf("SDL_CreateRenderer Error!\n");
+          SDL_Quit();
+          return 1;
+      }
 
-        SDL_Surface *bmp = SDL_LoadBMP("pics/EDWINL.bmp");
+      SDL_Surface *bmp = SDL_LoadBMP("pics/EDWINL.bmp");
 
-        if(bmp == NULL)
-        {
-            SDL_DestroyRenderer(ren);
-            SDL_DestroyWindow(win);
-            fprintf(stderr, "SDL_LoadBMP Error: %s\n", SDL_GetError());
-            SDL_Quit();
-            exit(1);
-        }
+      if(bmp == NULL)
+      {
+          SDL_DestroyRenderer(ren);
+          SDL_DestroyWindow(win);
+          fprintf(stderr, "SDL_LoadBMP Error: %s\n", SDL_GetError());
+          SDL_Quit();
+          exit(1);
+      }
 
-        SDL_Texture *tex = SDL_CreateTextureFromSurface(ren, bmp);
-        SDL_FreeSurface(bmp);
+      SDL_Texture *tex = SDL_CreateTextureFromSurface(ren, bmp);
+      SDL_FreeSurface(bmp);
 
-        if(tex == NULL)
-        {
-            SDL_DestroyRenderer(ren);
-            SDL_DestroyWindow(win);
-            fprintf(stderr, "SDL_CreateTextureFromSurface Error: %s\n",
-                    SDL_GetError());
-            SDL_Quit();
-            exit(1);
-        }
+      if(tex == NULL)
+      {
+          SDL_DestroyRenderer(ren);
+          SDL_DestroyWindow(win);
+          fprintf(stderr, "SDL_CreateTextureFromSurface Error: %s\n",
+                  SDL_GetError());
+          SDL_Quit();
+          exit(1);
+      }
 
-        SDL_RenderClear(ren);
-        SDL_Rect srcrect;
-        SDL_Rect dstrect;
+      SDL_RenderClear(ren);
+      SDL_Rect srcrect;
+      SDL_Rect dstrect;
 
-        srcrect.x = 50;
-        srcrect.y = 50;
-        srcrect.w = 60;
-        srcrect.h = 60;
-        dstrect.x = 110;
-        dstrect.y = 110;
-        dstrect.w = 60;
-        dstrect.h = 60;
+      srcrect.x = 50;
+      srcrect.y = 50;
+      srcrect.w = 60;
+      srcrect.h = 60;
+      dstrect.x = 110;
+      dstrect.y = 110;
+      dstrect.w = 60;
+      dstrect.h = 60;
 
-        //Draw the texture
-        SDL_RenderCopy(ren, tex, &srcrect, &dstrect);
-        //Update the screen
-        SDL_RenderPresent(ren);
-        //Have the program wait for 2000ms so we get a chance to see the screen
-        SDL_Delay(1000);
+      //Draw the texture
+      SDL_RenderCopy(ren, tex, NULL, NULL);
+      //Update the screen
+      SDL_RenderPresent(ren);
+      //Have the program wait for 2000ms so we get a chance to see the screen
+      while (ttt=0)
+      {
+          SDL_Delay(100);
+      }
+      scanf("%d",&ttt);
 
-        SDL_DestroyTexture(tex);
-        SDL_DestroyRenderer(ren);
-        SDL_DestroyWindow(win);
-        SDL_Quit();
-    ******************************************************************************
-    */
+      SDL_DestroyTexture(tex);
+      SDL_DestroyRenderer(ren);
+      SDL_DestroyWindow(win);
+      SDL_Quit();*/
+    // ******************************************************************************
+
     char key_=0;
     int key_i=1;
 
@@ -119,8 +124,15 @@ int main(int argc,char* argv[])
     hero_main.mechanics=0;
     hero_main.stealth=0;
     hero_main.keys=0;
-    hero_main.intellect=0;
-    hero_main.dexterity=0;
+    hero_main.intellect=1;
+    hero_main.dexterity=1;
+    hero_main.strength=1;
+    hero_main.endurance=1;
+    hero_main.charisma=1;
+    hero_main.wisdom=1;
+    hero_main.survival=0;
+    hero_main.next_level=50;
+    hero_main.level=1;
 
     int first=0,second=0,counter=500,swi=1,open_close=0;
     int y_size_of_map=0,x_size_of_map=0;
@@ -152,10 +164,12 @@ int main(int argc,char* argv[])
     scanw("%d",&x_size_of_map);
     fflush(stdin);
 
+    noecho();
+
     wave = Mix_LoadWAV("sound/mus_dungeon_temple_of_skean.wav");
     if (wave == NULL)
     {
-        printf("wave");
+        printf("wave error");
         exit(-1);
     }
 
@@ -173,7 +187,6 @@ int main(int argc,char* argv[])
             dungeon[first][second].visibility=0;
             dungeon[first][second].door=0;
             dungeon[first][second].event_enter=0;
-            printw(" %d",dungeon[first][second].door);
             ++second;
         }
         printw("\n");
@@ -257,7 +270,12 @@ int main(int argc,char* argv[])
         --counter;
         refresh();
         attron(COLOR_PAIR(6));
-        printw("HP %d\tdamage %d\nMP %d\tarmor %d\n",hero_main.hit_points,hero_main.damage,hero_main.mana_points,hero_main.armor);
+        printw("Жизнь %d\tСила %d\t\t\tАтлетика %d\t\tУровень %d\tОпыт %d/%d\n",hero_main.hit_points,hero_main.strength,hero_main.athletics,hero_main.level,hero_main.experience,hero_main.next_level);
+        printw("Мана %d\t\tЛовкость %d\t\tМеханика %d\n",hero_main.mana_points,hero_main.dexterity,hero_main.mechanics);
+        printw("Урон %d\t\tИнтеллект %d\t\tЗнание %d\n",hero_main.damage,hero_main.intellect,hero_main.knowledge);
+        printw("Защита %d\tХаризма %d\t\tВыживание %d\n",hero_main.armor,hero_main.charisma,hero_main.survival);
+        printw("\t\tМудрость %d\t\tСкрытность %d\n",hero_main.wisdom,hero_main.stealth);
+        printw("\t\tВыносливость %d\n",hero_main.endurance);
         refresh();
         if (start_end_location.y_begin==start_end_location.y_end && start_end_location.x_begin==start_end_location.x_end)
         {
