@@ -112,7 +112,20 @@ int main(int argc,char* argv[])
     init_pair(7, COLOR_WHITE, COLOR_BLACK);
 
     hero hero_main;
+    enemy skeleton_warrior;
 
+    skeleton_warrior.armor=3;
+    skeleton_warrior.damage=8;
+    skeleton_warrior.experience=25;
+    skeleton_warrior.hit_points=15;
+    skeleton_warrior.mana_points=0;
+
+    int counter=10;
+    while (counter>=0)
+    {
+        hero_main.name[counter]='\0';
+        --counter;
+    }
     hero_main.specialization=0;
     hero_main.armor=0;
     hero_main.damage=1;
@@ -133,8 +146,9 @@ int main(int argc,char* argv[])
     hero_main.survival=0;
     hero_main.next_level=50;
     hero_main.level=1;
+    hero_main.exp_bonus=0;
 
-    int first=0,second=0,counter=500,swi=1,open_close=0;
+    int first=0,second=0,swi=1,open_close=0,battle=3;
     int y_size_of_map=0,x_size_of_map=0;
     coordinates start_end_location;
 
@@ -153,13 +167,13 @@ int main(int argc,char* argv[])
     Mix_Chunk *door_wave=NULL;
 
     attron(COLOR_PAIR(6));
-    printw("Введите размеры карты:\n");
+    printw("\n\tВведите размеры карты:\n");
     refresh();
-    printw("\nY:");
+    printw("\n\tY:");
     refresh();
     scanw("%d",&y_size_of_map);
     fflush(stdin);
-    printw("\nX:");
+    printw("\n\tX:");
     refresh();
     scanw("%d",&x_size_of_map);
     fflush(stdin);
@@ -198,7 +212,7 @@ int main(int argc,char* argv[])
 
     start_end_location=maze_generator(&dungeon[0][0],y_size_of_map,x_size_of_map,start_end_location);
 
-    while (counter!=0)
+    while (1)
     {
 
         if(Mix_Playing(1)==0)
@@ -219,6 +233,12 @@ int main(int argc,char* argv[])
         dungeon[start_end_location.y_begin+1][start_end_location.x_begin].visibility=1;
         dungeon[start_end_location.y_begin+1][start_end_location.x_begin-1].visibility=1;
         dungeon[start_end_location.y_begin][start_end_location.x_begin-1].visibility=1;
+
+        skeleton_warrior.armor=3;
+        skeleton_warrior.damage=8;
+        skeleton_warrior.experience=25;
+        skeleton_warrior.hit_points=15;
+        skeleton_warrior.mana_points=0;
 
         clear();
 
@@ -251,8 +271,17 @@ int main(int argc,char* argv[])
                             }
                             else
                             {
-                                attron(COLOR_PAIR(4));
-                                printw("%c",dungeon[first][second].square);
+                                if (dungeon[first][second].square=='s')
+                                {
+                                    attron(COLOR_PAIR(6));
+                                    printw("%c",dungeon[first][second].square);
+                                }
+                                else
+                                {
+                                    attron(COLOR_PAIR(4));
+                                    printw("%c",dungeon[first][second].square);
+                                }
+
                             }
 
                         }
@@ -267,9 +296,9 @@ int main(int argc,char* argv[])
             ++first;
         }
 
-        --counter;
         refresh();
         attron(COLOR_PAIR(6));
+        printw("%s\n",hero_main.name);
         printw("Жизнь %d\tСила %d\t\t\tАтлетика %d\t\tУровень %d\tОпыт %d/%d\n",hero_main.hit_points,hero_main.strength,hero_main.athletics,hero_main.level,hero_main.experience,hero_main.next_level);
         printw("Мана %d\t\tЛовкость %d\t\tМеханика %d\n",hero_main.mana_points,hero_main.dexterity,hero_main.mechanics);
         printw("Урон %d\t\tИнтеллект %d\t\tЗнание %d\n",hero_main.damage,hero_main.intellect,hero_main.knowledge);
@@ -282,6 +311,11 @@ int main(int argc,char* argv[])
             attron(COLOR_PAIR(5));
             printw("\nПоздравляем! Вам удалось выбраться из подземелья!\n");
             refresh();
+            getch();
+            endwin();
+            Mix_FreeChunk(wave);
+            Mix_FreeChunk(door_wave);
+            Mix_CloseAudio();
             return 1;
         }
 
@@ -293,12 +327,34 @@ int main(int argc,char* argv[])
             {
             case 'w':
                 if (dungeon[start_end_location.y_begin-1][start_end_location.x_begin].square=='|' || dungeon[start_end_location.y_begin-1][start_end_location.x_begin].square=='_' )
-                    open_close=doors(dungeon[start_end_location.y_begin-1][start_end_location.x_begin].door,&hero_main,door_wave);
-                if (open_close>0)
                 {
-                    dungeon[start_end_location.y_begin-1][start_end_location.x_begin].door=0;
-                    dungeon[start_end_location.y_begin-1][start_end_location.x_begin].square='\\';
-                    start_end_location.y_begin-=1;
+                   open_close=doors(dungeon[start_end_location.y_begin-1][start_end_location.x_begin].door,&hero_main,door_wave);
+                    if (open_close>0)
+                    {
+                        dungeon[start_end_location.y_begin-1][start_end_location.x_begin].door=0;
+                        dungeon[start_end_location.y_begin-1][start_end_location.x_begin].square='\\';
+                        start_end_location.y_begin-=1;
+                    }
+                }
+                else if (dungeon[start_end_location.y_begin-1][start_end_location.x_begin].square=='s')
+                {
+                    battle=battle_processing(&hero_main,&skeleton_warrior,door_wave,wave);
+                    if (battle==0)
+                        return 1;
+                    else if(battle==2)
+                    {
+                        if (dungeon[start_end_location.y_begin+1][start_end_location.x_begin].square==' ')
+                        start_end_location.y_begin+=1;
+                        else if (dungeon[start_end_location.y_begin][start_end_location.x_begin-1].square==' ')
+                        start_end_location.x_begin-=1;
+                        else if (dungeon[start_end_location.y_begin][start_end_location.x_begin+1].square==' ')
+                        start_end_location.x_begin+=1;
+                    }
+                    else
+                    {
+                        dungeon[start_end_location.y_begin-1][start_end_location.x_begin].square=' ';
+                        start_end_location.y_begin-=1;
+                    }
                 }
                 else
                 {
@@ -308,13 +364,35 @@ int main(int argc,char* argv[])
                 swi=0;
                 break;
             case 'a':
-                if (dungeon[start_end_location.y_begin][start_end_location.x_begin-1].square=='|' || dungeon[start_end_location.y_begin][start_end_location.x_begin-1].square=='_')
-                    open_close=doors(dungeon[start_end_location.y_begin][start_end_location.x_begin-1].door,&hero_main,door_wave);
-                if (open_close>0)
+                if (dungeon[start_end_location.y_begin][start_end_location.x_begin-1].square=='|' || dungeon[start_end_location.y_begin][start_end_location.x_begin-1].square=='_' )
                 {
-                    dungeon[start_end_location.y_begin][start_end_location.x_begin-1].door=0;
-                    dungeon[start_end_location.y_begin][start_end_location.x_begin-1].square='\\';
-                    start_end_location.x_begin-=1;
+                   open_close=doors(dungeon[start_end_location.y_begin][start_end_location.x_begin-1].door,&hero_main,door_wave);
+                    if (open_close>0)
+                    {
+                        dungeon[start_end_location.y_begin][start_end_location.x_begin-1].door=0;
+                        dungeon[start_end_location.y_begin][start_end_location.x_begin-1].square='\\';
+                        start_end_location.x_begin-=1;
+                    }
+                }
+                else if (dungeon[start_end_location.y_begin][start_end_location.x_begin-1].square=='s')
+                {
+                    battle=battle_processing(&hero_main,&skeleton_warrior,door_wave,wave);
+                    if (battle==0)
+                        return 1;
+                    else if(battle==2)
+                    {
+                        if (dungeon[start_end_location.y_begin+1][start_end_location.x_begin].square==' ')
+                        start_end_location.y_begin+=1;
+                        else if (dungeon[start_end_location.y_begin-1][start_end_location.x_begin].square==' ')
+                        start_end_location.y_begin-=1;
+                        else if (dungeon[start_end_location.y_begin][start_end_location.x_begin+1].square==' ')
+                        start_end_location.x_begin+=1;
+                    }
+                    else
+                    {
+                        dungeon[start_end_location.y_begin][start_end_location.x_begin-1].square=' ';
+                        start_end_location.x_begin-=1;
+                    }
                 }
                 else
                 {
@@ -324,13 +402,35 @@ int main(int argc,char* argv[])
                 swi=0;
                 break;
             case 's':
-                if (dungeon[start_end_location.y_begin+1][start_end_location.x_begin].square=='|' || dungeon[start_end_location.y_begin+1][start_end_location.x_begin].square=='_')
-                    open_close=doors(dungeon[start_end_location.y_begin+1][start_end_location.x_begin].door,&hero_main,door_wave);
-                if (open_close>0)
+                if (dungeon[start_end_location.y_begin+1][start_end_location.x_begin].square=='|' || dungeon[start_end_location.y_begin+1][start_end_location.x_begin].square=='_' )
                 {
-                    dungeon[start_end_location.y_begin+1][start_end_location.x_begin].door=0;
-                    dungeon[start_end_location.y_begin+1][start_end_location.x_begin].square='\\';
-                    start_end_location.y_begin+=1;
+                   open_close=doors(dungeon[start_end_location.y_begin+1][start_end_location.x_begin].door,&hero_main,door_wave);
+                    if (open_close>0)
+                    {
+                        dungeon[start_end_location.y_begin+1][start_end_location.x_begin].door=0;
+                        dungeon[start_end_location.y_begin+1][start_end_location.x_begin].square='\\';
+                        start_end_location.y_begin+=1;
+                    }
+                }
+                else if (dungeon[start_end_location.y_begin+1][start_end_location.x_begin].square=='s')
+                {
+                    battle=battle_processing(&hero_main,&skeleton_warrior,door_wave,wave);
+                    if (battle==0)
+                        return 1;
+                    else if(battle==2)
+                    {
+                        if (dungeon[start_end_location.y_begin][start_end_location.x_begin-1].square==' ')
+                        start_end_location.x_begin-=1;
+                        else if (dungeon[start_end_location.y_begin-1][start_end_location.x_begin].square==' ')
+                        start_end_location.y_begin-=1;
+                        else if (dungeon[start_end_location.y_begin][start_end_location.x_begin+1].square==' ')
+                        start_end_location.x_begin+=1;
+                    }
+                    else
+                    {
+                        dungeon[start_end_location.y_begin+1][start_end_location.x_begin].square=' ';
+                        start_end_location.y_begin+=1;
+                    }
                 }
                 else
                 {
@@ -340,13 +440,35 @@ int main(int argc,char* argv[])
                 swi=0;
                 break;
             case 'd':
-                if (dungeon[start_end_location.y_begin][start_end_location.x_begin+1].square=='|' || dungeon[start_end_location.y_begin][start_end_location.x_begin+1].square=='_')
-                    open_close=doors(dungeon[start_end_location.y_begin][start_end_location.x_begin+1].door,&hero_main,door_wave);
-                if (open_close>0)
+                if (dungeon[start_end_location.y_begin][start_end_location.x_begin+1].square=='|' || dungeon[start_end_location.y_begin][start_end_location.x_begin+1].square=='_' )
                 {
-                    dungeon[start_end_location.y_begin][start_end_location.x_begin+1].door=0;
-                    dungeon[start_end_location.y_begin][start_end_location.x_begin+1].square='\\';
-                    start_end_location.x_begin+=1;
+                   open_close=doors(dungeon[start_end_location.y_begin][start_end_location.x_begin+1].door,&hero_main,door_wave);
+                    if (open_close>0)
+                    {
+                        dungeon[start_end_location.y_begin][start_end_location.x_begin+1].door=0;
+                        dungeon[start_end_location.y_begin][start_end_location.x_begin+1].square='\\';
+                        start_end_location.x_begin+=1;
+                    }
+                }
+                else if (dungeon[start_end_location.y_begin][start_end_location.x_begin+1].square=='s')
+                {
+                    battle=battle_processing(&hero_main,&skeleton_warrior,door_wave,wave);
+                    if (battle==0)
+                        return 1;
+                    else if(battle==2)
+                    {
+                        if (dungeon[start_end_location.y_begin][start_end_location.x_begin-1].square==' ')
+                        start_end_location.x_begin-=1;
+                        else if (dungeon[start_end_location.y_begin-1][start_end_location.x_begin].square==' ')
+                        start_end_location.y_begin-=1;
+                        else if (dungeon[start_end_location.y_begin+1][start_end_location.x_begin].square==' ')
+                        start_end_location.y_begin+=1;
+                    }
+                    else
+                    {
+                        dungeon[start_end_location.y_begin][start_end_location.x_begin+1].square=' ';
+                        start_end_location.x_begin+=1;
+                    }
                 }
                 else
                 {

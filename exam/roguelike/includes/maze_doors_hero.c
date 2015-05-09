@@ -4,7 +4,7 @@ coordinates maze_generator(maze*maze_,int y_size,int x_size,coordinates start_en
 {
     srand(time(NULL));
     int first=0,second=0,x_enter,y_enter,right_left,y_move,x_move,counter_maze=0,counter,swi=0,check=0,count;
-    int door_chance,trap_chance;
+    int door_chance,trap_chance,skeleton_warrior_chance;
     while (first<y_size)
     {
         while (second<x_size)
@@ -54,7 +54,11 @@ coordinates maze_generator(maze*maze_,int y_size,int x_size,coordinates start_en
         else
             x_move=x_size-2;
     }
-    maze_[x_size*y_move+x_move].square=' ';
+    skeleton_warrior_chance=rand()%20;
+    if (skeleton_warrior_chance==19)
+        maze_[x_size*y_move+x_move].square='s';
+    else
+        maze_[x_size*y_move+x_move].square=' ';
 
     trap_chance=rand()%20;
     if (trap_chance==19)
@@ -113,17 +117,21 @@ coordinates maze_generator(maze*maze_,int y_size,int x_size,coordinates start_en
                 else
                 {
                     trap_chance=rand()%20;
-                    if (trap_chance==19)
-                        maze_[x_size*y_move+x_move].event_enter=1;
-                    maze_[x_size*y_move+x_move].square=' ';
+                    skeleton_warrior_chance=rand()%20;
+                    if (skeleton_warrior_chance==19)
+                        maze_[x_size*y_move+x_move].square='s';
+                    else
+                        maze_[x_size*y_move+x_move].square=' ';
                 }
             }
             else
             {
                 trap_chance=rand()%20;
-                if (trap_chance==19)
-                    maze_[x_size*y_move+x_move].event_enter=1;
-                maze_[x_size*y_move+x_move].square=' ';
+                skeleton_warrior_chance=rand()%20;
+                if (skeleton_warrior_chance==19)
+                    maze_[x_size*y_move+x_move].square='s';
+                else
+                    maze_[x_size*y_move+x_move].square=' ';
             }
             start_end_loc.y_begin=y_move;
             start_end_loc.x_begin=x_move;
@@ -156,6 +164,7 @@ coordinates maze_generator(maze*maze_,int y_size,int x_size,coordinates start_en
             ++counter_maze;
         }
     }
+    maze_[x_size*start_end_loc.y_begin+start_end_loc.x_begin].square=' ';
     return start_end_loc;
 }
 
@@ -404,6 +413,7 @@ void create_hero(hero*hero_main)
         {
         case 49:
             --attr_p;
+            hero_main->damage+=1;
             hero_main->strength+=1;
             break;
         case 50:
@@ -412,6 +422,7 @@ void create_hero(hero*hero_main)
             break;
         case 51:
             --attr_p;
+            hero_main->mana_points+=1;
             hero_main->intellect+=1;
             break;
         case 52:
@@ -425,6 +436,7 @@ void create_hero(hero*hero_main)
             break;
         case 54:
             --attr_p;
+            hero_main->exp_bonus+=1;
             hero_main->wisdom+=1;
             break;
         }
@@ -510,5 +522,41 @@ void create_hero(hero*hero_main)
             clear();
         }
     }
+    int counter=254;
+    char buf[255];
+    while (counter>=0)
+    {
+        buf[counter]='\0';
+        --counter;
+    }
+    swi=1;
+    while (swi)
+    {
+        attron(COLOR_PAIR(6));
+        printw("\n\tВведите имя своего персонажа (не более 10 символов):\n\t");
+        refresh();
+        scanw("%s",&buf);
+        fflush(stdin);
+        if (strlen(buf)>10)
+        {
+            attron(COLOR_PAIR(4));
+            printw("\n\tСлишком длинное имя - повторите попытку.\n");
+            refresh();
+            getch();
+        }
+        else
+        {
+            strcpy(hero_main->name,buf);
+            swi=0;
+        }
+    }
+    clear();
+    attron(COLOR_PAIR(2));
+    printw("\n\tВаше имя: %s\n",hero_main->name);
+    attron(COLOR_PAIR(5));
+    printw("\n   Нажмите любую клавишу...",hero_main->wisdom);
+    refresh();
+    getch();
+    clear();
     Mix_FreeChunk(wave);
 }

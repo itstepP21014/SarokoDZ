@@ -15,12 +15,15 @@
 #include <math.h>
 #include <SDL.h>
 #include <SDL_mixer.h>
+#include <string.h>
 #include "../../../modules/compatibility.h"
 
 typedef struct hero
 {
+    char name[11];
     int specialization;
     int experience;
+    int exp_bonus;
     int level;
     int next_level;
     int hit_points;
@@ -41,6 +44,15 @@ typedef struct hero
     int survival;
     int endurance;
 }hero;
+
+typedef struct enemy
+{
+    int experience;
+    int hit_points;
+    int mana_points;
+    int damage;
+    int armor;
+}enemy;
 
 typedef struct coordinates
 {
@@ -64,5 +76,6 @@ coordinates maze_generator(maze*,int,int,coordinates);
 void event_generator(int*,int,int);
 void create_hero(hero*);
 int doors(int,hero*,Mix_Chunk*);
+int battle_processing(hero*,enemy*,Mix_Chunk*,Mix_Chunk*);
 
 #endif // ALL_ARRAYS_H_INCLUDED
