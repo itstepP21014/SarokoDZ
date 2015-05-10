@@ -81,7 +81,7 @@ int battle_processing(hero*hero_main,enemy*enemy_main,Mix_Chunk* spell_wav,Mix_C
             else
             {
                 attron(COLOR_PAIR(2));
-                printw("\n\tВы наносите противнику %d ед. урона и уничтожаете его.\n");
+                printw("\n\tВы наносите противнику %d ед. урона и уничтожаете его.\n",damage_result_hero);
                 refresh();
                 getch();
                 swi=0;
@@ -128,6 +128,5 @@ int battle_processing(hero*hero_main,enemy*enemy_main,Mix_Chunk* spell_wav,Mix_C
     Mix_FreeChunk(spell_wav);
     Mix_FreeChunk(battle_wav);
     battle_wav = Mix_LoadWAV("sound/mus_dungeon_temple_of_skean.wav");
-    getch();
     return alive_dead;
 }

@@ -9,6 +9,7 @@
 #include <curses.h>
 #endif
 
+#include <panel.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
@@ -43,7 +44,7 @@ typedef struct hero
     int perception;
     int survival;
     int endurance;
-}hero;
+} hero;
 
 typedef struct enemy
 {
@@ -52,7 +53,7 @@ typedef struct enemy
     int mana_points;
     int damage;
     int armor;
-}enemy;
+} enemy;
 
 typedef struct coordinates
 {
@@ -60,7 +61,7 @@ typedef struct coordinates
     int x_begin;
     int y_end;
     int x_end;
-}coordinates;
+} coordinates;
 
 typedef struct maze
 {
@@ -70,7 +71,7 @@ typedef struct maze
     int event_enter;
     int enemy_enter;
     int door;
-}maze;
+} maze;
 
 coordinates maze_generator(maze*,int,int,coordinates);
 void event_generator(int*,int,int);

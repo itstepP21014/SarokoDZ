@@ -94,7 +94,16 @@ int main(int argc,char* argv[])
     printf("\t(От размера терминала будет зависеть - насколько большим может быть поле игры.)\n\n");
     printf("\tВажно!\n");
     printf("\tВсе управление в игре осуществляется с клавиатуры. Передвижение персонажа - wasd, выбор варианта действия - название клавиши будет написано рядом с действием.\n");
-    printf("\t(Когда будете готовы - просто нажмите Enter)");
+
+    printf("\n\tОсобые обозначения:\n");
+    printf("\t'@' - ваш персонаж.\n");
+    printf("\t'#' - стена.\n");
+    printf("\t'x' - выход из лабиринта.\n");
+    printf("\t'|' '_' - дверь.\n");
+    printf("\t'\\' - открытая дверь.\n");
+    printf("\t's' - скелет воин.\n");
+    printf("\n\t(Когда будете готовы - просто нажмите Enter)\n");
+
     getchar();
 
 
@@ -166,17 +175,33 @@ int main(int argc,char* argv[])
     Mix_Chunk *wave = NULL;
     Mix_Chunk *door_wave=NULL;
 
+    int y_max=0,x_max=0;
+
+    WINDOW *dead=newwin(0, 0, 0, 0);
+    y_max=getmaxy(dead)-10;
+    x_max=getmaxx(dead)-10;
+    delwin(dead);
+
     attron(COLOR_PAIR(6));
-    printw("\n\tВведите размеры карты:\n");
-    refresh();
-    printw("\n\tY:");
-    refresh();
-    scanw("%d",&y_size_of_map);
-    fflush(stdin);
-    printw("\n\tX:");
-    refresh();
-    scanw("%d",&x_size_of_map);
-    fflush(stdin);
+    while(y_size_of_map<20 || y_size_of_map>y_max)
+    {
+        printw("\n\tВведите размеры карты \n\t(максимальная высота(Y):%d максимальная ширина(X):%d минимальный размер - 20/20)\n",y_max,x_max);
+        printw("\n\tY:");
+        refresh();
+        scanw("%d",&y_size_of_map);
+        fflush(stdin);
+        clear();
+    }
+    while(x_size_of_map<20 || x_size_of_map>x_max)
+    {
+        printw("\n\tВведите размеры карты \n\t(максимальная высота(Y):%d максимальная ширина(X):%d минимальный размер - 20/20)\n",y_max,x_max);
+        printw("\n\tY:%d",y_size_of_map);
+        printw("\n\tX:");
+        refresh();
+        scanw("%d",&x_size_of_map);
+        fflush(stdin);
+        clear();
+    }
 
     noecho();
 
@@ -208,7 +233,6 @@ int main(int argc,char* argv[])
         ++first;
     }
     refresh();
-    getch();
 
     start_end_location=maze_generator(&dungeon[0][0],y_size_of_map,x_size_of_map,start_end_location);
 
@@ -328,7 +352,7 @@ int main(int argc,char* argv[])
             case 'w':
                 if (dungeon[start_end_location.y_begin-1][start_end_location.x_begin].square=='|' || dungeon[start_end_location.y_begin-1][start_end_location.x_begin].square=='_' )
                 {
-                   open_close=doors(dungeon[start_end_location.y_begin-1][start_end_location.x_begin].door,&hero_main,door_wave);
+                    open_close=doors(dungeon[start_end_location.y_begin-1][start_end_location.x_begin].door,&hero_main,door_wave);
                     if (open_close>0)
                     {
                         dungeon[start_end_location.y_begin-1][start_end_location.x_begin].door=0;
@@ -344,11 +368,11 @@ int main(int argc,char* argv[])
                     else if(battle==2)
                     {
                         if (dungeon[start_end_location.y_begin+1][start_end_location.x_begin].square==' ')
-                        start_end_location.y_begin+=1;
+                            start_end_location.y_begin+=1;
                         else if (dungeon[start_end_location.y_begin][start_end_location.x_begin-1].square==' ')
-                        start_end_location.x_begin-=1;
+                            start_end_location.x_begin-=1;
                         else if (dungeon[start_end_location.y_begin][start_end_location.x_begin+1].square==' ')
-                        start_end_location.x_begin+=1;
+                            start_end_location.x_begin+=1;
                     }
                     else
                     {
@@ -366,7 +390,7 @@ int main(int argc,char* argv[])
             case 'a':
                 if (dungeon[start_end_location.y_begin][start_end_location.x_begin-1].square=='|' || dungeon[start_end_location.y_begin][start_end_location.x_begin-1].square=='_' )
                 {
-                   open_close=doors(dungeon[start_end_location.y_begin][start_end_location.x_begin-1].door,&hero_main,door_wave);
+                    open_close=doors(dungeon[start_end_location.y_begin][start_end_location.x_begin-1].door,&hero_main,door_wave);
                     if (open_close>0)
                     {
                         dungeon[start_end_location.y_begin][start_end_location.x_begin-1].door=0;
@@ -382,11 +406,11 @@ int main(int argc,char* argv[])
                     else if(battle==2)
                     {
                         if (dungeon[start_end_location.y_begin+1][start_end_location.x_begin].square==' ')
-                        start_end_location.y_begin+=1;
+                            start_end_location.y_begin+=1;
                         else if (dungeon[start_end_location.y_begin-1][start_end_location.x_begin].square==' ')
-                        start_end_location.y_begin-=1;
+                            start_end_location.y_begin-=1;
                         else if (dungeon[start_end_location.y_begin][start_end_location.x_begin+1].square==' ')
-                        start_end_location.x_begin+=1;
+                            start_end_location.x_begin+=1;
                     }
                     else
                     {
@@ -404,7 +428,7 @@ int main(int argc,char* argv[])
             case 's':
                 if (dungeon[start_end_location.y_begin+1][start_end_location.x_begin].square=='|' || dungeon[start_end_location.y_begin+1][start_end_location.x_begin].square=='_' )
                 {
-                   open_close=doors(dungeon[start_end_location.y_begin+1][start_end_location.x_begin].door,&hero_main,door_wave);
+                    open_close=doors(dungeon[start_end_location.y_begin+1][start_end_location.x_begin].door,&hero_main,door_wave);
                     if (open_close>0)
                     {
                         dungeon[start_end_location.y_begin+1][start_end_location.x_begin].door=0;
@@ -420,11 +444,11 @@ int main(int argc,char* argv[])
                     else if(battle==2)
                     {
                         if (dungeon[start_end_location.y_begin][start_end_location.x_begin-1].square==' ')
-                        start_end_location.x_begin-=1;
+                            start_end_location.x_begin-=1;
                         else if (dungeon[start_end_location.y_begin-1][start_end_location.x_begin].square==' ')
-                        start_end_location.y_begin-=1;
+                            start_end_location.y_begin-=1;
                         else if (dungeon[start_end_location.y_begin][start_end_location.x_begin+1].square==' ')
-                        start_end_location.x_begin+=1;
+                            start_end_location.x_begin+=1;
                     }
                     else
                     {
@@ -442,7 +466,7 @@ int main(int argc,char* argv[])
             case 'd':
                 if (dungeon[start_end_location.y_begin][start_end_location.x_begin+1].square=='|' || dungeon[start_end_location.y_begin][start_end_location.x_begin+1].square=='_' )
                 {
-                   open_close=doors(dungeon[start_end_location.y_begin][start_end_location.x_begin+1].door,&hero_main,door_wave);
+                    open_close=doors(dungeon[start_end_location.y_begin][start_end_location.x_begin+1].door,&hero_main,door_wave);
                     if (open_close>0)
                     {
                         dungeon[start_end_location.y_begin][start_end_location.x_begin+1].door=0;
@@ -458,11 +482,11 @@ int main(int argc,char* argv[])
                     else if(battle==2)
                     {
                         if (dungeon[start_end_location.y_begin][start_end_location.x_begin-1].square==' ')
-                        start_end_location.x_begin-=1;
+                            start_end_location.x_begin-=1;
                         else if (dungeon[start_end_location.y_begin-1][start_end_location.x_begin].square==' ')
-                        start_end_location.y_begin-=1;
+                            start_end_location.y_begin-=1;
                         else if (dungeon[start_end_location.y_begin+1][start_end_location.x_begin].square==' ')
-                        start_end_location.y_begin+=1;
+                            start_end_location.y_begin+=1;
                     }
                     else
                     {

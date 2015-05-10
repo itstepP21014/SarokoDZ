@@ -55,7 +55,10 @@ coordinates maze_generator(maze*maze_,int y_size,int x_size,coordinates start_en
             x_move=x_size-2;
     }
     skeleton_warrior_chance=rand()%20;
-    if (skeleton_warrior_chance==19)
+    trap_chance=rand()%25;
+    if (trap_chance==24)
+        maze_[x_size*y_move+x_move].square='t';
+    else if (skeleton_warrior_chance==19)
         maze_[x_size*y_move+x_move].square='s';
     else
         maze_[x_size*y_move+x_move].square=' ';
@@ -116,9 +119,11 @@ coordinates maze_generator(maze*maze_,int y_size,int x_size,coordinates start_en
                 }
                 else
                 {
-                    trap_chance=rand()%20;
+                    trap_chance=rand()%25;
                     skeleton_warrior_chance=rand()%20;
-                    if (skeleton_warrior_chance==19)
+                    if (trap_chance==24)
+                        maze_[x_size*y_move+x_move].square='t';
+                    else if (skeleton_warrior_chance==19)
                         maze_[x_size*y_move+x_move].square='s';
                     else
                         maze_[x_size*y_move+x_move].square=' ';
@@ -126,9 +131,11 @@ coordinates maze_generator(maze*maze_,int y_size,int x_size,coordinates start_en
             }
             else
             {
-                trap_chance=rand()%20;
+                trap_chance=rand()%25;
                 skeleton_warrior_chance=rand()%20;
-                if (skeleton_warrior_chance==19)
+                if (trap_chance==24)
+                    maze_[x_size*y_move+x_move].square='t';
+                else if (skeleton_warrior_chance==19)
                     maze_[x_size*y_move+x_move].square='s';
                 else
                     maze_[x_size*y_move+x_move].square=' ';
@@ -343,6 +350,7 @@ void create_hero(hero*hero_main)
     printw("\tbeta v1.0\n\n\n");
     attron(COLOR_PAIR(5));
     printw("\tНажмите любую клавишу чтобы продолжить...");
+
     refresh();
     getch();
     clear();
