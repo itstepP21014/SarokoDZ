@@ -78,5 +78,6 @@ void event_generator(int*,int,int);
 void create_hero(hero*);
 int doors(int,hero*,Mix_Chunk*);
 int battle_processing(hero*,enemy*,Mix_Chunk*,Mix_Chunk*);
+int trap_processing(hero*);
 
 #endif // ALL_ARRAYS_H_INCLUDED

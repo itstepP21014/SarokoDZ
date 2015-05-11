@@ -71,8 +71,6 @@ int battle_processing(hero*hero_main,enemy*enemy_main,Mix_Chunk* spell_wav,Mix_C
                     attron(COLOR_PAIR(2));
                     printw("\n\tВы умерли...\n");
                     alive_dead=0;
-                    refresh();
-                    getch();
                     swi=0;
                 }
                 refresh();
@@ -129,4 +127,64 @@ int battle_processing(hero*hero_main,enemy*enemy_main,Mix_Chunk* spell_wav,Mix_C
     Mix_FreeChunk(battle_wav);
     battle_wav = Mix_LoadWAV("sound/mus_dungeon_temple_of_skean.wav");
     return alive_dead;
+}
+
+
+int trap_processing(hero*hero_main)
+{
+    char check_input;
+    clear();
+    attron(COLOR_PAIR(2));
+    printw("\n\tВы видите перед собой ловушку.\n");
+    attron(COLOR_PAIR(3));
+    printw("\n\t1-(Механика) Попытаться обезвредить ловушку.\n");
+    printw("\n\t2-Пройти вперед. (активировать ловушку.)\n");
+    printw("\n\t3-Отойти.\n");
+    refresh();
+    while (1)
+    {
+        check_input=getch();
+        if (check_input>48 && check_input<52)
+            clear();
+        switch(check_input)
+        {
+        case 49:
+            if (hero_main->mechanics>10)
+            {
+                printw("\n\n\t(Успех) Повозившись несколько минут - вы обезвреживаете ловушку.\n");
+                refresh();
+                getch();
+                return 1;
+            }
+            else
+            {
+                if (hero_main->mechanics<5)
+                {
+                    hero_main->hit_points-=5;
+                    printw("\n\n\t(Критическая неудача) Ловушка срабатывает - вы получаете 5 ед. урона.\n");
+                    refresh();
+                    getch();
+                    return 1;
+                }
+                else
+                {
+                    printw("\n\n\t(Неудача) Вам не удается обезвредить ловушку.\n");
+                    refresh();
+                    getch();
+                    return 0;
+                }
+            }
+            break;
+        case 50:
+            hero_main->hit_points-=5;
+            printw("\n\n\tЛовушка срабатывает - вы получаете 5 ед. урона.\n");
+            refresh();
+            getch();
+            return 1;
+            break;
+        case 51:
+            return 0;
+            break;
+        }
+    }
 }

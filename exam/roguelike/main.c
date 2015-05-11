@@ -302,12 +302,23 @@ int main(int argc,char* argv[])
                                 }
                                 else
                                 {
-                                    attron(COLOR_PAIR(4));
-                                    printw("%c",dungeon[first][second].square);
+                                    if (dungeon[first][second].square=='t')
+                                    {
+                                        if (hero_main.mechanics>10)
+                                        {
+                                            attron(COLOR_PAIR(7));
+                                            printw("%c",dungeon[first][second].square);
+                                        }
+                                        else
+                                            printw(" ");
+                                    }
+                                    else
+                                    {
+                                        attron(COLOR_PAIR(4));
+                                        printw("%c",dungeon[first][second].square);
+                                    }
                                 }
-
                             }
-
                         }
                     }
                     else
@@ -320,7 +331,6 @@ int main(int argc,char* argv[])
             ++first;
         }
 
-        refresh();
         attron(COLOR_PAIR(6));
         printw("%s\n",hero_main.name);
         printw("Жизнь %d\tСила %d\t\t\tАтлетика %d\t\tУровень %d\tОпыт %d/%d\n",hero_main.hit_points,hero_main.strength,hero_main.athletics,hero_main.level,hero_main.experience,hero_main.next_level);
@@ -346,7 +356,6 @@ int main(int argc,char* argv[])
         while(swi==1)
         {
             key_=getch();
-            refresh();
             switch (key_)
             {
             case 'w':
