@@ -27,7 +27,7 @@ int battle_processing(hero*hero_main,enemy*enemy_main,Mix_Chunk* spell_wav,Mix_C
     {
         clear();
         attron(COLOR_PAIR(6));
-        printw("\tВы вступили в сражение:\n");
+        printw("\n\tВы вступили в сражение:\n");
         printw("\t%-10s\tскелет воин\n",hero_main->name);
         printw("\tЖизнь  %d\tЖизнь  %d\n",hero_main->hit_points,enemy_main->hit_points);
         printw("\tМана   %d\tМана   %d\n",hero_main->mana_points,enemy_main->mana_points);
@@ -80,6 +80,7 @@ int battle_processing(hero*hero_main,enemy*enemy_main,Mix_Chunk* spell_wav,Mix_C
             {
                 attron(COLOR_PAIR(2));
                 printw("\n\tВы наносите противнику %d ед. урона и уничтожаете его.\n",damage_result_hero);
+                hero_main->experience+=(25+hero_main->exp_bonus);
                 refresh();
                 getch();
                 swi=0;
@@ -97,6 +98,7 @@ int battle_processing(hero*hero_main,enemy*enemy_main,Mix_Chunk* spell_wav,Mix_C
                 attron(COLOR_PAIR(2));
                 hero_main->mana_points-=5;
                 printw("\n\tВы произносите заклинание и от вашего противника остается лишь кучка золы\n");
+                hero_main->experience+=(25+hero_main->exp_bonus);
                 refresh();
                 getch();
                 swi=0;
@@ -134,6 +136,22 @@ int trap_processing(hero*hero_main)
 {
     char check_input;
     clear();
+    if (hero_main->mechanics<=10)
+    {
+            hero_main->hit_points-=5;
+            printw("\n\n\tСрабатывает ловушка и вы получаете 5 ед. урона.\n");
+            if (hero_main->hit_points<1)
+            {
+                attron(COLOR_PAIR(2));
+                printw("\n\tВы умерли...\n");
+                refresh();
+                getch();
+                return 2;
+            }
+            refresh();
+            getch();
+            return 1;
+    }
     attron(COLOR_PAIR(2));
     printw("\n\tВы видите перед собой ловушку.\n");
     attron(COLOR_PAIR(3));
@@ -149,7 +167,7 @@ int trap_processing(hero*hero_main)
         switch(check_input)
         {
         case 49:
-            if (hero_main->mechanics>10)
+            if (hero_main->mechanics>15)
             {
                 printw("\n\n\t(Успех) Повозившись несколько минут - вы обезвреживаете ловушку.\n");
                 refresh();
@@ -158,10 +176,18 @@ int trap_processing(hero*hero_main)
             }
             else
             {
-                if (hero_main->mechanics<5)
+                if (hero_main->mechanics<13)
                 {
                     hero_main->hit_points-=5;
                     printw("\n\n\t(Критическая неудача) Ловушка срабатывает - вы получаете 5 ед. урона.\n");
+                    if (hero_main->hit_points<1)
+                    {
+                        attron(COLOR_PAIR(2));
+                        printw("\n\tВы умерли...\n");
+                        refresh();
+                        getch();
+                        return 2;
+                    }
                     refresh();
                     getch();
                     return 1;
@@ -178,6 +204,14 @@ int trap_processing(hero*hero_main)
         case 50:
             hero_main->hit_points-=5;
             printw("\n\n\tЛовушка срабатывает - вы получаете 5 ед. урона.\n");
+            if (hero_main->hit_points<1)
+            {
+                attron(COLOR_PAIR(2));
+                printw("\n\tВы умерли...\n");
+                refresh();
+                getch();
+                return 2;
+            }
             refresh();
             getch();
             return 1;
@@ -187,4 +221,156 @@ int trap_processing(hero*hero_main)
             break;
         }
     }
+}
+
+
+void level_up(hero*hero_main)
+{
+    int points=0;
+    char check_input=0;
+    hero_main->level+=1;
+    if (hero_main->level%2!=0)
+    {
+        points=1;
+    while (points>0)
+    {
+        clear();
+        attron(COLOR_PAIR(5));
+        printw("\n\tВы достигли следующего уровня!");
+        attron(COLOR_PAIR(2));
+        printw("\n\n\tОсталось очков: %d",points);
+        attron(COLOR_PAIR(3));
+        printw("\n\n\t1-Сила         %d",hero_main->strength);
+        printw("\n\t2-Ловкость     %d",hero_main->dexterity);
+        printw("\n\t3-Интеллект    %d",hero_main->intellect);
+        printw("\n\t4-Харизма      %d",hero_main->charisma);
+        printw("\n\t5-Выносливость %d",hero_main->endurance);
+        printw("\n\t6-Мудрость     %d",hero_main->wisdom);
+        //printw("\n\tОтмена - клавиша 0: %d\n\n");
+        refresh();
+        check_input=0;
+        check_input=getch();
+        switch (check_input)
+        {
+        case 49:
+            --points;
+            hero_main->damage+=1;
+            hero_main->strength+=1;
+            break;
+        case 50:
+            --points;
+            hero_main->dexterity+=1;
+            break;
+        case 51:
+            --points;
+            hero_main->mana_points_max+=1;
+            hero_main->intellect+=1;
+            break;
+        case 52:
+            --points;
+            hero_main->charisma+=1;
+            break;
+        case 53:
+            --points;
+            hero_main->hit_points_max+=1;
+            hero_main->endurance+=1;
+            break;
+        case 54:
+            --points;
+            hero_main->exp_bonus+=1;
+            hero_main->wisdom+=1;
+            break;
+        }
+        if (points>0)
+            clear();
+        else
+        {
+            clear();
+            attron(COLOR_PAIR(5));
+            printw("\n\tВы достигли следующего уровня!");
+            attron(COLOR_PAIR(2));
+            printw("\n\n\tОсталось очков: %d",points);
+            attron(COLOR_PAIR(3));
+            printw("\n\n\t1-Сила         %d",hero_main->strength);
+            printw("\n\t2-Ловкость     %d",hero_main->dexterity);
+            printw("\n\t3-Интеллект    %d",hero_main->intellect);
+            printw("\n\t4-Харизма      %d",hero_main->charisma);
+            printw("\n\t5-Выносливость %d",hero_main->endurance);
+            printw("\n\t6-Мудрость     %d",hero_main->wisdom);
+            attron(COLOR_PAIR(5));
+            printw("\n\n\tНажмите любую клавишу...");
+            refresh();
+            getch();
+            clear();
+        }
+
+    }
+    }
+    points=1+hero_main->intellect/2;
+    while (points>0)
+    {
+        clear();
+        attron(COLOR_PAIR(5));
+        printw("\n\tВы достигли следующего уровня!",points);
+        attron(COLOR_PAIR(2));
+        printw("\n\n\tОсталось очков: %d",points);
+        attron(COLOR_PAIR(3));
+        printw("\n\n\t1-Скрытность  %d",hero_main->stealth);
+        printw("\n\t2-Атлетика    %d",hero_main->athletics);
+        printw("\n\t3-Механика    %d",hero_main->mechanics);
+        printw("\n\t4-Выживание   %d",hero_main->survival);
+        printw("\n\t5-Знание      %d",hero_main->knowledge);
+        //printw("\n\tОтмена - клавиша 0: %d\n\n");
+        refresh();
+        check_input=0;
+        check_input=getch();
+        switch (check_input)
+        {
+        case 49:
+            --points;
+            hero_main->stealth+=1;
+            break;
+        case 50:
+            --points;
+            hero_main->athletics+=1;
+            break;
+        case 51:
+            --points;
+            hero_main->mechanics+=1;
+            break;
+        case 52:
+            --points;
+            hero_main->survival+=1;
+            break;
+        case 53:
+            --points;
+            hero_main->knowledge+=1;
+            break;
+        }
+        if (points>0)
+            clear();
+        else
+        {
+            clear();
+            attron(COLOR_PAIR(5));
+            printw("\n\tВы достигли следующего уровня!",points);
+            attron(COLOR_PAIR(2));
+            printw("\n\n\tОсталось очков: %d",points);
+            attron(COLOR_PAIR(3));
+            printw("\n\n\t1-Скрытность  %d",hero_main->stealth);
+            printw("\n\t2-Атлетика    %d",hero_main->athletics);
+            printw("\n\t3-Механика    %d",hero_main->mechanics);
+            printw("\n\t4-Выживание   %d",hero_main->survival);
+            printw("\n\t5-Знание      %d",hero_main->knowledge);
+            attron(COLOR_PAIR(5));
+            printw("\n\n\tНажмите любую клавишу...",hero_main->wisdom);
+            refresh();
+            getch();
+            clear();
+        }
+    }
+    hero_main->experience-=hero_main->next_level;
+    hero_main->next_level*=2;
+    hero_main->hit_points=hero_main->hit_points_max;
+    hero_main->mana_points=hero_main->mana_points_max;
 }

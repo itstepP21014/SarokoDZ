@@ -309,8 +309,17 @@ int doors (int door_check,hero* hero_main,Mix_Chunk*door_wave)
     return 0;
 }
 
-void create_hero(hero*hero_main)
+void create_hero(hero*hero_main,int*y_max,int*x_max)
 {
+    int center_y=0,center_x=0;
+
+    WINDOW *dead=newwin(0, 0, 0, 0);
+    center_y=getmaxy(dead)/2-5;
+    center_x=getmaxx(dead)/2-10;
+    *y_max=getmaxy(dead)-10;
+    *x_max=getmaxx(dead)-10;
+    delwin(dead);
+
     int points=1,points_copy,attr_p=10,attr_copy=10;
     Mix_Chunk *wave = NULL;
 
@@ -339,17 +348,40 @@ void create_hero(hero*hero_main)
         exit(-1);
     }
     attron(COLOR_PAIR(6));
-    printw("\n\n\t++++++++++++++++++++\n");
-    attron(COLOR_PAIR(2));
-    printw("\t  welcome to world\n");
-    printw("\t      of\n");
-    printw("\t  FORGOTTEN REALMS\n");
+    move(center_y,center_x);
+    printw("++++++++++++++++++");
     attron(COLOR_PAIR(6));
-    printw("\t++++++++++++++++++++");
+    move(center_y+1,center_x);
+    printw("+");
+    attron(COLOR_PAIR(2));
+    printw("WELCOME TO WORLD");
+    attron(COLOR_PAIR(6));
+    printw("+");
+    move(center_y+2,center_x);
+    printw("+                +");
+    attron(COLOR_PAIR(6));
+    move(center_y+3,center_x);
+    printw("+");
+    attron(COLOR_PAIR(2));
+    printw("     OF         ");
+    attron(COLOR_PAIR(6));
+    printw("+");
+    move(center_y+4,center_x);
+    printw("+                +");
+    attron(COLOR_PAIR(6));
+    move(center_y+5,center_x);
+    printw("+");
+    attron(COLOR_PAIR(2));
+    printw("FORGOTTEN REALMS");
+    attron(COLOR_PAIR(6));
+    printw("+");
+    move(center_y+6,center_x);
+    printw("++++++++++++++++++");
     attron(COLOR_PAIR(4));
-    printw("\tbeta v1.0\n\n\n");
+    printw("\tbeta v1.0");
+    move(center_y+9,center_x);
     attron(COLOR_PAIR(5));
-    printw("\tНажмите любую клавишу чтобы продолжить...");
+    printw("Нажмите любую клавишу чтобы продолжить...");
 
     refresh();
     getch();
@@ -359,14 +391,21 @@ void create_hero(hero*hero_main)
     char check_input;
     int swi=1;
     attron(COLOR_PAIR(2));
-    printw ("\nВыберите специализацию своего персонажа:\n\n");
+    move(center_y,center_x-10);
+    printw ("Выберите специализацию своего персонажа:");
     attron(COLOR_PAIR(3));
-    printw("\n1-Воин\t\t\t2-Авантюрист\t\t3-Маг\n");
-    printw("\nсила +5\t\t\tЛовкость +5\t\tИнтеллект +5\n");
-    printw("\nатлетика +5\t\tмеханика +5\t\tзнание +5\n");
-    printw("\nзащита +3\t\tскрытность +5\t\tмана +20\n");
-    printw("\nЖизнь +20\t\tЖизнь +10\t\tЖизнь +5\n");
-    printw("\n\t\t\t\t\t\tзаклинание 'Огненный шар'(наносит 15 единиц урона огнем)");
+    move(center_y+2,center_x-10);
+    printw("1-Воин          2-Авантюрист        3-Маг");
+    move(center_y+4,center_x-10);
+    printw("сила     +5     Ловкость   +5       Интеллект +5");
+    move(center_y+5,center_x-10);
+    printw("атлетика +5     механика   +5       знание    +5");
+    move(center_y+6,center_x-10);
+    printw("защита   +3     скрытность +5       мана     +20");
+    move(center_y+7,center_x-10);
+    printw("Жизнь   +20     Жизнь     +10       Жизнь     +5");
+    move(center_y+8,center_x-10);
+    printw("                                    заклинание 'Огненный шар'(наносит 15 единиц урона огнем)");
     refresh();
     while (swi==1)
     {
@@ -377,6 +416,7 @@ void create_hero(hero*hero_main)
             hero_main->specialization=1;
             hero_main->athletics+=5;
             hero_main->hit_points+=20;
+            hero_main->hit_points_max+=20;
             hero_main->strength+=5;
             hero_main->armor+=3;
             hero_main->damage+=5;
@@ -385,6 +425,7 @@ void create_hero(hero*hero_main)
         case 50:
             hero_main->specialization=2;
             hero_main->hit_points+=10;
+            hero_main->hit_points_max+=10;
             hero_main->dexterity+=5;
             hero_main->mechanics+=5;
             hero_main->stealth+=5;
@@ -393,9 +434,11 @@ void create_hero(hero*hero_main)
         case 51:
             hero_main->specialization=3;
             hero_main->hit_points+=5;
+            hero_main->hit_points_max+=5;
             hero_main->intellect+=5;
             hero_main->knowledge+=5;
             hero_main->mana_points+=20;
+            hero_main->mana_points_max+=20;
             swi=0;
             break;
         }
@@ -405,14 +448,21 @@ void create_hero(hero*hero_main)
     while (attr_p>0)
     {
         attron(COLOR_PAIR(2));
-        printw("\n\tОсталось очков: %d\n\n",attr_p);
+        move(center_y,center_x);
+        printw("Осталось очков: %d",attr_p);
         attron(COLOR_PAIR(3));
-        printw("\t1-Сила         %d\n",hero_main->strength);
-        printw("\t2-Ловкость     %d\n",hero_main->dexterity);
-        printw("\t3-Интеллект    %d\n",hero_main->intellect);
-        printw("\t4-Харизма      %d\n",hero_main->charisma);
-        printw("\t5-Выносливость %d\n",hero_main->endurance);
-        printw("\t6-Мудрость     %d\n",hero_main->wisdom);
+        move(center_y+2,center_x);
+        printw("1-Сила         %d",hero_main->strength);
+        move(center_y+3,center_x);
+        printw("2-Ловкость     %d",hero_main->dexterity);
+        move(center_y+4,center_x);
+        printw("3-Интеллект    %d",hero_main->intellect);
+        move(center_y+5,center_x);
+        printw("4-Харизма      %d",hero_main->charisma);
+        move(center_y+6,center_x);
+        printw("5-Выносливость %d",hero_main->endurance);
+        move(center_y+7,center_x);
+        printw("6-Мудрость     %d",hero_main->wisdom);
         //printw("\n\tОтмена - клавиша 0: %d\n\n");
         refresh();
         check_input=0;
@@ -431,6 +481,7 @@ void create_hero(hero*hero_main)
         case 51:
             --attr_p;
             hero_main->mana_points+=1;
+            hero_main->mana_points_max+=1;
             hero_main->intellect+=1;
             break;
         case 52:
@@ -440,6 +491,7 @@ void create_hero(hero*hero_main)
         case 53:
             --attr_p;
             hero_main->hit_points+=1;
+            hero_main->hit_points_max+=1;
             hero_main->endurance+=1;
             break;
         case 54:
@@ -454,16 +506,24 @@ void create_hero(hero*hero_main)
         {
             clear();
             attron(COLOR_PAIR(2));
-            printw("\n\tОсталось очков: %d\n\n",attr_p);
+            move(center_y,center_x);
+            printw("Осталось очков: %d",attr_p);
             attron(COLOR_PAIR(3));
-            printw("\t1-Сила         %d\n",hero_main->strength);
-            printw("\t2-Ловкость     %d\n",hero_main->dexterity);
-            printw("\t3-Интеллект    %d\n",hero_main->intellect);
-            printw("\t4-Харизма      %d\n",hero_main->charisma);
-            printw("\t5-Выносливость %d\n",hero_main->endurance);
-            printw("\t6-Мудрость     %d\n",hero_main->wisdom);
+            move(center_y+2,center_x);
+            printw("1-Сила         %d",hero_main->strength);
+            move(center_y+3,center_x);
+            printw("2-Ловкость     %d",hero_main->dexterity);
+            move(center_y+4,center_x);
+            printw("3-Интеллект    %d",hero_main->intellect);
+            move(center_y+5,center_x);
+            printw("4-Харизма      %d",hero_main->charisma);
+            move(center_y+6,center_x);
+            printw("5-Выносливость %d",hero_main->endurance);
+            move(center_y+7,center_x);
+            printw("6-Мудрость     %d",hero_main->wisdom);
+            move(center_y+9,center_x);
             attron(COLOR_PAIR(5));
-            printw("\n   Нажмите любую клавишу...",hero_main->wisdom);
+            printw("Нажмите любую клавишу...");
             refresh();
             getch();
             clear();
@@ -475,14 +535,20 @@ void create_hero(hero*hero_main)
     points_copy=points;
     while (points>0)
     {
+        move(center_y,center_x);
         attron(COLOR_PAIR(2));
-        printw("\n\tОсталось очков: %d\n\n",points);
+        printw("Осталось очков: %d",points);
+        move(center_y+2,center_x);
         attron(COLOR_PAIR(3));
-        printw("\t1-Скрытность  %d\n",hero_main->stealth);
-        printw("\t2-Атлетика    %d\n",hero_main->athletics);
-        printw("\t3-Механика    %d\n",hero_main->mechanics);
-        printw("\t4-Выживание   %d\n",hero_main->survival);
-        printw("\t5-Знание      %d\n",hero_main->knowledge);
+        printw("1-Скрытность  %d",hero_main->stealth);
+        move(center_y+3,center_x);
+        printw("2-Атлетика    %d",hero_main->athletics);
+        move(center_y+4,center_x);
+        printw("3-Механика    %d",hero_main->mechanics);
+        move(center_y+5,center_x);
+        printw("4-Выживание   %d",hero_main->survival);
+        move(center_y+6,center_x);
+        printw("5-Знание      %d",hero_main->knowledge);
         //printw("\n\tОтмена - клавиша 0: %d\n\n");
         refresh();
         check_input=0;
@@ -515,16 +581,23 @@ void create_hero(hero*hero_main)
         else
         {
             clear();
+            move(center_y,center_x);
             attron(COLOR_PAIR(2));
-            printw("\n\tОсталось очков: %d\n\n",points);
+            printw("Осталось очков: %d",points);
+            move(center_y+2,center_x);
             attron(COLOR_PAIR(3));
-            printw("\t1-Скрытность  %d\n",hero_main->stealth);
-            printw("\t2-Атлетика    %d\n",hero_main->athletics);
-            printw("\t3-Механика    %d\n",hero_main->mechanics);
-            printw("\t4-Выживание   %d\n",hero_main->survival);
-            printw("\t5-Знание      %d\n",hero_main->knowledge);
+            printw("1-Скрытность  %d",hero_main->stealth);
+            move(center_y+3,center_x);
+            printw("2-Атлетика    %d",hero_main->athletics);
+            move(center_y+4,center_x);
+            printw("3-Механика    %d",hero_main->mechanics);
+            move(center_y+5,center_x);
+            printw("4-Выживание   %d",hero_main->survival);
+            move(center_y+6,center_x);
+            printw("5-Знание      %d",hero_main->knowledge);
+            move(center_y+8,center_x);
             attron(COLOR_PAIR(5));
-            printw("\n   Нажмите любую клавишу...",hero_main->wisdom);
+            printw("Нажмите любую клавишу...",hero_main->wisdom);
             refresh();
             getch();
             clear();
@@ -541,16 +614,20 @@ void create_hero(hero*hero_main)
     while (swi)
     {
         attron(COLOR_PAIR(6));
-        printw("\n\tВведите имя своего персонажа (не более 10 символов):\n\t");
+        move(center_y,center_x-10);
+        printw("Введите имя своего персонажа (не более 10 символов):");
+        move(center_y+1,center_x-10);
         refresh();
         scanw("%s",&buf);
         fflush(stdin);
         if (strlen(buf)>10)
         {
             attron(COLOR_PAIR(4));
-            printw("\n\tСлишком длинное имя - повторите попытку.\n");
+            move(center_y+2,center_x-10);
+            printw("Слишком длинное имя - повторите попытку.");
             refresh();
             getch();
+            clear();
         }
         else
         {
@@ -560,9 +637,11 @@ void create_hero(hero*hero_main)
     }
     clear();
     attron(COLOR_PAIR(2));
-    printw("\n\tВаше имя: %s\n",hero_main->name);
+    move(center_y,center_x);
+    printw("Ваше имя: %s",hero_main->name);
+    move(center_y+2,center_x);
     attron(COLOR_PAIR(5));
-    printw("\n   Нажмите любую клавишу...",hero_main->wisdom);
+    printw("Нажмите любую клавишу...",hero_main->wisdom);
     refresh();
     getch();
     clear();

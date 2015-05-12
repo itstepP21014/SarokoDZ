@@ -14,8 +14,8 @@
 #include <stdlib.h>
 #include <time.h>
 #include <math.h>
-#include <SDL.h>
-#include <SDL_mixer.h>
+#include <SDL2/SDL.h>
+#include <SDL2/SDL_mixer.h>
 #include <string.h>
 #include "../../../modules/compatibility.h"
 
@@ -28,7 +28,9 @@ typedef struct hero
     int level;
     int next_level;
     int hit_points;
+    int hit_points_max;
     int mana_points;
+    int mana_points_max;
     int damage;
     int armor;
     int stealth;
@@ -75,9 +77,10 @@ typedef struct maze
 
 coordinates maze_generator(maze*,int,int,coordinates);
 void event_generator(int*,int,int);
-void create_hero(hero*);
+void create_hero(hero*,int*,int*);
 int doors(int,hero*,Mix_Chunk*);
 int battle_processing(hero*,enemy*,Mix_Chunk*,Mix_Chunk*);
 int trap_processing(hero*);
+void level_up(hero*);
 
 #endif // ALL_ARRAYS_H_INCLUDED

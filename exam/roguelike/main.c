@@ -88,19 +88,17 @@ int main(int argc,char* argv[])
     char key_=0;
     int key_i=1;
 
-    system("chcp 1251");
-    system("cls");
     printf("\tПредупреждение!\n\n\tНастройте размер терминала сейчас, так как вы не сможете изменить его после запуска игры.\n");
     printf("\t(От размера терминала будет зависеть - насколько большим может быть поле игры.)\n\n");
     printf("\tВажно!\n");
     printf("\tВсе управление в игре осуществляется с клавиатуры. Передвижение персонажа - wasd, выбор варианта действия - название клавиши будет написано рядом с действием.\n");
-
     printf("\n\tОсобые обозначения:\n");
     printf("\t'@' - ваш персонаж.\n");
     printf("\t'#' - стена.\n");
     printf("\t'x' - выход из лабиринта.\n");
     printf("\t'|' '_' - дверь.\n");
     printf("\t'\\' - открытая дверь.\n");
+    printf("\t't' - ловушка.\n");
     printf("\t's' - скелет воин.\n");
     printf("\n\t(Когда будете готовы - просто нажмите Enter)\n");
 
@@ -156,9 +154,11 @@ int main(int argc,char* argv[])
     hero_main.next_level=50;
     hero_main.level=1;
     hero_main.exp_bonus=0;
+    hero_main.hit_points_max=5;
+    hero_main.mana_points_max=0;
 
-    int first=0,second=0,swi=1,open_close=0,battle=3;
-    int y_size_of_map=0,x_size_of_map=0;
+    int first=0,second=0,swi=1,open_close=0,battle=3,result_trap=0;
+    int y_size_of_map=0,x_size_of_map=0,y_max=0,x_max=0;
     coordinates start_end_location;
 
     /*
@@ -170,17 +170,10 @@ int main(int argc,char* argv[])
         }
     */
 
-    create_hero(&hero_main);
+    create_hero(&hero_main,&y_max,&x_max);
 
     Mix_Chunk *wave = NULL;
     Mix_Chunk *door_wave=NULL;
-
-    int y_max=0,x_max=0;
-
-    WINDOW *dead=newwin(0, 0, 0, 0);
-    y_max=getmaxy(dead)-10;
-    x_max=getmaxx(dead)-10;
-    delwin(dead);
 
     attron(COLOR_PAIR(6));
     while(y_size_of_map<20 || y_size_of_map>y_max)
@@ -238,6 +231,8 @@ int main(int argc,char* argv[])
 
     while (1)
     {
+        if (hero_main.experience>=hero_main.next_level)
+        level_up(&hero_main);
 
         if(Mix_Playing(1)==0)
         {
@@ -332,13 +327,13 @@ int main(int argc,char* argv[])
         }
 
         attron(COLOR_PAIR(6));
-        printw("%s\n",hero_main.name);
-        printw("Жизнь %d\tСила %d\t\t\tАтлетика %d\t\tУровень %d\tОпыт %d/%d\n",hero_main.hit_points,hero_main.strength,hero_main.athletics,hero_main.level,hero_main.experience,hero_main.next_level);
-        printw("Мана %d\t\tЛовкость %d\t\tМеханика %d\n",hero_main.mana_points,hero_main.dexterity,hero_main.mechanics);
-        printw("Урон %d\t\tИнтеллект %d\t\tЗнание %d\n",hero_main.damage,hero_main.intellect,hero_main.knowledge);
-        printw("Защита %d\tХаризма %d\t\tВыживание %d\n",hero_main.armor,hero_main.charisma,hero_main.survival);
-        printw("\t\tМудрость %d\t\tСкрытность %d\n",hero_main.wisdom,hero_main.stealth);
-        printw("\t\tВыносливость %d\n",hero_main.endurance);
+        printw("\t%s\n",hero_main.name);
+        printw("Жизнь   %3d/%3d    Сила         %3d Атлетика   %3d Уровень %3d Опыт %d/%d\n",hero_main.hit_points,hero_main.hit_points_max,hero_main.strength,hero_main.athletics,hero_main.level,hero_main.experience,hero_main.next_level);
+        printw("Мана    %3d/%3d    Ловкость     %3d Механика   %3d\n",hero_main.mana_points,hero_main.mana_points_max,hero_main.dexterity,hero_main.mechanics);
+        printw("Урон    %3d        Интеллект    %3d Знание     %3d\n",hero_main.damage,hero_main.intellect,hero_main.knowledge);
+        printw("Защита  %3d        Харизма      %3d Выживание  %3d\n",hero_main.armor,hero_main.charisma,hero_main.survival);
+        printw("                   Мудрость     %3d Скрытность %3d\n",hero_main.wisdom,hero_main.stealth);
+        printw("                   Выносливость %3d\n",hero_main.endurance);
         refresh();
         if (start_end_location.y_begin==start_end_location.y_end && start_end_location.x_begin==start_end_location.x_end)
         {
@@ -389,6 +384,17 @@ int main(int argc,char* argv[])
                         start_end_location.y_begin-=1;
                     }
                 }
+                else if (dungeon[start_end_location.y_begin-1][start_end_location.x_begin].square=='t')
+                {
+                    result_trap=trap_processing(&hero_main);
+                    if (result_trap==1)
+                    {
+                        dungeon[start_end_location.y_begin-1][start_end_location.x_begin].square=' ';
+                        start_end_location.y_begin-=1;
+                    }
+                    else if (result_trap==2)
+                        return 1;
+                }
                 else
                 {
                     if (dungeon[start_end_location.y_begin-1][start_end_location.x_begin].square!='#' && dungeon[start_end_location.y_begin-1][start_end_location.x_begin].square!='_' && dungeon[start_end_location.y_begin-1][start_end_location.x_begin].square!='|')
@@ -426,6 +432,17 @@ int main(int argc,char* argv[])
                         dungeon[start_end_location.y_begin][start_end_location.x_begin-1].square=' ';
                         start_end_location.x_begin-=1;
                     }
+                }
+                else if (dungeon[start_end_location.y_begin][start_end_location.x_begin-1].square=='t')
+                {
+                    result_trap=trap_processing(&hero_main);
+                    if (result_trap==1)
+                    {
+                        dungeon[start_end_location.y_begin][start_end_location.x_begin-1].square=' ';
+                        start_end_location.x_begin-=1;
+                    }
+                    else if (result_trap==2)
+                        return 1;
                 }
                 else
                 {
@@ -465,6 +482,17 @@ int main(int argc,char* argv[])
                         start_end_location.y_begin+=1;
                     }
                 }
+                else if (dungeon[start_end_location.y_begin+1][start_end_location.x_begin].square=='t')
+                {
+                    result_trap=trap_processing(&hero_main);
+                    if (result_trap==1)
+                    {
+                        dungeon[start_end_location.y_begin+1][start_end_location.x_begin].square=' ';
+                        start_end_location.y_begin+=1;
+                    }
+                    else if (result_trap==2)
+                        return 1;
+                }
                 else
                 {
                     if (dungeon[start_end_location.y_begin+1][start_end_location.x_begin].square!='#' && dungeon[start_end_location.y_begin+1][start_end_location.x_begin].square!='_' && dungeon[start_end_location.y_begin+1][start_end_location.x_begin].square!='|')
@@ -502,6 +530,17 @@ int main(int argc,char* argv[])
                         dungeon[start_end_location.y_begin][start_end_location.x_begin+1].square=' ';
                         start_end_location.x_begin+=1;
                     }
+                }
+                else if (dungeon[start_end_location.y_begin][start_end_location.x_begin+1].square=='t')
+                {
+                    result_trap=trap_processing(&hero_main);
+                    if (result_trap==1)
+                    {
+                        dungeon[start_end_location.y_begin][start_end_location.x_begin+1].square=' ';
+                        start_end_location.x_begin+=1;
+                    }
+                    else if (result_trap==2)
+                        return 1;
                 }
                 else
                 {
