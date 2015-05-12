@@ -387,7 +387,6 @@ void create_hero(hero*hero_main,int*y_max,int*x_max)
     getch();
     clear();
 
-    //******************
     char check_input;
     int swi=1;
     attron(COLOR_PAIR(2));
@@ -463,7 +462,6 @@ void create_hero(hero*hero_main,int*y_max,int*x_max)
         printw("5-Выносливость %d",hero_main->endurance);
         move(center_y+7,center_x);
         printw("6-Мудрость     %d",hero_main->wisdom);
-        //printw("\n\tОтмена - клавиша 0: %d\n\n");
         refresh();
         check_input=0;
         check_input=getch();
@@ -528,7 +526,6 @@ void create_hero(hero*hero_main,int*y_max,int*x_max)
             getch();
             clear();
         }
-
     }
 
     points+=hero_main->intellect;
@@ -549,7 +546,6 @@ void create_hero(hero*hero_main,int*y_max,int*x_max)
         printw("4-Выживание   %d",hero_main->survival);
         move(center_y+6,center_x);
         printw("5-Знание      %d",hero_main->knowledge);
-        //printw("\n\tОтмена - клавиша 0: %d\n\n");
         refresh();
         check_input=0;
         check_input=getch();

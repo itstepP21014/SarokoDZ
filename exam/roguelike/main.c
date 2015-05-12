@@ -4,87 +4,6 @@
 
 int main(int argc,char* argv[])
 {
-    /*  int ttt=0;
-      scanf("%d",&ttt);
-      if (SDL_Init(SDL_INIT_VIDEO) != 0)
-      {
-          printf("SDL_Init Error!\n");
-          return 1;
-      }
-
-
-
-      SDL_Window *win = SDL_CreateWindow("Hello World!", 100, 100, 210, 330, SDL_WINDOW_SHOWN);
-      if (win==NULL)
-      {
-          printf("SDL_CreateWindow Error!\n");
-          SDL_Quit();
-          return 1;
-      }
-
-      SDL_Renderer *ren = SDL_CreateRenderer(win, -1, SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC);
-      if (ren==NULL)
-      {
-          SDL_DestroyWindow(win);
-          printf("SDL_CreateRenderer Error!\n");
-          SDL_Quit();
-          return 1;
-      }
-
-      SDL_Surface *bmp = SDL_LoadBMP("pics/EDWINL.bmp");
-
-      if(bmp == NULL)
-      {
-          SDL_DestroyRenderer(ren);
-          SDL_DestroyWindow(win);
-          fprintf(stderr, "SDL_LoadBMP Error: %s\n", SDL_GetError());
-          SDL_Quit();
-          exit(1);
-      }
-
-      SDL_Texture *tex = SDL_CreateTextureFromSurface(ren, bmp);
-      SDL_FreeSurface(bmp);
-
-      if(tex == NULL)
-      {
-          SDL_DestroyRenderer(ren);
-          SDL_DestroyWindow(win);
-          fprintf(stderr, "SDL_CreateTextureFromSurface Error: %s\n",
-                  SDL_GetError());
-          SDL_Quit();
-          exit(1);
-      }
-
-      SDL_RenderClear(ren);
-      SDL_Rect srcrect;
-      SDL_Rect dstrect;
-
-      srcrect.x = 50;
-      srcrect.y = 50;
-      srcrect.w = 60;
-      srcrect.h = 60;
-      dstrect.x = 110;
-      dstrect.y = 110;
-      dstrect.w = 60;
-      dstrect.h = 60;
-
-      //Draw the texture
-      SDL_RenderCopy(ren, tex, NULL, NULL);
-      //Update the screen
-      SDL_RenderPresent(ren);
-      //Have the program wait for 2000ms so we get a chance to see the screen
-      while (ttt=0)
-      {
-          SDL_Delay(100);
-      }
-      scanf("%d",&ttt);
-
-      SDL_DestroyTexture(tex);
-      SDL_DestroyRenderer(ren);
-      SDL_DestroyWindow(win);
-      SDL_Quit();*/
-    // ******************************************************************************
-
     char key_=0;
     int key_i=1;
 
@@ -161,15 +80,6 @@ int main(int argc,char* argv[])
     int y_size_of_map=0,x_size_of_map=0,y_max=0,x_max=0;
     coordinates start_end_location;
 
-    /*
-        while(counter<100)
-        {
-            key_=getch();
-            printf ("%d\n",key_);
-            ++counter;
-        }
-    */
-
     create_hero(&hero_main,&y_max,&x_max);
 
     Mix_Chunk *wave = NULL;
@@ -232,7 +142,7 @@ int main(int argc,char* argv[])
     while (1)
     {
         if (hero_main.experience>=hero_main.next_level)
-        level_up(&hero_main);
+            level_up(&hero_main);
 
         if(Mix_Playing(1)==0)
         {
