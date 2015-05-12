@@ -1,4 +1,4 @@
-#include "M_D_H_E.h"
+ï»¿#include "M_D_H_E.h"
 
 coordinates maze_generator(maze*maze_,int y_size,int x_size,coordinates start_end_loc)
 {
@@ -190,16 +190,16 @@ int doors (int door_check,hero* hero_main,Mix_Chunk*door_wave)
     {
         clear();
         attron(COLOR_PAIR(2));
-        printw("\n\tÏåðåä âàìè äåðåâÿííàÿ äâåðü\n");
+        printw("\n\tÐŸÐµÑ€ÐµÐ´ Ð²Ð°Ð¼Ð¸ Ð´ÐµÑ€ÐµÐ²ÑÐ½Ð½Ð°Ñ Ð´Ð²ÐµÑ€ÑŒ\n");
         attron(COLOR_PAIR(3));
-        printw("\n\t1-Ïîïûòàòüñÿ îòêðûòü äâåðü.\n");
-        printw("\n\t2-(Ñèëà) Ïîïûòàòüñÿ âûëîìàòü äâåðü.\n");
-        printw("\n\t3-(Ìåõàíèêà) Ïîïûòàòüñÿ âçëîìàòü äâåðü.\n");
+        printw("\n\t1-ÐŸÐ¾Ð¿Ñ‹Ñ‚Ð°Ñ‚ÑŒÑÑ Ð¾Ñ‚ÐºÑ€Ñ‹Ñ‚ÑŒ Ð´Ð²ÐµÑ€ÑŒ.\n");
+        printw("\n\t2-(Ð¡Ð¸Ð»Ð°) ÐŸÐ¾Ð¿Ñ‹Ñ‚Ð°Ñ‚ÑŒÑÑ Ð²Ñ‹Ð»Ð¾Ð¼Ð°Ñ‚ÑŒ Ð´Ð²ÐµÑ€ÑŒ.\n");
+        printw("\n\t3-(ÐœÐµÑ…Ð°Ð½Ð¸ÐºÐ°) ÐŸÐ¾Ð¿Ñ‹Ñ‚Ð°Ñ‚ÑŒÑÑ Ð²Ð·Ð»Ð¾Ð¼Ð°Ñ‚ÑŒ Ð´Ð²ÐµÑ€ÑŒ.\n");
         if (hero_main->specialization==3)
-            printw("\n\t4-(Ìàã) Ïîïûòàòüñÿ ñæå÷ü äâåðü îãíåííûì øàðîì.\n");
+            printw("\n\t4-(ÐœÐ°Ð³) ÐŸÐ¾Ð¿Ñ‹Ñ‚Ð°Ñ‚ÑŒÑÑ ÑÐ¶ÐµÑ‡ÑŒ Ð´Ð²ÐµÑ€ÑŒ Ð¾Ð³Ð½ÐµÐ½Ð½Ñ‹Ð¼ ÑˆÐ°Ñ€Ð¾Ð¼.\n");
         if (hero_main->keys>0)
-            printw("\n\t5-Ïîïûòàòüñÿ îòïåðåòü äâåðü íàéäåííûì êëþ÷îì.\n");
-        printw("\n\t6-Îòîéòè.\n");
+            printw("\n\t5-ÐŸÐ¾Ð¿Ñ‹Ñ‚Ð°Ñ‚ÑŒÑÑ Ð¾Ñ‚Ð¿ÐµÑ€ÐµÑ‚ÑŒ Ð´Ð²ÐµÑ€ÑŒ Ð½Ð°Ð¹Ð´ÐµÐ½Ð½Ñ‹Ð¼ ÐºÐ»ÑŽÑ‡Ð¾Ð¼.\n");
+        printw("\n\t6-ÐžÑ‚Ð¾Ð¹Ñ‚Ð¸.\n");
         refresh();
         while (1)
         {
@@ -211,14 +211,14 @@ int doors (int door_check,hero* hero_main,Mix_Chunk*door_wave)
             case 49:
                 if (door_check==10)
                 {
-                    printw("\n\n\tÝòà äâåðü íå çàïåðòà è âû ëåãêî îòêðûâàåòå åå.\n");
+                    printw("\n\n\tÐ­Ñ‚Ð° Ð´Ð²ÐµÑ€ÑŒ Ð½Ðµ Ð·Ð°Ð¿ÐµÑ€Ñ‚Ð° Ð¸ Ð²Ñ‹ Ð»ÐµÐ³ÐºÐ¾ Ð¾Ñ‚ÐºÑ€Ñ‹Ð²Ð°ÐµÑ‚Ðµ ÐµÐµ.\n");
                     refresh();
                     getch();
                     return 1;
                 }
                 else
                 {
-                    printw("\n\n\tÄâåðü çàïåðòà.\n");
+                    printw("\n\n\tÐ”Ð²ÐµÑ€ÑŒ Ð·Ð°Ð¿ÐµÑ€Ñ‚Ð°.\n");
                     refresh();
                     getch();
                     return 0;
@@ -227,14 +227,14 @@ int doors (int door_check,hero* hero_main,Mix_Chunk*door_wave)
             case 50:
                 if (hero_main->strength>4)
                 {
-                    printw("\n\n\t(Óñïåõ) Íåñêîëüêèìè ìîùíûìè óäàðàìè âû âûøèáàåòå äâåðü.\n");
+                    printw("\n\n\t(Ð£ÑÐ¿ÐµÑ…) ÐÐµÑÐºÐ¾Ð»ÑŒÐºÐ¸Ð¼Ð¸ Ð¼Ð¾Ñ‰Ð½Ñ‹Ð¼Ð¸ ÑƒÐ´Ð°Ñ€Ð°Ð¼Ð¸ Ð²Ñ‹ Ð²Ñ‹ÑˆÐ¸Ð±Ð°ÐµÑ‚Ðµ Ð´Ð²ÐµÑ€ÑŒ.\n");
                     refresh();
                     getch();
                     return 1;
                 }
                 else
                 {
-                    printw("\n\n\t(Íåóäà÷à) Ñêîëüêî áû âû íå êîëîòèëè ïî äâåðè - îíà íå ïîääàåòñÿ.\n");
+                    printw("\n\n\t(ÐÐµÑƒÐ´Ð°Ñ‡Ð°) Ð¡ÐºÐ¾Ð»ÑŒÐºÐ¾ Ð±Ñ‹ Ð²Ñ‹ Ð½Ðµ ÐºÐ¾Ð»Ð¾Ñ‚Ð¸Ð»Ð¸ Ð¿Ð¾ Ð´Ð²ÐµÑ€Ð¸ - Ð¾Ð½Ð° Ð½Ðµ Ð¿Ð¾Ð´Ð´Ð°ÐµÑ‚ÑÑ.\n");
                     refresh();
                     getch();
                     return 0;
@@ -243,14 +243,14 @@ int doors (int door_check,hero* hero_main,Mix_Chunk*door_wave)
             case 51:
                 if (hero_main->mechanics>4)
                 {
-                    printw("\n\n\t(Óñïåõ) Âû âîçèòåñü ñ çàìêîì ïîêà íàêîíåö íå ñëûøèòå ùåë÷îê.\n");
+                    printw("\n\n\t(Ð£ÑÐ¿ÐµÑ…) Ð’Ñ‹ Ð²Ð¾Ð·Ð¸Ñ‚ÐµÑÑŒ Ñ Ð·Ð°Ð¼ÐºÐ¾Ð¼ Ð¿Ð¾ÐºÐ° Ð½Ð°ÐºÐ¾Ð½ÐµÑ† Ð½Ðµ ÑÐ»Ñ‹ÑˆÐ¸Ñ‚Ðµ Ñ‰ÐµÐ»Ñ‡Ð¾Ðº.\n");
                     refresh();
                     getch();
                     return 1;
                 }
                 else
                 {
-                    printw("\n\n\t(Íåóäà÷à) Ó âàñ íå ïîëó÷àåòñÿ âçëîìàòü çàìîê\n");
+                    printw("\n\n\t(ÐÐµÑƒÐ´Ð°Ñ‡Ð°) Ð£ Ð²Ð°Ñ Ð½Ðµ Ð¿Ð¾Ð»ÑƒÑ‡Ð°ÐµÑ‚ÑÑ Ð²Ð·Ð»Ð¾Ð¼Ð°Ñ‚ÑŒ Ð·Ð°Ð¼Ð¾Ðº\n");
                     refresh();
                     getch();
                     return 0;
@@ -264,7 +264,7 @@ int doors (int door_check,hero* hero_main,Mix_Chunk*door_wave)
                         printf("Mix_PlayChannel Error\n");
                         exit(-1);
                     }
-                    printw("\n\n\t(Óñïåõ) Âû ïðîèçíîñèòå çàêëèíàíèå è ñ âàøèõ ðóê ñðûâàåòñÿ îãíåííàÿ ñôåðà. Ïîñëå âçðûâà îò äâåðè îñòàåòñÿ ëèøü íåñêîëüêî æåëåçíûõ ïðóòüåâ è êó÷à çîëû.\n");
+                    printw("\n\n\t(Ð£ÑÐ¿ÐµÑ…) Ð’Ñ‹ Ð¿Ñ€Ð¾Ð¸Ð·Ð½Ð¾ÑÐ¸Ñ‚Ðµ Ð·Ð°ÐºÐ»Ð¸Ð½Ð°Ð½Ð¸Ðµ Ð¸ Ñ Ð²Ð°ÑˆÐ¸Ñ… Ñ€ÑƒÐº ÑÑ€Ñ‹Ð²Ð°ÐµÑ‚ÑÑ Ð¾Ð³Ð½ÐµÐ½Ð½Ð°Ñ ÑÑ„ÐµÑ€Ð°. ÐŸÐ¾ÑÐ»Ðµ Ð²Ð·Ñ€Ñ‹Ð²Ð° Ð¾Ñ‚ Ð´Ð²ÐµÑ€Ð¸ Ð¾ÑÑ‚Ð°ÐµÑ‚ÑÑ Ð»Ð¸ÑˆÑŒ Ð½ÐµÑÐºÐ¾Ð»ÑŒÐºÐ¾ Ð¶ÐµÐ»ÐµÐ·Ð½Ñ‹Ñ… Ð¿Ñ€ÑƒÑ‚ÑŒÐµÐ² Ð¸ ÐºÑƒÑ‡Ð° Ð·Ð¾Ð»Ñ‹.\n");
                     hero_main->mana_points-=5;
                     refresh();
                     getch();
@@ -273,7 +273,7 @@ int doors (int door_check,hero* hero_main,Mix_Chunk*door_wave)
                 }
                 else
                 {
-                    printw("\n\n\t(Ó âàñ íåäîñòàòî÷íî ìàíû, ÷òîáû ïðîèçíåñòè çàêëèíàíèå).\n");
+                    printw("\n\n\t(Ð£ Ð²Ð°Ñ Ð½ÐµÐ´Ð¾ÑÑ‚Ð°Ñ‚Ð¾Ñ‡Ð½Ð¾ Ð¼Ð°Ð½Ñ‹, Ñ‡Ñ‚Ð¾Ð±Ñ‹ Ð¿Ñ€Ð¾Ð¸Ð·Ð½ÐµÑÑ‚Ð¸ Ð·Ð°ÐºÐ»Ð¸Ð½Ð°Ð½Ð¸Ðµ).\n");
                     refresh();
                     getch();
                     return 0;
@@ -286,14 +286,14 @@ int doors (int door_check,hero* hero_main,Mix_Chunk*door_wave)
                     hero_main->keys-=1;
                     if (chance==9)
                     {
-                        printw("\n\n\t(Óñïåõ) Êëþ÷ ïîäõîäèò ê äâåðè è âû îòïèðàåòå åå.\n");
+                        printw("\n\n\t(Ð£ÑÐ¿ÐµÑ…) ÐšÐ»ÑŽÑ‡ Ð¿Ð¾Ð´Ñ…Ð¾Ð´Ð¸Ñ‚ Ðº Ð´Ð²ÐµÑ€Ð¸ Ð¸ Ð²Ñ‹ Ð¾Ñ‚Ð¿Ð¸Ñ€Ð°ÐµÑ‚Ðµ ÐµÐµ.\n");
                         refresh();
                         getch();
                         return 1;
                     }
                     else
                     {
-                        printw("\n\n\t(Íåóäà÷à) Âñå âàøè ñòàðàíèÿ ïî îòêðûòèþ äâåðè çàâåðøàþòñÿ ëèøü òåì, ÷òî êëþ÷ çàñòðåâàåò â çàìêå.\n");
+                        printw("\n\n\t(ÐÐµÑƒÐ´Ð°Ñ‡Ð°) Ð’ÑÐµ Ð²Ð°ÑˆÐ¸ ÑÑ‚Ð°Ñ€Ð°Ð½Ð¸Ñ Ð¿Ð¾ Ð¾Ñ‚ÐºÑ€Ñ‹Ñ‚Ð¸ÑŽ Ð´Ð²ÐµÑ€Ð¸ Ð·Ð°Ð²ÐµÑ€ÑˆÐ°ÑŽÑ‚ÑÑ Ð»Ð¸ÑˆÑŒ Ñ‚ÐµÐ¼, Ñ‡Ñ‚Ð¾ ÐºÐ»ÑŽÑ‡ Ð·Ð°ÑÑ‚Ñ€ÐµÐ²Ð°ÐµÑ‚ Ð² Ð·Ð°Ð¼ÐºÐµ.\n");
                         refresh();
                         getch();
                         return 0;
@@ -381,7 +381,7 @@ void create_hero(hero*hero_main,int*y_max,int*x_max)
     printw("\tbeta v1.0");
     move(center_y+9,center_x);
     attron(COLOR_PAIR(5));
-    printw("Íàæìèòå ëþáóþ êëàâèøó ÷òîáû ïðîäîëæèòü...");
+    printw("ÐÐ°Ð¶Ð¼Ð¸Ñ‚Ðµ Ð»ÑŽÐ±ÑƒÑŽ ÐºÐ»Ð°Ð²Ð¸ÑˆÑƒ Ñ‡Ñ‚Ð¾Ð±Ñ‹ Ð¿Ñ€Ð¾Ð´Ð¾Ð»Ð¶Ð¸Ñ‚ÑŒ...");
 
     refresh();
     getch();
@@ -392,20 +392,20 @@ void create_hero(hero*hero_main,int*y_max,int*x_max)
     int swi=1;
     attron(COLOR_PAIR(2));
     move(center_y,center_x-10);
-    printw ("Âûáåðèòå ñïåöèàëèçàöèþ ñâîåãî ïåðñîíàæà:");
+    printw ("Ð’Ñ‹Ð±ÐµÑ€Ð¸Ñ‚Ðµ ÑÐ¿ÐµÑ†Ð¸Ð°Ð»Ð¸Ð·Ð°Ñ†Ð¸ÑŽ ÑÐ²Ð¾ÐµÐ³Ð¾ Ð¿ÐµÑ€ÑÐ¾Ð½Ð°Ð¶Ð°:");
     attron(COLOR_PAIR(3));
     move(center_y+2,center_x-10);
-    printw("1-Âîèí          2-Àâàíòþðèñò        3-Ìàã");
+    printw("1-Ð’Ð¾Ð¸Ð½          2-ÐÐ²Ð°Ð½Ñ‚ÑŽÑ€Ð¸ÑÑ‚        3-ÐœÐ°Ð³");
     move(center_y+4,center_x-10);
-    printw("ñèëà     +5     Ëîâêîñòü   +5       Èíòåëëåêò +5");
+    printw("ÑÐ¸Ð»Ð°     +5     Ð›Ð¾Ð²ÐºÐ¾ÑÑ‚ÑŒ   +5       Ð˜Ð½Ñ‚ÐµÐ»Ð»ÐµÐºÑ‚ +5");
     move(center_y+5,center_x-10);
-    printw("àòëåòèêà +5     ìåõàíèêà   +5       çíàíèå    +5");
+    printw("Ð°Ñ‚Ð»ÐµÑ‚Ð¸ÐºÐ° +5     Ð¼ÐµÑ…Ð°Ð½Ð¸ÐºÐ°   +5       Ð·Ð½Ð°Ð½Ð¸Ðµ    +5");
     move(center_y+6,center_x-10);
-    printw("çàùèòà   +3     ñêðûòíîñòü +5       ìàíà     +20");
+    printw("Ð·Ð°Ñ‰Ð¸Ñ‚Ð°   +3     ÑÐºÑ€Ñ‹Ñ‚Ð½Ð¾ÑÑ‚ÑŒ +5       Ð¼Ð°Ð½Ð°     +20");
     move(center_y+7,center_x-10);
-    printw("Æèçíü   +20     Æèçíü     +10       Æèçíü     +5");
+    printw("Ð–Ð¸Ð·Ð½ÑŒ   +20     Ð–Ð¸Ð·Ð½ÑŒ     +10       Ð–Ð¸Ð·Ð½ÑŒ     +5");
     move(center_y+8,center_x-10);
-    printw("                                    çàêëèíàíèå 'Îãíåííûé øàð'(íàíîñèò 15 åäèíèö óðîíà îãíåì)");
+    printw("                                    Ð·Ð°ÐºÐ»Ð¸Ð½Ð°Ð½Ð¸Ðµ 'ÐžÐ³Ð½ÐµÐ½Ð½Ñ‹Ð¹ ÑˆÐ°Ñ€'(Ð½Ð°Ð½Ð¾ÑÐ¸Ñ‚ 15 ÐµÐ´Ð¸Ð½Ð¸Ñ† ÑƒÑ€Ð¾Ð½Ð° Ð¾Ð³Ð½ÐµÐ¼)");
     refresh();
     while (swi==1)
     {
@@ -449,21 +449,21 @@ void create_hero(hero*hero_main,int*y_max,int*x_max)
     {
         attron(COLOR_PAIR(2));
         move(center_y,center_x);
-        printw("Îñòàëîñü î÷êîâ: %d",attr_p);
+        printw("ÐžÑÑ‚Ð°Ð»Ð¾ÑÑŒ Ð¾Ñ‡ÐºÐ¾Ð²: %d",attr_p);
         attron(COLOR_PAIR(3));
         move(center_y+2,center_x);
-        printw("1-Ñèëà         %d",hero_main->strength);
+        printw("1-Ð¡Ð¸Ð»Ð°         %d",hero_main->strength);
         move(center_y+3,center_x);
-        printw("2-Ëîâêîñòü     %d",hero_main->dexterity);
+        printw("2-Ð›Ð¾Ð²ÐºÐ¾ÑÑ‚ÑŒ     %d",hero_main->dexterity);
         move(center_y+4,center_x);
-        printw("3-Èíòåëëåêò    %d",hero_main->intellect);
+        printw("3-Ð˜Ð½Ñ‚ÐµÐ»Ð»ÐµÐºÑ‚    %d",hero_main->intellect);
         move(center_y+5,center_x);
-        printw("4-Õàðèçìà      %d",hero_main->charisma);
+        printw("4-Ð¥Ð°Ñ€Ð¸Ð·Ð¼Ð°      %d",hero_main->charisma);
         move(center_y+6,center_x);
-        printw("5-Âûíîñëèâîñòü %d",hero_main->endurance);
+        printw("5-Ð’Ñ‹Ð½Ð¾ÑÐ»Ð¸Ð²Ð¾ÑÑ‚ÑŒ %d",hero_main->endurance);
         move(center_y+7,center_x);
-        printw("6-Ìóäðîñòü     %d",hero_main->wisdom);
-        //printw("\n\tÎòìåíà - êëàâèøà 0: %d\n\n");
+        printw("6-ÐœÑƒÐ´Ñ€Ð¾ÑÑ‚ÑŒ     %d",hero_main->wisdom);
+        //printw("\n\tÐžÑ‚Ð¼ÐµÐ½Ð° - ÐºÐ»Ð°Ð²Ð¸ÑˆÐ° 0: %d\n\n");
         refresh();
         check_input=0;
         check_input=getch();
@@ -507,23 +507,23 @@ void create_hero(hero*hero_main,int*y_max,int*x_max)
             clear();
             attron(COLOR_PAIR(2));
             move(center_y,center_x);
-            printw("Îñòàëîñü î÷êîâ: %d",attr_p);
+            printw("ÐžÑÑ‚Ð°Ð»Ð¾ÑÑŒ Ð¾Ñ‡ÐºÐ¾Ð²: %d",attr_p);
             attron(COLOR_PAIR(3));
             move(center_y+2,center_x);
-            printw("1-Ñèëà         %d",hero_main->strength);
+            printw("1-Ð¡Ð¸Ð»Ð°         %d",hero_main->strength);
             move(center_y+3,center_x);
-            printw("2-Ëîâêîñòü     %d",hero_main->dexterity);
+            printw("2-Ð›Ð¾Ð²ÐºÐ¾ÑÑ‚ÑŒ     %d",hero_main->dexterity);
             move(center_y+4,center_x);
-            printw("3-Èíòåëëåêò    %d",hero_main->intellect);
+            printw("3-Ð˜Ð½Ñ‚ÐµÐ»Ð»ÐµÐºÑ‚    %d",hero_main->intellect);
             move(center_y+5,center_x);
-            printw("4-Õàðèçìà      %d",hero_main->charisma);
+            printw("4-Ð¥Ð°Ñ€Ð¸Ð·Ð¼Ð°      %d",hero_main->charisma);
             move(center_y+6,center_x);
-            printw("5-Âûíîñëèâîñòü %d",hero_main->endurance);
+            printw("5-Ð’Ñ‹Ð½Ð¾ÑÐ»Ð¸Ð²Ð¾ÑÑ‚ÑŒ %d",hero_main->endurance);
             move(center_y+7,center_x);
-            printw("6-Ìóäðîñòü     %d",hero_main->wisdom);
+            printw("6-ÐœÑƒÐ´Ñ€Ð¾ÑÑ‚ÑŒ     %d",hero_main->wisdom);
             move(center_y+9,center_x);
             attron(COLOR_PAIR(5));
-            printw("Íàæìèòå ëþáóþ êëàâèøó...");
+            printw("ÐÐ°Ð¶Ð¼Ð¸Ñ‚Ðµ Ð»ÑŽÐ±ÑƒÑŽ ÐºÐ»Ð°Ð²Ð¸ÑˆÑƒ...");
             refresh();
             getch();
             clear();
@@ -537,19 +537,19 @@ void create_hero(hero*hero_main,int*y_max,int*x_max)
     {
         move(center_y,center_x);
         attron(COLOR_PAIR(2));
-        printw("Îñòàëîñü î÷êîâ: %d",points);
+        printw("ÐžÑÑ‚Ð°Ð»Ð¾ÑÑŒ Ð¾Ñ‡ÐºÐ¾Ð²: %d",points);
         move(center_y+2,center_x);
         attron(COLOR_PAIR(3));
-        printw("1-Ñêðûòíîñòü  %d",hero_main->stealth);
+        printw("1-Ð¡ÐºÑ€Ñ‹Ñ‚Ð½Ð¾ÑÑ‚ÑŒ  %d",hero_main->stealth);
         move(center_y+3,center_x);
-        printw("2-Àòëåòèêà    %d",hero_main->athletics);
+        printw("2-ÐÑ‚Ð»ÐµÑ‚Ð¸ÐºÐ°    %d",hero_main->athletics);
         move(center_y+4,center_x);
-        printw("3-Ìåõàíèêà    %d",hero_main->mechanics);
+        printw("3-ÐœÐµÑ…Ð°Ð½Ð¸ÐºÐ°    %d",hero_main->mechanics);
         move(center_y+5,center_x);
-        printw("4-Âûæèâàíèå   %d",hero_main->survival);
+        printw("4-Ð’Ñ‹Ð¶Ð¸Ð²Ð°Ð½Ð¸Ðµ   %d",hero_main->survival);
         move(center_y+6,center_x);
-        printw("5-Çíàíèå      %d",hero_main->knowledge);
-        //printw("\n\tÎòìåíà - êëàâèøà 0: %d\n\n");
+        printw("5-Ð—Ð½Ð°Ð½Ð¸Ðµ      %d",hero_main->knowledge);
+        //printw("\n\tÐžÑ‚Ð¼ÐµÐ½Ð° - ÐºÐ»Ð°Ð²Ð¸ÑˆÐ° 0: %d\n\n");
         refresh();
         check_input=0;
         check_input=getch();
@@ -583,21 +583,21 @@ void create_hero(hero*hero_main,int*y_max,int*x_max)
             clear();
             move(center_y,center_x);
             attron(COLOR_PAIR(2));
-            printw("Îñòàëîñü î÷êîâ: %d",points);
+            printw("ÐžÑÑ‚Ð°Ð»Ð¾ÑÑŒ Ð¾Ñ‡ÐºÐ¾Ð²: %d",points);
             move(center_y+2,center_x);
             attron(COLOR_PAIR(3));
-            printw("1-Ñêðûòíîñòü  %d",hero_main->stealth);
+            printw("1-Ð¡ÐºÑ€Ñ‹Ñ‚Ð½Ð¾ÑÑ‚ÑŒ  %d",hero_main->stealth);
             move(center_y+3,center_x);
-            printw("2-Àòëåòèêà    %d",hero_main->athletics);
+            printw("2-ÐÑ‚Ð»ÐµÑ‚Ð¸ÐºÐ°    %d",hero_main->athletics);
             move(center_y+4,center_x);
-            printw("3-Ìåõàíèêà    %d",hero_main->mechanics);
+            printw("3-ÐœÐµÑ…Ð°Ð½Ð¸ÐºÐ°    %d",hero_main->mechanics);
             move(center_y+5,center_x);
-            printw("4-Âûæèâàíèå   %d",hero_main->survival);
+            printw("4-Ð’Ñ‹Ð¶Ð¸Ð²Ð°Ð½Ð¸Ðµ   %d",hero_main->survival);
             move(center_y+6,center_x);
-            printw("5-Çíàíèå      %d",hero_main->knowledge);
+            printw("5-Ð—Ð½Ð°Ð½Ð¸Ðµ      %d",hero_main->knowledge);
             move(center_y+8,center_x);
             attron(COLOR_PAIR(5));
-            printw("Íàæìèòå ëþáóþ êëàâèøó...",hero_main->wisdom);
+            printw("ÐÐ°Ð¶Ð¼Ð¸Ñ‚Ðµ Ð»ÑŽÐ±ÑƒÑŽ ÐºÐ»Ð°Ð²Ð¸ÑˆÑƒ...",hero_main->wisdom);
             refresh();
             getch();
             clear();
@@ -615,7 +615,7 @@ void create_hero(hero*hero_main,int*y_max,int*x_max)
     {
         attron(COLOR_PAIR(6));
         move(center_y,center_x-10);
-        printw("Ââåäèòå èìÿ ñâîåãî ïåðñîíàæà (íå áîëåå 10 ñèìâîëîâ):");
+        printw("Ð’Ð²ÐµÐ´Ð¸Ñ‚Ðµ Ð¸Ð¼Ñ ÑÐ²Ð¾ÐµÐ³Ð¾ Ð¿ÐµÑ€ÑÐ¾Ð½Ð°Ð¶Ð° (Ð½Ðµ Ð±Ð¾Ð»ÐµÐµ 10 ÑÐ¸Ð¼Ð²Ð¾Ð»Ð¾Ð²):");
         move(center_y+1,center_x-10);
         refresh();
         scanw("%s",&buf);
@@ -624,7 +624,7 @@ void create_hero(hero*hero_main,int*y_max,int*x_max)
         {
             attron(COLOR_PAIR(4));
             move(center_y+2,center_x-10);
-            printw("Ñëèøêîì äëèííîå èìÿ - ïîâòîðèòå ïîïûòêó.");
+            printw("Ð¡Ð»Ð¸ÑˆÐºÐ¾Ð¼ Ð´Ð»Ð¸Ð½Ð½Ð¾Ðµ Ð¸Ð¼Ñ - Ð¿Ð¾Ð²Ñ‚Ð¾Ñ€Ð¸Ñ‚Ðµ Ð¿Ð¾Ð¿Ñ‹Ñ‚ÐºÑƒ.");
             refresh();
             getch();
             clear();
@@ -638,10 +638,10 @@ void create_hero(hero*hero_main,int*y_max,int*x_max)
     clear();
     attron(COLOR_PAIR(2));
     move(center_y,center_x);
-    printw("Âàøå èìÿ: %s",hero_main->name);
+    printw("Ð’Ð°ÑˆÐµ Ð¸Ð¼Ñ: %s",hero_main->name);
     move(center_y+2,center_x);
     attron(COLOR_PAIR(5));
-    printw("Íàæìèòå ëþáóþ êëàâèøó...",hero_main->wisdom);
+    printw("ÐÐ°Ð¶Ð¼Ð¸Ñ‚Ðµ Ð»ÑŽÐ±ÑƒÑŽ ÐºÐ»Ð°Ð²Ð¸ÑˆÑƒ...",hero_main->wisdom);
     refresh();
     getch();
     clear();

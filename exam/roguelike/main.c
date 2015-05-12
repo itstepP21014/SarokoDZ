@@ -1,4 +1,4 @@
-
+п»ї
 #include "includes/M_D_H_E.h"
 
 
@@ -88,19 +88,19 @@ int main(int argc,char* argv[])
     char key_=0;
     int key_i=1;
 
-    printf("\tПредупреждение!\n\n\tНастройте размер терминала сейчас, так как вы не сможете изменить его после запуска игры.\n");
-    printf("\t(От размера терминала будет зависеть - насколько большим может быть поле игры.)\n\n");
-    printf("\tВажно!\n");
-    printf("\tВсе управление в игре осуществляется с клавиатуры. Передвижение персонажа - wasd, выбор варианта действия - название клавиши будет написано рядом с действием.\n");
-    printf("\n\tОсобые обозначения:\n");
-    printf("\t'@' - ваш персонаж.\n");
-    printf("\t'#' - стена.\n");
-    printf("\t'x' - выход из лабиринта.\n");
-    printf("\t'|' '_' - дверь.\n");
-    printf("\t'\\' - открытая дверь.\n");
-    printf("\t't' - ловушка.\n");
-    printf("\t's' - скелет воин.\n");
-    printf("\n\t(Когда будете готовы - просто нажмите Enter)\n");
+    printf("\tРџСЂРµРґСѓРїСЂРµР¶РґРµРЅРёРµ!\n\n\tРќР°СЃС‚СЂРѕР№С‚Рµ СЂР°Р·РјРµСЂ С‚РµСЂРјРёРЅР°Р»Р° СЃРµР№С‡Р°СЃ, С‚Р°Рє РєР°Рє РІС‹ РЅРµ СЃРјРѕР¶РµС‚Рµ РёР·РјРµРЅРёС‚СЊ РµРіРѕ РїРѕСЃР»Рµ Р·Р°РїСѓСЃРєР° РёРіСЂС‹.\n");
+    printf("\t(РћС‚ СЂР°Р·РјРµСЂР° С‚РµСЂРјРёРЅР°Р»Р° Р±СѓРґРµС‚ Р·Р°РІРёСЃРµС‚СЊ - РЅР°СЃРєРѕР»СЊРєРѕ Р±РѕР»СЊС€РёРј РјРѕР¶РµС‚ Р±С‹С‚СЊ РїРѕР»Рµ РёРіСЂС‹.)\n\n");
+    printf("\tР’Р°Р¶РЅРѕ!\n");
+    printf("\tР’СЃРµ СѓРїСЂР°РІР»РµРЅРёРµ РІ РёРіСЂРµ РѕСЃСѓС‰РµСЃС‚РІР»СЏРµС‚СЃСЏ СЃ РєР»Р°РІРёР°С‚СѓСЂС‹. РџРµСЂРµРґРІРёР¶РµРЅРёРµ РїРµСЂСЃРѕРЅР°Р¶Р° - wasd, РІС‹Р±РѕСЂ РІР°СЂРёР°РЅС‚Р° РґРµР№СЃС‚РІРёСЏ - РЅР°Р·РІР°РЅРёРµ РєР»Р°РІРёС€Рё Р±СѓРґРµС‚ РЅР°РїРёСЃР°РЅРѕ СЂСЏРґРѕРј СЃ РґРµР№СЃС‚РІРёРµРј.\n");
+    printf("\n\tРћСЃРѕР±С‹Рµ РѕР±РѕР·РЅР°С‡РµРЅРёСЏ:\n");
+    printf("\t'@' - РІР°С€ РїРµСЂСЃРѕРЅР°Р¶.\n");
+    printf("\t'#' - СЃС‚РµРЅР°.\n");
+    printf("\t'x' - РІС‹С…РѕРґ РёР· Р»Р°Р±РёСЂРёРЅС‚Р°.\n");
+    printf("\t'|' '_' - РґРІРµСЂСЊ.\n");
+    printf("\t'\\' - РѕС‚РєСЂС‹С‚Р°СЏ РґРІРµСЂСЊ.\n");
+    printf("\t't' - Р»РѕРІСѓС€РєР°.\n");
+    printf("\t's' - СЃРєРµР»РµС‚ РІРѕРёРЅ.\n");
+    printf("\n\t(РљРѕРіРґР° Р±СѓРґРµС‚Рµ РіРѕС‚РѕРІС‹ - РїСЂРѕСЃС‚Рѕ РЅР°Р¶РјРёС‚Рµ Enter)\n");
 
     getchar();
 
@@ -178,7 +178,7 @@ int main(int argc,char* argv[])
     attron(COLOR_PAIR(6));
     while(y_size_of_map<20 || y_size_of_map>y_max)
     {
-        printw("\n\tВведите размеры карты \n\t(максимальная высота(Y):%d максимальная ширина(X):%d минимальный размер - 20/20)\n",y_max,x_max);
+        printw("\n\tР’РІРµРґРёС‚Рµ СЂР°Р·РјРµСЂС‹ РєР°СЂС‚С‹ \n\t(РјР°РєСЃРёРјР°Р»СЊРЅР°СЏ РІС‹СЃРѕС‚Р°(Y):%d РјР°РєСЃРёРјР°Р»СЊРЅР°СЏ С€РёСЂРёРЅР°(X):%d РјРёРЅРёРјР°Р»СЊРЅС‹Р№ СЂР°Р·РјРµСЂ - 20/20)\n",y_max,x_max);
         printw("\n\tY:");
         refresh();
         scanw("%d",&y_size_of_map);
@@ -187,7 +187,7 @@ int main(int argc,char* argv[])
     }
     while(x_size_of_map<20 || x_size_of_map>x_max)
     {
-        printw("\n\tВведите размеры карты \n\t(максимальная высота(Y):%d максимальная ширина(X):%d минимальный размер - 20/20)\n",y_max,x_max);
+        printw("\n\tР’РІРµРґРёС‚Рµ СЂР°Р·РјРµСЂС‹ РєР°СЂС‚С‹ \n\t(РјР°РєСЃРёРјР°Р»СЊРЅР°СЏ РІС‹СЃРѕС‚Р°(Y):%d РјР°РєСЃРёРјР°Р»СЊРЅР°СЏ С€РёСЂРёРЅР°(X):%d РјРёРЅРёРјР°Р»СЊРЅС‹Р№ СЂР°Р·РјРµСЂ - 20/20)\n",y_max,x_max);
         printw("\n\tY:%d",y_size_of_map);
         printw("\n\tX:");
         refresh();
@@ -328,17 +328,17 @@ int main(int argc,char* argv[])
 
         attron(COLOR_PAIR(6));
         printw("\t%s\n",hero_main.name);
-        printw("Жизнь   %3d/%3d    Сила         %3d Атлетика   %3d Уровень %3d Опыт %d/%d\n",hero_main.hit_points,hero_main.hit_points_max,hero_main.strength,hero_main.athletics,hero_main.level,hero_main.experience,hero_main.next_level);
-        printw("Мана    %3d/%3d    Ловкость     %3d Механика   %3d\n",hero_main.mana_points,hero_main.mana_points_max,hero_main.dexterity,hero_main.mechanics);
-        printw("Урон    %3d        Интеллект    %3d Знание     %3d\n",hero_main.damage,hero_main.intellect,hero_main.knowledge);
-        printw("Защита  %3d        Харизма      %3d Выживание  %3d\n",hero_main.armor,hero_main.charisma,hero_main.survival);
-        printw("                   Мудрость     %3d Скрытность %3d\n",hero_main.wisdom,hero_main.stealth);
-        printw("                   Выносливость %3d\n",hero_main.endurance);
+        printw("Р–РёР·РЅСЊ   %3d/%3d    РЎРёР»Р°         %3d РђС‚Р»РµС‚РёРєР°   %3d РЈСЂРѕРІРµРЅСЊ %3d РћРїС‹С‚ %d/%d\n",hero_main.hit_points,hero_main.hit_points_max,hero_main.strength,hero_main.athletics,hero_main.level,hero_main.experience,hero_main.next_level);
+        printw("РњР°РЅР°    %3d/%3d    Р›РѕРІРєРѕСЃС‚СЊ     %3d РњРµС…Р°РЅРёРєР°   %3d\n",hero_main.mana_points,hero_main.mana_points_max,hero_main.dexterity,hero_main.mechanics);
+        printw("РЈСЂРѕРЅ    %3d        РРЅС‚РµР»Р»РµРєС‚    %3d Р—РЅР°РЅРёРµ     %3d\n",hero_main.damage,hero_main.intellect,hero_main.knowledge);
+        printw("Р—Р°С‰РёС‚Р°  %3d        РҐР°СЂРёР·РјР°      %3d Р’С‹Р¶РёРІР°РЅРёРµ  %3d\n",hero_main.armor,hero_main.charisma,hero_main.survival);
+        printw("                   РњСѓРґСЂРѕСЃС‚СЊ     %3d РЎРєСЂС‹С‚РЅРѕСЃС‚СЊ %3d\n",hero_main.wisdom,hero_main.stealth);
+        printw("                   Р’С‹РЅРѕСЃР»РёРІРѕСЃС‚СЊ %3d\n",hero_main.endurance);
         refresh();
         if (start_end_location.y_begin==start_end_location.y_end && start_end_location.x_begin==start_end_location.x_end)
         {
             attron(COLOR_PAIR(5));
-            printw("\nПоздравляем! Вам удалось выбраться из подземелья!\n");
+            printw("\nРџРѕР·РґСЂР°РІР»СЏРµРј! Р’Р°Рј СѓРґР°Р»РѕСЃСЊ РІС‹Р±СЂР°С‚СЊСЃСЏ РёР· РїРѕРґР·РµРјРµР»СЊСЏ!\n");
             refresh();
             getch();
             endwin();

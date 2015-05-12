@@ -1,4 +1,4 @@
-#include "M_D_H_E.h"
+ï»¿#include "M_D_H_E.h"
 
 int battle_processing(hero*hero_main,enemy*enemy_main,Mix_Chunk* spell_wav,Mix_Chunk* battle_wav)
 {
@@ -27,18 +27,18 @@ int battle_processing(hero*hero_main,enemy*enemy_main,Mix_Chunk* spell_wav,Mix_C
     {
         clear();
         attron(COLOR_PAIR(6));
-        printw("\n\tÂû âñòóïèëè â ñðàæåíèå:\n");
-        printw("\t%-10s\tñêåëåò âîèí\n",hero_main->name);
-        printw("\tÆèçíü  %d\tÆèçíü  %d\n",hero_main->hit_points,enemy_main->hit_points);
-        printw("\tÌàíà   %d\tÌàíà   %d\n",hero_main->mana_points,enemy_main->mana_points);
-        printw("\tÓðîí   %d\tÓðîí   %d\n",hero_main->damage,enemy_main->damage);
-        printw("\tÇàùèòà %d\tÇàùèòà %d\n\n",hero_main->armor,enemy_main->armor);
-        printw("\tÂàøè äåéñòâèÿ:\n");
-        printw("\n\t1-Àòàêîâàòü.\n");
+        printw("\n\tÐ’Ñ‹ Ð²ÑÑ‚ÑƒÐ¿Ð¸Ð»Ð¸ Ð² ÑÑ€Ð°Ð¶ÐµÐ½Ð¸Ðµ:\n");
+        printw("\t%-10s\tÑÐºÐµÐ»ÐµÑ‚ Ð²Ð¾Ð¸Ð½\n",hero_main->name);
+        printw("\tÐ–Ð¸Ð·Ð½ÑŒ  %d\tÐ–Ð¸Ð·Ð½ÑŒ  %d\n",hero_main->hit_points,enemy_main->hit_points);
+        printw("\tÐœÐ°Ð½Ð°   %d\tÐœÐ°Ð½Ð°   %d\n",hero_main->mana_points,enemy_main->mana_points);
+        printw("\tÐ£Ñ€Ð¾Ð½   %d\tÐ£Ñ€Ð¾Ð½   %d\n",hero_main->damage,enemy_main->damage);
+        printw("\tÐ—Ð°Ñ‰Ð¸Ñ‚Ð° %d\tÐ—Ð°Ñ‰Ð¸Ñ‚Ð° %d\n\n",hero_main->armor,enemy_main->armor);
+        printw("\tÐ’Ð°ÑˆÐ¸ Ð´ÐµÐ¹ÑÑ‚Ð²Ð¸Ñ:\n");
+        printw("\n\t1-ÐÑ‚Ð°ÐºÐ¾Ð²Ð°Ñ‚ÑŒ.\n");
         if (hero_main->specialization==3)
-            printw("\t2-Ïðî÷èòàòü çàêëèíàíèå 'Îãíåííûé øàð'.\n");
+            printw("\t2-ÐŸÑ€Ð¾Ñ‡Ð¸Ñ‚Ð°Ñ‚ÑŒ Ð·Ð°ÐºÐ»Ð¸Ð½Ð°Ð½Ð¸Ðµ 'ÐžÐ³Ð½ÐµÐ½Ð½Ñ‹Ð¹ ÑˆÐ°Ñ€'.\n");
         if (swi!=2)
-            printw("\t3-Ïîïûòàòüñÿ óáåæàòü.\n");
+            printw("\t3-ÐŸÐ¾Ð¿Ñ‹Ñ‚Ð°Ñ‚ÑŒÑÑ ÑƒÐ±ÐµÐ¶Ð°Ñ‚ÑŒ.\n");
         refresh();
         dobge_chance=rand()%101;
         check_input=getch();
@@ -53,7 +53,7 @@ int battle_processing(hero*hero_main,enemy*enemy_main,Mix_Chunk* spell_wav,Mix_C
             if ((dobge_chance+hero_main->dexterity)>100 && enemy_main->hit_points>0)
             {
                 attron(COLOR_PAIR(2));
-                printw("\n\tÂû íàíîñèòå ïðîòèâíèêó %d åä. óðîíà è óêëîíÿåòåñü îò îòâåòíîãî óäàðà.\n",damage_result_hero);
+                printw("\n\tÐ’Ñ‹ Ð½Ð°Ð½Ð¾ÑÐ¸Ñ‚Ðµ Ð¿Ñ€Ð¾Ñ‚Ð¸Ð²Ð½Ð¸ÐºÑƒ %d ÐµÐ´. ÑƒÑ€Ð¾Ð½Ð° Ð¸ ÑƒÐºÐ»Ð¾Ð½ÑÐµÑ‚ÐµÑÑŒ Ð¾Ñ‚ Ð¾Ñ‚Ð²ÐµÑ‚Ð½Ð¾Ð³Ð¾ ÑƒÐ´Ð°Ñ€Ð°.\n",damage_result_hero);
                 refresh();
                 getch();
             }
@@ -64,12 +64,12 @@ int battle_processing(hero*hero_main,enemy*enemy_main,Mix_Chunk* spell_wav,Mix_C
                     damage_result_enemy=enemy_main->damage-hero_main->armor;
                 }
                 attron(COLOR_PAIR(2));
-                printw("\n\tÂû íàíîñèòå ïðîòèâíèêó %d åä. óðîíà. Îòâåòíûé óäàð íàíîñèò âàì %d åä. óðîíà.\n",damage_result_hero,damage_result_enemy);
+                printw("\n\tÐ’Ñ‹ Ð½Ð°Ð½Ð¾ÑÐ¸Ñ‚Ðµ Ð¿Ñ€Ð¾Ñ‚Ð¸Ð²Ð½Ð¸ÐºÑƒ %d ÐµÐ´. ÑƒÑ€Ð¾Ð½Ð°. ÐžÑ‚Ð²ÐµÑ‚Ð½Ñ‹Ð¹ ÑƒÐ´Ð°Ñ€ Ð½Ð°Ð½Ð¾ÑÐ¸Ñ‚ Ð²Ð°Ð¼ %d ÐµÐ´. ÑƒÑ€Ð¾Ð½Ð°.\n",damage_result_hero,damage_result_enemy);
                 hero_main->hit_points-=damage_result_enemy;
                 if (hero_main->hit_points<1)
                 {
                     attron(COLOR_PAIR(2));
-                    printw("\n\tÂû óìåðëè...\n");
+                    printw("\n\tÐ’Ñ‹ ÑƒÐ¼ÐµÑ€Ð»Ð¸...\n");
                     alive_dead=0;
                     swi=0;
                 }
@@ -79,7 +79,7 @@ int battle_processing(hero*hero_main,enemy*enemy_main,Mix_Chunk* spell_wav,Mix_C
             else
             {
                 attron(COLOR_PAIR(2));
-                printw("\n\tÂû íàíîñèòå ïðîòèâíèêó %d åä. óðîíà è óíè÷òîæàåòå åãî.\n",damage_result_hero);
+                printw("\n\tÐ’Ñ‹ Ð½Ð°Ð½Ð¾ÑÐ¸Ñ‚Ðµ Ð¿Ñ€Ð¾Ñ‚Ð¸Ð²Ð½Ð¸ÐºÑƒ %d ÐµÐ´. ÑƒÑ€Ð¾Ð½Ð° Ð¸ ÑƒÐ½Ð¸Ñ‡Ñ‚Ð¾Ð¶Ð°ÐµÑ‚Ðµ ÐµÐ³Ð¾.\n",damage_result_hero);
                 hero_main->experience+=(25+hero_main->exp_bonus);
                 refresh();
                 getch();
@@ -97,7 +97,7 @@ int battle_processing(hero*hero_main,enemy*enemy_main,Mix_Chunk* spell_wav,Mix_C
                 enemy_main->hit_points-=15;
                 attron(COLOR_PAIR(2));
                 hero_main->mana_points-=5;
-                printw("\n\tÂû ïðîèçíîñèòå çàêëèíàíèå è îò âàøåãî ïðîòèâíèêà îñòàåòñÿ ëèøü êó÷êà çîëû\n");
+                printw("\n\tÐ’Ñ‹ Ð¿Ñ€Ð¾Ð¸Ð·Ð½Ð¾ÑÐ¸Ñ‚Ðµ Ð·Ð°ÐºÐ»Ð¸Ð½Ð°Ð½Ð¸Ðµ Ð¸ Ð¾Ñ‚ Ð²Ð°ÑˆÐµÐ³Ð¾ Ð¿Ñ€Ð¾Ñ‚Ð¸Ð²Ð½Ð¸ÐºÐ° Ð¾ÑÑ‚Ð°ÐµÑ‚ÑÑ Ð»Ð¸ÑˆÑŒ ÐºÑƒÑ‡ÐºÐ° Ð·Ð¾Ð»Ñ‹\n");
                 hero_main->experience+=(25+hero_main->exp_bonus);
                 refresh();
                 getch();
@@ -109,7 +109,7 @@ int battle_processing(hero*hero_main,enemy*enemy_main,Mix_Chunk* spell_wav,Mix_C
             {
                 alive_dead=2;
                 attron(COLOR_PAIR(2));
-                printw("\n\t(Óñïåõ) Âû äîñòàòî÷íî áûñòðû è ñêîðî âàì óäàåòñÿ îòîðâàòüñÿ îò âàøåãî ïðîòèâíèêà.\n");
+                printw("\n\t(Ð£ÑÐ¿ÐµÑ…) Ð’Ñ‹ Ð´Ð¾ÑÑ‚Ð°Ñ‚Ð¾Ñ‡Ð½Ð¾ Ð±Ñ‹ÑÑ‚Ñ€Ñ‹ Ð¸ ÑÐºÐ¾Ñ€Ð¾ Ð²Ð°Ð¼ ÑƒÐ´Ð°ÐµÑ‚ÑÑ Ð¾Ñ‚Ð¾Ñ€Ð²Ð°Ñ‚ÑŒÑÑ Ð¾Ñ‚ Ð²Ð°ÑˆÐµÐ³Ð¾ Ð¿Ñ€Ð¾Ñ‚Ð¸Ð²Ð½Ð¸ÐºÐ°.\n");
                 refresh();
                 getch();
                 swi=0;
@@ -117,7 +117,7 @@ int battle_processing(hero*hero_main,enemy*enemy_main,Mix_Chunk* spell_wav,Mix_C
             else
             {
                 attron(COLOR_PAIR(2));
-                printw("\n\t(Íåóäà÷à) Âû ñëèøêîì ìåäëåííî ïåðåäâèãàåòåñü è âàì íå óäàåòñÿ óéòè îò ïðåñëåäîâàíèÿ.\n");
+                printw("\n\t(ÐÐµÑƒÐ´Ð°Ñ‡Ð°) Ð’Ñ‹ ÑÐ»Ð¸ÑˆÐºÐ¾Ð¼ Ð¼ÐµÐ´Ð»ÐµÐ½Ð½Ð¾ Ð¿ÐµÑ€ÐµÐ´Ð²Ð¸Ð³Ð°ÐµÑ‚ÐµÑÑŒ Ð¸ Ð²Ð°Ð¼ Ð½Ðµ ÑƒÐ´Ð°ÐµÑ‚ÑÑ ÑƒÐ¹Ñ‚Ð¸ Ð¾Ñ‚ Ð¿Ñ€ÐµÑÐ»ÐµÐ´Ð¾Ð²Ð°Ð½Ð¸Ñ.\n");
                 refresh();
                 getch();
                 swi=2;
@@ -138,26 +138,26 @@ int trap_processing(hero*hero_main)
     clear();
     if (hero_main->mechanics<=10)
     {
-            hero_main->hit_points-=5;
-            printw("\n\n\tÑðàáàòûâàåò ëîâóøêà è âû ïîëó÷àåòå 5 åä. óðîíà.\n");
-            if (hero_main->hit_points<1)
-            {
-                attron(COLOR_PAIR(2));
-                printw("\n\tÂû óìåðëè...\n");
-                refresh();
-                getch();
-                return 2;
-            }
+        hero_main->hit_points-=5;
+        printw("\n\n\tÐ¡Ñ€Ð°Ð±Ð°Ñ‚Ñ‹Ð²Ð°ÐµÑ‚ Ð»Ð¾Ð²ÑƒÑˆÐºÐ° Ð¸ Ð²Ñ‹ Ð¿Ð¾Ð»ÑƒÑ‡Ð°ÐµÑ‚Ðµ 5 ÐµÐ´. ÑƒÑ€Ð¾Ð½Ð°.\n");
+        if (hero_main->hit_points<1)
+        {
+            attron(COLOR_PAIR(2));
+            printw("\n\tÐ’Ñ‹ ÑƒÐ¼ÐµÑ€Ð»Ð¸...\n");
             refresh();
             getch();
-            return 1;
+            return 2;
+        }
+        refresh();
+        getch();
+        return 1;
     }
     attron(COLOR_PAIR(2));
-    printw("\n\tÂû âèäèòå ïåðåä ñîáîé ëîâóøêó.\n");
+    printw("\n\tÐ’Ñ‹ Ð²Ð¸Ð´Ð¸Ñ‚Ðµ Ð¿ÐµÑ€ÐµÐ´ ÑÐ¾Ð±Ð¾Ð¹ Ð»Ð¾Ð²ÑƒÑˆÐºÑƒ.\n");
     attron(COLOR_PAIR(3));
-    printw("\n\t1-(Ìåõàíèêà) Ïîïûòàòüñÿ îáåçâðåäèòü ëîâóøêó.\n");
-    printw("\n\t2-Ïðîéòè âïåðåä. (àêòèâèðîâàòü ëîâóøêó.)\n");
-    printw("\n\t3-Îòîéòè.\n");
+    printw("\n\t1-(ÐœÐµÑ…Ð°Ð½Ð¸ÐºÐ°) ÐŸÐ¾Ð¿Ñ‹Ñ‚Ð°Ñ‚ÑŒÑÑ Ð¾Ð±ÐµÐ·Ð²Ñ€ÐµÐ´Ð¸Ñ‚ÑŒ Ð»Ð¾Ð²ÑƒÑˆÐºÑƒ.\n");
+    printw("\n\t2-ÐŸÑ€Ð¾Ð¹Ñ‚Ð¸ Ð²Ð¿ÐµÑ€ÐµÐ´. (Ð°ÐºÑ‚Ð¸Ð²Ð¸Ñ€Ð¾Ð²Ð°Ñ‚ÑŒ Ð»Ð¾Ð²ÑƒÑˆÐºÑƒ.)\n");
+    printw("\n\t3-ÐžÑ‚Ð¾Ð¹Ñ‚Ð¸.\n");
     refresh();
     while (1)
     {
@@ -169,7 +169,7 @@ int trap_processing(hero*hero_main)
         case 49:
             if (hero_main->mechanics>15)
             {
-                printw("\n\n\t(Óñïåõ) Ïîâîçèâøèñü íåñêîëüêî ìèíóò - âû îáåçâðåæèâàåòå ëîâóøêó.\n");
+                printw("\n\n\t(Ð£ÑÐ¿ÐµÑ…) ÐŸÐ¾Ð²Ð¾Ð·Ð¸Ð²ÑˆÐ¸ÑÑŒ Ð½ÐµÑÐºÐ¾Ð»ÑŒÐºÐ¾ Ð¼Ð¸Ð½ÑƒÑ‚ - Ð²Ñ‹ Ð¾Ð±ÐµÐ·Ð²Ñ€ÐµÐ¶Ð¸Ð²Ð°ÐµÑ‚Ðµ Ð»Ð¾Ð²ÑƒÑˆÐºÑƒ.\n");
                 refresh();
                 getch();
                 return 1;
@@ -179,11 +179,11 @@ int trap_processing(hero*hero_main)
                 if (hero_main->mechanics<13)
                 {
                     hero_main->hit_points-=5;
-                    printw("\n\n\t(Êðèòè÷åñêàÿ íåóäà÷à) Ëîâóøêà ñðàáàòûâàåò - âû ïîëó÷àåòå 5 åä. óðîíà.\n");
+                    printw("\n\n\t(ÐšÑ€Ð¸Ñ‚Ð¸Ñ‡ÐµÑÐºÐ°Ñ Ð½ÐµÑƒÐ´Ð°Ñ‡Ð°) Ð›Ð¾Ð²ÑƒÑˆÐºÐ° ÑÑ€Ð°Ð±Ð°Ñ‚Ñ‹Ð²Ð°ÐµÑ‚ - Ð²Ñ‹ Ð¿Ð¾Ð»ÑƒÑ‡Ð°ÐµÑ‚Ðµ 5 ÐµÐ´. ÑƒÑ€Ð¾Ð½Ð°.\n");
                     if (hero_main->hit_points<1)
                     {
                         attron(COLOR_PAIR(2));
-                        printw("\n\tÂû óìåðëè...\n");
+                        printw("\n\tÐ’Ñ‹ ÑƒÐ¼ÐµÑ€Ð»Ð¸...\n");
                         refresh();
                         getch();
                         return 2;
@@ -194,7 +194,7 @@ int trap_processing(hero*hero_main)
                 }
                 else
                 {
-                    printw("\n\n\t(Íåóäà÷à) Âàì íå óäàåòñÿ îáåçâðåäèòü ëîâóøêó.\n");
+                    printw("\n\n\t(ÐÐµÑƒÐ´Ð°Ñ‡Ð°) Ð’Ð°Ð¼ Ð½Ðµ ÑƒÐ´Ð°ÐµÑ‚ÑÑ Ð¾Ð±ÐµÐ·Ð²Ñ€ÐµÐ´Ð¸Ñ‚ÑŒ Ð»Ð¾Ð²ÑƒÑˆÐºÑƒ.\n");
                     refresh();
                     getch();
                     return 0;
@@ -203,11 +203,11 @@ int trap_processing(hero*hero_main)
             break;
         case 50:
             hero_main->hit_points-=5;
-            printw("\n\n\tËîâóøêà ñðàáàòûâàåò - âû ïîëó÷àåòå 5 åä. óðîíà.\n");
+            printw("\n\n\tÐ›Ð¾Ð²ÑƒÑˆÐºÐ° ÑÑ€Ð°Ð±Ð°Ñ‚Ñ‹Ð²Ð°ÐµÑ‚ - Ð²Ñ‹ Ð¿Ð¾Ð»ÑƒÑ‡Ð°ÐµÑ‚Ðµ 5 ÐµÐ´. ÑƒÑ€Ð¾Ð½Ð°.\n");
             if (hero_main->hit_points<1)
             {
                 attron(COLOR_PAIR(2));
-                printw("\n\tÂû óìåðëè...\n");
+                printw("\n\tÐ’Ñ‹ ÑƒÐ¼ÐµÑ€Ð»Ð¸...\n");
                 refresh();
                 getch();
                 return 2;
@@ -232,95 +232,95 @@ void level_up(hero*hero_main)
     if (hero_main->level%2!=0)
     {
         points=1;
-    while (points>0)
-    {
-        clear();
-        attron(COLOR_PAIR(5));
-        printw("\n\tÂû äîñòèãëè ñëåäóþùåãî óðîâíÿ!");
-        attron(COLOR_PAIR(2));
-        printw("\n\n\tÎñòàëîñü î÷êîâ: %d",points);
-        attron(COLOR_PAIR(3));
-        printw("\n\n\t1-Ñèëà         %d",hero_main->strength);
-        printw("\n\t2-Ëîâêîñòü     %d",hero_main->dexterity);
-        printw("\n\t3-Èíòåëëåêò    %d",hero_main->intellect);
-        printw("\n\t4-Õàðèçìà      %d",hero_main->charisma);
-        printw("\n\t5-Âûíîñëèâîñòü %d",hero_main->endurance);
-        printw("\n\t6-Ìóäðîñòü     %d",hero_main->wisdom);
-        //printw("\n\tÎòìåíà - êëàâèøà 0: %d\n\n");
-        refresh();
-        check_input=0;
-        check_input=getch();
-        switch (check_input)
-        {
-        case 49:
-            --points;
-            hero_main->damage+=1;
-            hero_main->strength+=1;
-            break;
-        case 50:
-            --points;
-            hero_main->dexterity+=1;
-            break;
-        case 51:
-            --points;
-            hero_main->mana_points_max+=1;
-            hero_main->intellect+=1;
-            break;
-        case 52:
-            --points;
-            hero_main->charisma+=1;
-            break;
-        case 53:
-            --points;
-            hero_main->hit_points_max+=1;
-            hero_main->endurance+=1;
-            break;
-        case 54:
-            --points;
-            hero_main->exp_bonus+=1;
-            hero_main->wisdom+=1;
-            break;
-        }
-        if (points>0)
-            clear();
-        else
+        while (points>0)
         {
             clear();
             attron(COLOR_PAIR(5));
-            printw("\n\tÂû äîñòèãëè ñëåäóþùåãî óðîâíÿ!");
+            printw("\n\tÐ’Ñ‹ Ð´Ð¾ÑÑ‚Ð¸Ð³Ð»Ð¸ ÑÐ»ÐµÐ´ÑƒÑŽÑ‰ÐµÐ³Ð¾ ÑƒÑ€Ð¾Ð²Ð½Ñ!");
             attron(COLOR_PAIR(2));
-            printw("\n\n\tÎñòàëîñü î÷êîâ: %d",points);
+            printw("\n\n\tÐžÑÑ‚Ð°Ð»Ð¾ÑÑŒ Ð¾Ñ‡ÐºÐ¾Ð²: %d",points);
             attron(COLOR_PAIR(3));
-            printw("\n\n\t1-Ñèëà         %d",hero_main->strength);
-            printw("\n\t2-Ëîâêîñòü     %d",hero_main->dexterity);
-            printw("\n\t3-Èíòåëëåêò    %d",hero_main->intellect);
-            printw("\n\t4-Õàðèçìà      %d",hero_main->charisma);
-            printw("\n\t5-Âûíîñëèâîñòü %d",hero_main->endurance);
-            printw("\n\t6-Ìóäðîñòü     %d",hero_main->wisdom);
-            attron(COLOR_PAIR(5));
-            printw("\n\n\tÍàæìèòå ëþáóþ êëàâèøó...");
+            printw("\n\n\t1-Ð¡Ð¸Ð»Ð°         %d",hero_main->strength);
+            printw("\n\t2-Ð›Ð¾Ð²ÐºÐ¾ÑÑ‚ÑŒ     %d",hero_main->dexterity);
+            printw("\n\t3-Ð˜Ð½Ñ‚ÐµÐ»Ð»ÐµÐºÑ‚    %d",hero_main->intellect);
+            printw("\n\t4-Ð¥Ð°Ñ€Ð¸Ð·Ð¼Ð°      %d",hero_main->charisma);
+            printw("\n\t5-Ð’Ñ‹Ð½Ð¾ÑÐ»Ð¸Ð²Ð¾ÑÑ‚ÑŒ %d",hero_main->endurance);
+            printw("\n\t6-ÐœÑƒÐ´Ñ€Ð¾ÑÑ‚ÑŒ     %d",hero_main->wisdom);
+            //printw("\n\tÐžÑ‚Ð¼ÐµÐ½Ð° - ÐºÐ»Ð°Ð²Ð¸ÑˆÐ° 0: %d\n\n");
             refresh();
-            getch();
-            clear();
-        }
+            check_input=0;
+            check_input=getch();
+            switch (check_input)
+            {
+            case 49:
+                --points;
+                hero_main->damage+=1;
+                hero_main->strength+=1;
+                break;
+            case 50:
+                --points;
+                hero_main->dexterity+=1;
+                break;
+            case 51:
+                --points;
+                hero_main->mana_points_max+=1;
+                hero_main->intellect+=1;
+                break;
+            case 52:
+                --points;
+                hero_main->charisma+=1;
+                break;
+            case 53:
+                --points;
+                hero_main->hit_points_max+=1;
+                hero_main->endurance+=1;
+                break;
+            case 54:
+                --points;
+                hero_main->exp_bonus+=1;
+                hero_main->wisdom+=1;
+                break;
+            }
+            if (points>0)
+                clear();
+            else
+            {
+                clear();
+                attron(COLOR_PAIR(5));
+                printw("\n\tÐ’Ñ‹ Ð´Ð¾ÑÑ‚Ð¸Ð³Ð»Ð¸ ÑÐ»ÐµÐ´ÑƒÑŽÑ‰ÐµÐ³Ð¾ ÑƒÑ€Ð¾Ð²Ð½Ñ!");
+                attron(COLOR_PAIR(2));
+                printw("\n\n\tÐžÑÑ‚Ð°Ð»Ð¾ÑÑŒ Ð¾Ñ‡ÐºÐ¾Ð²: %d",points);
+                attron(COLOR_PAIR(3));
+                printw("\n\n\t1-Ð¡Ð¸Ð»Ð°         %d",hero_main->strength);
+                printw("\n\t2-Ð›Ð¾Ð²ÐºÐ¾ÑÑ‚ÑŒ     %d",hero_main->dexterity);
+                printw("\n\t3-Ð˜Ð½Ñ‚ÐµÐ»Ð»ÐµÐºÑ‚    %d",hero_main->intellect);
+                printw("\n\t4-Ð¥Ð°Ñ€Ð¸Ð·Ð¼Ð°      %d",hero_main->charisma);
+                printw("\n\t5-Ð’Ñ‹Ð½Ð¾ÑÐ»Ð¸Ð²Ð¾ÑÑ‚ÑŒ %d",hero_main->endurance);
+                printw("\n\t6-ÐœÑƒÐ´Ñ€Ð¾ÑÑ‚ÑŒ     %d",hero_main->wisdom);
+                attron(COLOR_PAIR(5));
+                printw("\n\n\tÐÐ°Ð¶Ð¼Ð¸Ñ‚Ðµ Ð»ÑŽÐ±ÑƒÑŽ ÐºÐ»Ð°Ð²Ð¸ÑˆÑƒ...");
+                refresh();
+                getch();
+                clear();
+            }
 
-    }
+        }
     }
     points=1+hero_main->intellect/2;
     while (points>0)
     {
         clear();
         attron(COLOR_PAIR(5));
-        printw("\n\tÂû äîñòèãëè ñëåäóþùåãî óðîâíÿ!",points);
+        printw("\n\tÐ’Ñ‹ Ð´Ð¾ÑÑ‚Ð¸Ð³Ð»Ð¸ ÑÐ»ÐµÐ´ÑƒÑŽÑ‰ÐµÐ³Ð¾ ÑƒÑ€Ð¾Ð²Ð½Ñ!",points);
         attron(COLOR_PAIR(2));
-        printw("\n\n\tÎñòàëîñü î÷êîâ: %d",points);
+        printw("\n\n\tÐžÑÑ‚Ð°Ð»Ð¾ÑÑŒ Ð¾Ñ‡ÐºÐ¾Ð²: %d",points);
         attron(COLOR_PAIR(3));
-        printw("\n\n\t1-Ñêðûòíîñòü  %d",hero_main->stealth);
-        printw("\n\t2-Àòëåòèêà    %d",hero_main->athletics);
-        printw("\n\t3-Ìåõàíèêà    %d",hero_main->mechanics);
-        printw("\n\t4-Âûæèâàíèå   %d",hero_main->survival);
-        printw("\n\t5-Çíàíèå      %d",hero_main->knowledge);
-        //printw("\n\tÎòìåíà - êëàâèøà 0: %d\n\n");
+        printw("\n\n\t1-Ð¡ÐºÑ€Ñ‹Ñ‚Ð½Ð¾ÑÑ‚ÑŒ  %d",hero_main->stealth);
+        printw("\n\t2-ÐÑ‚Ð»ÐµÑ‚Ð¸ÐºÐ°    %d",hero_main->athletics);
+        printw("\n\t3-ÐœÐµÑ…Ð°Ð½Ð¸ÐºÐ°    %d",hero_main->mechanics);
+        printw("\n\t4-Ð’Ñ‹Ð¶Ð¸Ð²Ð°Ð½Ð¸Ðµ   %d",hero_main->survival);
+        printw("\n\t5-Ð—Ð½Ð°Ð½Ð¸Ðµ      %d",hero_main->knowledge);
+        //printw("\n\tÐžÑ‚Ð¼ÐµÐ½Ð° - ÐºÐ»Ð°Ð²Ð¸ÑˆÐ° 0: %d\n\n");
         refresh();
         check_input=0;
         check_input=getch();
@@ -353,17 +353,17 @@ void level_up(hero*hero_main)
         {
             clear();
             attron(COLOR_PAIR(5));
-            printw("\n\tÂû äîñòèãëè ñëåäóþùåãî óðîâíÿ!",points);
+            printw("\n\tÐ’Ñ‹ Ð´Ð¾ÑÑ‚Ð¸Ð³Ð»Ð¸ ÑÐ»ÐµÐ´ÑƒÑŽÑ‰ÐµÐ³Ð¾ ÑƒÑ€Ð¾Ð²Ð½Ñ!",points);
             attron(COLOR_PAIR(2));
-            printw("\n\n\tÎñòàëîñü î÷êîâ: %d",points);
+            printw("\n\n\tÐžÑÑ‚Ð°Ð»Ð¾ÑÑŒ Ð¾Ñ‡ÐºÐ¾Ð²: %d",points);
             attron(COLOR_PAIR(3));
-            printw("\n\n\t1-Ñêðûòíîñòü  %d",hero_main->stealth);
-            printw("\n\t2-Àòëåòèêà    %d",hero_main->athletics);
-            printw("\n\t3-Ìåõàíèêà    %d",hero_main->mechanics);
-            printw("\n\t4-Âûæèâàíèå   %d",hero_main->survival);
-            printw("\n\t5-Çíàíèå      %d",hero_main->knowledge);
+            printw("\n\n\t1-Ð¡ÐºÑ€Ñ‹Ñ‚Ð½Ð¾ÑÑ‚ÑŒ  %d",hero_main->stealth);
+            printw("\n\t2-ÐÑ‚Ð»ÐµÑ‚Ð¸ÐºÐ°    %d",hero_main->athletics);
+            printw("\n\t3-ÐœÐµÑ…Ð°Ð½Ð¸ÐºÐ°    %d",hero_main->mechanics);
+            printw("\n\t4-Ð’Ñ‹Ð¶Ð¸Ð²Ð°Ð½Ð¸Ðµ   %d",hero_main->survival);
+            printw("\n\t5-Ð—Ð½Ð°Ð½Ð¸Ðµ      %d",hero_main->knowledge);
             attron(COLOR_PAIR(5));
-            printw("\n\n\tÍàæìèòå ëþáóþ êëàâèøó...",hero_main->wisdom);
+            printw("\n\n\tÐÐ°Ð¶Ð¼Ð¸Ñ‚Ðµ Ð»ÑŽÐ±ÑƒÑŽ ÐºÐ»Ð°Ð²Ð¸ÑˆÑƒ...",hero_main->wisdom);
             refresh();
             getch();
             clear();

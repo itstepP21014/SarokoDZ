@@ -1,4 +1,4 @@
-#ifndef ALL_ARRAYS_H_INCLUDED
+﻿#ifndef ALL_ARRAYS_H_INCLUDED
 #define ALL_ARRAYS_H_INCLUDED
 
 #if defined(__linux__)
